@@ -1,0 +1,756 @@
+//===== rAthena Script ======================================= 
+//= Conjunto de Scripts utilizados para el pack
+//===== By: ==================================================
+//= Zindokar (Rokimoki)
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Script para los NPCs dinámicos de las campanas
+//= Campana de Edward Zonda: 22908
+//= Campana de Elise Zonda: 22907
+//= Campana de Kafra: 23648
+//= Campana de Mercader: 23647
+//= Personal de servicio Premium: 23165
+//= NPC Cash Shop de items limitados por cuenta
+//= Recompensa Eventos Latam RO (ROLA) OBT
+//============================================================ 
+
+//=======================================================
+// Campana de Edward Zonda
+//=======================================================
+prontera,1,1,3	script	Edward Zonda#bell	10243,{
+	.@npc$ = "[^FF0000Edward Zonda^000000]";
+	callfunc("zondaScript", .@npc$);
+	close;
+}
+
+//=======================================================
+// Campana de Elise Zonda
+//=======================================================
+prontera,2,1,3	script	Elise Zonda#bell	10209,{
+	.@npc$ = "[^0000FFElise Zonda^000000]";
+	callfunc("zondaScript", .@npc$);
+	close;
+}
+
+function	script	zondaScript	{
+	.@nombreNPC$ = getarg(0);
+	.@ahora = gettimetick(2);
+	.@dia_actual = (.@ahora - 14400) / 86400; // Día lógico que empieza a las 4:00
+	// Reset si es la primera vez o ha pasado a un nuevo día lógico
+	if (userBasicBuffUsageTick == 0 || .@dia_actual > userBasicBuffUsageTick) {
+		userBasicBuffUsage = 0;
+		userBasicBuffUsageTick = .@dia_actual;
+	}
+	.@basicBuffUsageLimit = 2;
+	.@basicBuffUsageLimitString$ = userBasicBuffUsage + "/" + .@basicBuffUsageLimit;
+	mes .@nombreNPC$;
+	mes "Te puedo ofrecer los siguientes servicios.";
+	mes "Si tienes efectos similares se reemplazarán.";
+	next;
+	switch(select("Volver a punto de guardado.","30% EXP y DROP 30 minutos. Usos " + .@basicBuffUsageLimitString$,"30% EXP y DROP 24 horas.","Vender items.","Resetear habilidades.","Resetear atributos.","Nada.")) {
+		case 1:
+			mes .@nombreNPC$;
+			mes "Que tenga buen viaje.";
+			close2;
+			warp "SavePoint", 0, 0;
+			end;
+			
+		case 2:
+			mes .@nombreNPC$;
+			// Límite de uso alcanzado
+			if (userBasicBuffUsage >= .@basicBuffUsageLimit) {
+				mes "Ya has agotado todos los usos por hoy.";
+				mes "Vuelve a partir de las 4:00 AM de mañana.";
+				// Calcular tiempo restante hasta el próximo reset a las 4:00 AM
+				set .@proximoReset, ((.@dia_actual + 1) * 86400) + 14400;
+				set .@secondsLeft, .@proximoReset - .@ahora;
+				set .@hours, .@secondsLeft / 3600;
+				set .@minutes, (.@secondsLeft % 3600) / 60;
+				set .@seconds, .@secondsLeft % 60;
+				mes "Vuelve en: " + .@hours + " horas, " + .@minutes + " minutos, " + .@seconds + " segundos.";
+				close;
+			}
+			mes "Necesito 5 Miau Fruto.";
+			next;
+			if (countitem(6909) >= 5) {
+				mes .@nombreNPC$;
+				mes "Aquí tienes, gracias por usar el servicio.";
+				close2;
+				sc_start SC_EXPBOOST, 1800000, 30;
+				sc_start SC_ITEMBOOST, 1800000, 30;
+				delitem 6909, 5;
+				userBasicBuffUsage += 1;
+				end;
+			} else {
+				mes .@nombreNPC$;
+				mes "Qué pena, no tienes los frutos necesarios.";
+				close;
+			}
+			
+		case 3:
+			mes .@nombreNPC$;
+			mes "Necesito 20 Miau Fruto.";
+			next;
+			if (countitem(6909) >= 20) {
+				mes .@nombreNPC$;
+				mes "Aquí tienes, gracias por usar el servicio.";
+				close2;
+				sc_start SC_EXPBOOST, 86400000, 30;
+				sc_start SC_ITEMBOOST, 86400000, 30;
+				end;
+			} else {
+				mes .@nombreNPC$;
+				mes "Que pena, no tienes los frutos necesarios.";
+				close;
+			}
+			
+		case 4:
+			mes .@nombreNPC$;
+			mes "Abriendo tienda para vender...";
+			close2;
+			callshop "Vendedor Bell#bell", 2;
+			end;
+			
+		case 5:
+			mes .@nombreNPC$;
+			mes "Para resetear tus habilidades necesito 100 Miau Fruto.";
+			next;
+			switch(select("Resetear habilidades","No...")) {
+				case 1:
+					mes .@nombreNPC$;
+					if (countitem(6909) >= 100) {
+						mes "Recuerda colocar bien tus puntos de habilidades.";
+						close2;
+						specialeffect2 EF_JOBLVUP;
+						delitem 6909, 100;
+						resetskill();
+						end;
+					} else {
+						mes "No tienes la cantidad de Miau Fruto necesario.";
+						close;
+					}
+					
+				case 2:
+					mes .@nombreNPC$;
+					mes "Vuelve cuando quieras.";
+					close;
+			}
+			
+		case 6:
+			mes .@nombreNPC$;
+			mes "Para resetear tus atributos necesito 100 Miau Fruto.";
+			next;
+			switch(select("Resetear atributos","No...")) {
+				case 1:
+					mes .@nombreNPC$;
+					if (countitem(6909) >= 100) {
+						mes "Recuerda colocar bien tus atributos.";
+						close2;
+						specialeffect2 EF_NAPALMBEAT; // EF_LVUP gives client error
+						delitem 6909, 100;
+						resetstatus();
+						end;
+					} else {
+						mes "No tienes la cantidad de Miau Fruto necesario.";
+						close;
+					}
+					
+				case 2:
+					mes .@nombreNPC$;
+					mes "Vuelve cuando quieras.";
+					close;
+			}
+			
+		case 7:
+			mes .@nombreNPC$;
+			mes "Como desee.";
+			close;
+	}
+}
+
+//=======================================================
+// Campana de Kafra
+//=======================================================
+prontera,3,1,3	script	Kafra#bell	581,{
+	mes "[^FF0000Empleada Kafra^000000]";
+	mes "Servicios de asistenta Kafra.";
+	mes "¿Cómo puedo ayudarte?";
+	next;
+	switch(select("Abrir almacén","Nada")) {
+		case 1:
+			if (!callfunc("F_CanOpenStorage")) {
+				mes "[^FF0000Empleada Kafra^000000]";
+				mes "Lo siento pero todavía no tienes la habilidad de manejar el almacén.";
+				mes "Vuelve cuando hayas aprendido las habilidades básicas necesarias.";
+				close;
+			}
+			mes "[^FF0000Kafra Employee^000000]";
+			mes "¿Qué tipo de almacén?";
+			next;
+			switch(select("Almacén","Almacén VIP")) {
+				case 1:
+					callfunc("F_CheckKafCode");
+					close2;
+					openstorage;
+					end;
+					
+				case 2:
+					if (vip_status(VIP_STATUS_ACTIVE)) {
+						mes "[^FF0000Kafra Employee^000000]";
+						mes "Tómese su tiempo organizando su espacio.";
+						callfunc("F_CheckKafCode");
+						close2;
+						openstorage2 1, STOR_MODE_ALL;
+						end;
+					} else {
+						mes "[^FF0000Kafra Employee^000000]";
+						mes "Parece ser que no eres VIP, solo te puedo dejar abrirlo en modo retirada.";
+						callfunc("F_CheckKafCode");
+						close2;
+						openstorage2 1, STOR_MODE_GET;
+						end;
+					}
+			}
+			end;
+			
+		case 2:
+			mes "[^FF0000Kafra Employee^000000]";
+			mes "";
+			close;
+			
+	}
+	end;
+}
+
+//=======================================================
+// Campana de Mercader
+//=======================================================
+prontera,4,1,3	script	Mercader Ambulante#bell	900,{
+	mes "[^FF0000Mercader Ambulante^000000]";
+	mes "Hola, ¿quieres negociar?";
+	next;
+	switch(select("Comprar herramientas","Comprar munición","Vender","Salir")) {
+		case 1:
+			mes "[^FF0000Mercader Ambulante^000000]";
+			mes "Muy bien, hagamos negocios.";
+			close2;
+			callshop "Vendedor Bell#bell", 1;
+			end;
+			
+		case 2:
+			mes "[^FF0000Mercader Ambulante^000000]";
+			mes "No cargo muchos tipos de munición encima.";
+			close2;
+			callshop "Municion Bell#bell", 1;
+			end;
+			
+		case 3:
+			mes "[^FF0000Mercader Ambulante^000000]";
+			mes "Me interesan los objetos de tus aventuras.";
+			close2;
+			callshop "Vendedor Bell#bell", 2;
+			end;
+			
+		case 4:
+			mes "[^FF0000Mercader Ambulante^000000]";
+			mes "No estaré aquí todo el día, tendrás que decidirte en algún momento.";
+			close;
+	}
+	end;
+}
+-	shop	Vendedor Bell#bell	-1,611:-1,602:-1,601:-1,23280:-1,23288:-1,645:-1,656:-1,657:-1,501:-1,502:-1,503:-1,504:-1,506:-1,610:-1,713:-1,717:-1,1771:-1
+-	shop	Municion Bell#bell	-1,1750:-1,1770:-1,1752:-1,1751:-1,13200:-1,13221:-1,13222:-1
+
+//=======================================================
+// Personal de servicio Premium
+//=======================================================
+prontera,5,1,3	script	Guerrero Lunar#bell	10298,{
+	if (!vip_status(VIP_STATUS_ACTIVE)) {
+		mes "[^0000FFGuerrero Lunar^000000]";
+		mes "No eres VIP, simple usuario vulgar.";
+		mes "Solo hablo con personas muy importantes (VIP).";
+		close;
+	}
+	mes "[^0000FFGuerrero Lunar^000000]";
+	set .@secondsLeft, vip_status(VIP_STATUS_REMAINING);
+	set .@days, .@secondsLeft / 86400;
+	set .@hours, (.@secondsLeft % 86400) / 3600;
+	set .@minutes, (.@secondsLeft % 3600) / 60;
+	set .@seconds, .@secondsLeft % 60;
+	mes "Tiempo de VIP restante: " + .@days + " días " + .@hours + " horas " + .@minutes + " minutos " + .@seconds + " segundos.";
+	mes "Te puedeo ofrecer una serie de servicios durante ese tiempo, si ya tienes estos efectos proveniente de otras fuentes se reemplazarán.";
+	next;
+	switch(select("+30% EXP (4 miau fruta)","+30% DROP (2 miau fruta)","0% Penalización al morir (8 miau fruta)","Todas las bonificaciones (10 miau fruta)", "Nada")) {
+		case 1:
+			mes "[^0000FFGuerrero Lunar^000000]";
+			if (countitem(6909) >= 4) {
+				mes "Aprovecha el tiempo y ve a subir de nivel.";
+				close2;
+				sc_start SC_EXPBOOST, 1800000, 30;
+				sc_start SC_JEXPBOOST, 1800000, 30;
+				delitem 6909, 4;
+				end;
+			} else {
+				mes "Lo siento, pero no tienes Miau Fruto suficiente.";
+				close;
+			}
+		case 2:
+			mes "[^0000FFGuerrero Lunar^000000]";
+			if (countitem(6909) >= 2) {
+				mes "Aprovecha el tiempo y ve a farmear objetos de valor.";
+				close2;
+				sc_start SC_ITEMBOOST, 1800000, 30;
+				delitem 6909, 2;
+				end;
+			} else {
+				mes "Lo siento, pero no tienes Miau Fruto suficiente.";
+				close;
+			}
+		case 3:
+			mes "[^0000FFGuerrero Lunar^000000]";
+			if (countitem(6909) >= 8) {
+				mes "Intenta ir a zonas peligrosas, no temas a morir.";
+				close2;
+				sc_start SC_LIFEINSURANCE, 1800000, 0;
+				delitem 6909, 8;
+				end;
+			} else {
+				mes "Lo siento, pero no tienes Miau Fruto suficiente.";
+				close;
+			}
+		case 4:
+			mes "[^0000FFGuerrero Lunar^000000]";
+			if (countitem(6909) >= 10) {
+				mes "Paquete completo VIP de buffs aplicados.";
+				close2;
+				sc_start SC_EXPBOOST, 1800000, 30;
+				sc_start SC_JEXPBOOST, 1800000, 30;
+				sc_start SC_ITEMBOOST, 1800000, 30;
+				sc_start SC_LIFEINSURANCE, 1800000, 0;
+				delitem 6909, 6;
+				end;
+			} else {
+				mes "Lo siento, pero no tienes Miau Fruto suficiente.";
+				close;
+			}
+		case 5:
+			mes "[^0000FFGuerrero Lunar^000000]";
+			mes "Como usted desee.";
+			close;
+	}
+	end;
+}
+
+//=======================================================
+// Cash Shop NPC
+//=======================================================
+izlude,125,157,4	script	Gerente de Articulos#0::gerentelujo	556,{
+//=======================================================
+// Tablas requeridas
+//=======================================================
+	/*
+		CREATE TABLE `account_limited_shop` (
+			`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+			`item_id` int(11) UNSIGNED NOT NULL,
+			`start_date` DATETIME NOT NULL,
+			`finish_date` DATETIME NOT NULL,
+			`price` int(11) UNSIGNED NOT NULL,
+			`quantity` int(11) UNSIGNED NOT NULL,
+			PRIMARY KEY(`id`)
+		) ENGINE=MyISAM AUTO_INCREMENT=1;
+
+		INSERT INTO 
+			`account_limited_shop` (`item_id`, `start_date`, `finish_date`, `price`, `quantity`)
+		VALUES
+			(200618, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 2000, 1),
+			(200619, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 29000, 1),
+			(200620, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 35000, 1),
+			(200031, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 35000, 1),
+			(200074, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 35000, 1),
+			(200518, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 3500, 5),
+			(200517, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 35000, 5),
+			(200519, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 35000, 5),
+			(200520, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 35000, 5),
+			(200521, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 35000, 5),
+			(200545, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 35000, 5),
+			(200546, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 35000, 5),
+			(200547, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 35000, 5),
+			(200492, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 70000, 5),
+			(200493, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 70000, 5),
+			(200110, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 70000, 5),
+			(200111, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 70000, 5);
+
+		CREATE TABLE `account_limited_shop_purchase` (
+			`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+			`item_id` int(11) UNSIGNED NOT NULL,
+			`account_id` int(11) UNSIGNED NOT NULL,
+			`count` int(11) DEFAULT 0,
+			`purchase_date` DATETIME NOT NULL,
+			PRIMARY KEY (`id`)
+		) ENGINE=MyISAM AUTO_INCREMENT=1;
+	*/
+	.@nombre$ = "[^FF0000Gerente de artículos de lujo^000000]";
+	mes .@nombre$;
+	mes "Parece que estoy vendiendo pan, ¿verdad?";
+	mes "Ni mucho menos, ofrezco una cantidad de artículos limitados y por tiempo limitado.";
+	next;
+	mes .@nombre$;
+	mes "Aquí te muestro el listado de items y su disponibilidad:";
+	.@sql$ = "SELECT s.item_id, s.price, s.quantity, IFNULL(p.total_purchased, 0) AS purchased FROM account_limited_shop s LEFT JOIN (SELECT item_id, SUM(count) AS total_purchased FROM account_limited_shop_purchase WHERE account_id = '" + getcharid(3) + "' GROUP BY item_id) p ON s.item_id = p.item_id WHERE NOW() BETWEEN s.start_date AND s.finish_date;";
+	.@queryResult = query_sql(.@sql$, .@item_id, .@price, .@quantity, .@total_purchased);
+	for (.@i = 0; .@i < .@queryResult; .@i += 1) {
+		if (.@quantity[.@i] > .@total_purchased[.@i]) {
+			mes mesitemlink(.@item_id[.@i]);
+			if (.@quantity[.@i] > 1) {
+				mes "Precio: ^0000FF " + .@price[.@i] + "C^000000, has comprado ^0000FF" + .@total_purchased[.@i] + "^000000 de ^0000FF" + .@quantity[.@i] + "^000000 unidades.^000000";
+			} else {
+				mes "Precio: ^0000FF " + .@price[.@i] + "C^000000 ^FF0000limitado a 1 unidad^000000.";
+			}
+		} else {
+			mes mesitemlink(.@item_id[.@i]) + " ^FF0000SIN STOCK^000000";
+		}
+		mes "--------------------------------";
+	}
+	next;
+	mes .@nombre$;
+	mes "¿Cuál quieres comprar?";
+	.@sql$ = "SELECT s.item_id, s.quantity, s.price, IFNULL(p.total_purchased, 0) AS purchased FROM account_limited_shop s LEFT JOIN (SELECT item_id, SUM(count) AS total_purchased FROM account_limited_shop_purchase WHERE account_id = '" + getcharid(3) + "' GROUP BY item_id) p ON s.item_id = p.item_id WHERE NOW() BETWEEN s.start_date AND s.finish_date AND IFNULL(p.total_purchased, 0) < s.quantity;";
+	.@queryResult = query_sql(.@sql$, .@item_id, .@quantity, .@price, .@total_purchased);
+	// Rellenamos la lista de nombre de items para mostar en el select
+	setarray .@itemNameList$[0], "";
+	for (.@i = 0; .@i < .@queryResult; .@i += 1) { 
+		.@itemNameList$[.@i] = getitemname(.@item_id[.@i]);
+	}
+	next;
+	.@selected = select(implode(.@itemNameList$, ":")) - 1; // Convertimos a indice de array
+	mes .@nombre$;
+	mes "¿Seguro que quieres comprar?";
+	mes "Item: " +  mesitemlink(.@item_id[.@selected]);
+	mes "Precio: ^0000FF" + .@price[.@selected] + "C^000000";
+	mes "Disponible: ^0000FF" + (.@quantity[.@selected] - .@total_purchased[.@selected]) + "^000000";
+	next;
+	if (select("Sí","No") == 2) close;
+	mes .@nombre$;
+	if (#CASHPOINTS >= .@price[.@selected]) {
+		mes "Muchas gracias, que disfrute de su compra.";
+		query_sql("INSERT INTO account_limited_shop_purchase (account_id, item_id, count, purchase_date) VALUES (" + getcharid(3) + ", " + .@item_id[.@selected] + ", 1, NOW()) ON DUPLICATE KEY UPDATE count = count + 1, purchase_date = NOW();");
+		getitem .@item_id[.@selected], 1;
+		#CASHPOINTS -= .@price[.@selected];
+		close;
+	} else {
+		mes "Vaya, no tienes Cash Points suficientes...";
+	}
+	close;
+
+	OnInit:
+		waitingroom "Articulos de Lujo", 0;
+	end;	
+}
+
+izlude_a,125,157,4	duplicate(gerentelujo)	Gerente de Articulos#1	556
+izlude_b,125,157,4	duplicate(gerentelujo)	Gerente de Articulos#2	556
+izlude_c,125,157,4	duplicate(gerentelujo)	Gerente de Articulos#3	556
+izlude_d,125,157,4	duplicate(gerentelujo)	Gerente de Articulos#4	556
+
+//=======================================================
+// Recompensa Eventos Latam RO (ROLA) OBT
+//=======================================================
+izlude,136,155,3	script	Gerente de Recompensas#0::gerenteevento	758,{
+	.@nombre$ = "[^FF0000Gerente de Recompensas^000000]";
+	mes .@nombre$;
+	mes "Me alegra que hayas jugado la OBT de ROLA, y participado en los eventos, aquí puedes reclamar tus recompensas.";
+	next;
+	mes .@nombre$;
+	mes "¿Cuál quieres reclamar?";
+	next;
+	setarray(.@opciones$[0],
+		obtEventRewards & 1 ? "[^FF0000Evento Pre-registro 1^000000] Resultados de las redes sociales":"[^0000FFEvento Pre-registro 1^000000] Resultados de las redes sociales", 
+		obtEventRewards & 2 ? "[^FF0000Evento Pre-registro 2^000000] Inicia sesión y gana":"[^0000FFEvento Pre-registro 2^000000] Inicia sesión y gana", 
+		obtEventRewards & 4 ? "[^FF0000Evento Pre-registro 3^000000] Invitar a amigos":"[^0000FFEvento Pre-registro 3^000000] Invitar a amigos", 
+		obtEventRewards & 8 ? "[^FF0000Evento Pre-registro 4^000000] ¡Registrarse!":"[^0000FFEvento Pre-registro 4^000000] ¡Registrarse!", 
+		obtEventRewards & 16 ? "[^FF0000Evento OBT 1^000000] Registrar presencia en la web":"[^0000FFEvento OBT 1^000000] Registrar presencia en la web", 
+		obtEventRewards & 32 ? "[^FF0000Evento OBT 2^000000] Evento de progresión":"[^0000FFEvento OBT 3^000000] Evento de progresión", 
+		obtEventRewards & 64 ? "[^FF0000Evento OBT 3^000000] Encuesta de satisfacción":"[^0000FFEvento OBT 4^000000] Encuesta de satisfacción"
+	);
+	switch(select(implode(.@opciones$, ":"))) {
+		case 1:
+			mes .@nombre$;
+			if (obtEventRewards & 1) {
+				mes "Ya has recibido esta recompensa.";
+				mes "¡Prueba con otras!";
+			} else {
+				mes "Evento asociado a los seguidores de las redes sociales de Latam RO.";
+				mes "[^FF0000Tier 1^000000]: 30k seguidores ^0000FFdesbloqueado^000000.";
+				mes "[^FF0000Tier 2^000000]: 50k seguidores ^0000FFdesbloqueado^000000.";
+				mes "[^FF0000Tier 3^000000]: 75k seguidores ^0000FFdesbloqueado^000000.";
+				mes "[^FF0000Tier 4^000000]: 100k seguidores ^0000FFdesbloqueado^000000.";
+				next;
+				mes .@nombre$;
+				mes "Las recompensas son las siguientes: ";
+				mes "[^FF0000Tier 1^000000]:";
+				mes mesitemlink(104112);
+				mes "[^FF0000Tier 2^000000]:";
+				mes mesitemlink(104117);
+				mes "[^FF0000Tier 3^000000]:";
+				mes mesitemlink(104118);
+				mes "[^FF0000Tier 4^000000]:";
+				mes mesitemlink(104119);
+				next;
+				if (select("Recibir","No las quiero") == 2) close;
+				mes .@nombre$;
+				mes "Las recompensas solo se pueden recibir una vez, que las disfrutes.";
+				getitem 104112,1;
+				getitem 104117,1;
+				getitem 104118,1;
+				getitem 104119,1;
+				obtEventRewards = obtEventRewards | 1;
+			}
+			close;
+
+		case 2:
+			mes .@nombre$;
+			if (obtEventRewards & 2) {
+				mes "Ya has recibido esta recompensa.";
+				mes "¡Prueba con otras!";
+				close;
+			} else {
+				mes "Durante el periodo de pre-registro, había que hacer chek-in en la web durante todo un mes, y cada 5 días que registrases la sesión se desbloqueaba una recompensa. ^FF0000En este evento las recompensas no son acumulativas^000000.";
+				next;
+				mes .@nombre$;
+				mes "^FF00005 días^000000 de inicio de sesión:";
+				mes mesitemlink(104125);
+				mes "^FF000010 días^000000 de inicio de sesión:";
+				mes mesitemlink(104126);
+				mes "^FF000015 días^000000 de inicio de sesión:";
+				mes mesitemlink(104127);
+				mes "^FF000020 días^000000 de inicio de sesión:";
+				mes mesitemlink(104128);
+				mes "^FF000025 días^000000 de inicio de sesión:";
+				mes mesitemlink(104129);
+				mes "^FF000029 días^000000 de inicio de sesión:";
+				mes mesitemlink(104130);
+				next;
+				mes .@nombre$;
+				mes "¿Cuál fue tu record? Sé honesto.";
+				next;
+				switch (select("5 días","10 días","15 días","20 días","25 días", "29 días", "Ninguna")) {
+					case 1:
+						getitem 104125,1;
+						break;
+
+					case 2:
+						getitem 104126,1;
+						break;
+
+					case 3:
+						getitem 104127,1;
+						break;
+
+					case 4:
+						getitem 104128,1;
+						break;
+
+					case 5:
+						getitem 104129,1;
+						break;
+
+					case 6:
+						getitem 104130,1;
+						break;
+
+					default:
+						mes .@nombre$;
+						mes "Vuelve cuando quieras.";
+						close;
+				}
+				mes .@nombre$;
+				mes "Que disfrutes las recompensas.";
+				obtEventRewards = obtEventRewards | 2;
+			}
+			close;
+
+		case 3:
+			mes .@nombre$;
+			if (obtEventRewards & 4) {
+				mes "Ya has recibido esta recompensa.";
+				mes "¡Prueba con otras!";
+				close;
+			} else {
+				mes "Evento asociado a la cantidad de amigos que has invitado a registrarse en el periodo de pre-registro.";
+				mes "[^0000FF1 amigo^000000]:";
+				mes mesitemlink(104120);
+				mes "[^0000FF5 amigos^000000]:";
+				mes mesitemlink(104121);
+				mes "[^0000FF10 amigos^000000]:";
+				mes mesitemlink(104122);
+				mes "[^0000FFFuiste invitado^000000]:";
+				mes mesitemlink(104123);
+				mes "[^0000FFEl que más invitó^000000]:";
+				mes mesitemlink(104124);
+				next;
+				mes .@nombre$;
+				mes "¿Cuántos amigos invitaste? Sé honesto.";
+				next;
+				switch(select("Invité a 1 amigo","Invité a 5 amigos","Invité a 10 amigos","El que más invitó","Fui invitado", "Ninguna")) {
+					case 1:
+						getitem 104120,1;
+						break;
+
+					case 2:
+						getitem 104120,1;
+						getitem 104121,1;
+						break;
+					case 3:
+						getitem 104120,1;
+						getitem 104121,1;
+						getitem 104122,1;
+						break;
+
+					case 4:
+						getitem 104120,1;
+						getitem 104121,1;
+						getitem 104122,1;
+						getitem 104124,1;
+						break;
+
+					case 5:
+						getitem 104123,1;
+						break;
+
+					default:
+						mes .@nombre$;
+						mes "Vuelve cuando quieras.";
+						close;
+				}
+				mes .@nombre$;
+				mes "Disfruta de las recompensas.";
+				obtEventRewards = obtEventRewards | 4;
+				close;
+			}
+			close;
+
+		case 4:
+			mes .@nombre$;
+			if (obtEventRewards & 8) {
+				mes "Ya has recibido esta recompensa.";
+				mes "¡Prueba con otras!";
+			} else {
+				mes "Recibe esta recompensa por solo haberte registrado.";
+				mes mesitemlink(104103);
+				mes "¿Te preinscribiste?";
+				next;
+				if (select("Sí","No") == 2) close;
+				mes .@nombre$;
+				mes "Disfruta las recompensas.";
+				getitem 104103, 1;
+				obtEventRewards = obtEventRewards | 8;
+			}
+			close;
+
+		case 5:
+			mes .@nombre$;
+			if (obtEventRewards & 16) {
+				mes "Ya has recibido esta recompensa.";
+				mes "¡Prueba con otras!";
+			} else {
+				mes "Evento asociado al registro de presencia diario durante la OBT, si registraste más de 4 días te pertenece esta recompensa.";
+				mes mesitemlink(20443);
+				next;
+				if (select("Registré presencia 4 días o más.","No...") == 2) close;
+				mes .@nombre$;
+				mes "Disfruta de la recompensa";
+				getitem 20443, 1;
+				obtEventRewards = obtEventRewards | 16;
+			}
+			close;
+
+		case 6:
+			mes .@nombre$;
+			if (obtEventRewards & 32) {
+				mes "Ya has recibido esta recompensa.";
+				mes "¡Prueba con otras!";
+			} else {
+				mes "Evento asociado a la progresión de niveles, según tu nivel máximo de personaje puedes conseguir:";
+				mes "Alcanzar niveles ^FF000071~99 sin renacer^000000.";
+				mes mesitemlink(104165);
+				mes "Alcanzar niveles ^FF00001~70^000000 renacido.";
+				mes mesitemlink(104166);
+				mes "Alcanzar niveles ^FF000071~99^000000 renacido.";
+				mes mesitemlink(104167);
+				mes "Alcanzar niveles ^FF0000100~110^000000 renacido.";
+				mes mesitemlink(104168);
+				mes "Alcanzar niveles ^FF0000111~120^000000 renacido.";
+				mes mesitemlink(104169);
+				mes "Alcanzar nivel ^FF0000121 o más^000000 renacido.";
+				mes mesitemlink(104171);
+				next;
+				mes .@nombre$;
+				mes "Selecciona tu rango de niveles alcanzado durante la OBT.";
+				next;
+				switch(select("71~99 sin renacer.","1~70 renacido.","71~99 renacido.","100~110 renacido.","111~120 renacido.","121 o más renacido.","Ninguno.")) {
+					case 1:
+						getitem 104165, 1;
+						break;
+
+					case 2:
+						getitem 104166, 1;
+						break;
+
+					case 3:
+						getitem 104167, 1;
+						break;
+
+					case 4:
+						getitem 104168, 1;
+						break;
+
+					case 5:
+						getitem 104169, 1;
+						break;
+
+					case 6:
+						getitem 104171, 1;
+						break;
+
+					case 7:
+						mes .@nombre$;
+						mes "Bueno, no pasa nada, hay más recompensas.";
+						close;
+				}
+				mes .@nombre$;
+				mes "Disfruta las recompensas.";
+				obtEventRewards = obtEventRewards | 32;
+			}
+			close;
+
+		case 7:
+			mes .@nombre$;
+			if (obtEventRewards & 64) {
+				mes "Ya has recibido esta recompensa.";
+				mes "¡Prueba con otras!";
+			} else {
+				mes "Recibe esta recompensa por haber participado en la encuesta de satisfacción de la OBT.";
+				mes mesitemlink(104434);
+				mes "¿Te preinscribiste?";
+				next;
+				if (select("Sí","No") == 2) close;
+				mes .@nombre$;
+				mes "Disfruta las recompensas.";
+				getitem 104434, 1;
+				obtEventRewards = obtEventRewards | 64;
+			}
+			close;
+	}
+
+	OnInit:
+		waitingroom "Recompensas ROLA OBT", 0;
+	end;
+}
+
+izlude_a,136,155,5	duplicate(gerenteevento)	Gerente de Recompensas#1	762
+izlude_b,136,155,5	duplicate(gerenteevento)	Gerente de Recompensas#2	758
+izlude_c,136,155,5	duplicate(gerenteevento)	Gerente de Recompensas#3	762
+izlude_d,136,155,5	duplicate(gerenteevento)	Gerente de Recompensas#4	758
