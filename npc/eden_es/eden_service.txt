@@ -64,4 +64,4 @@
 	close;
 }
 moc_para01,173,120,0	duplicate(pggc)	Armario de Mercancías#01	111
-moc_para01,170,120,0	duplicate(pggc) Armario de Mercancías#02	111
+moc_para01,170,120,0	duplicate(pggc)	Armario de Mercancías#02	111

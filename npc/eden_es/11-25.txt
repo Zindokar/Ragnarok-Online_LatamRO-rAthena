@@ -121,17 +121,17 @@ moc_para01,32,30,6	script	Spike	4_F_CHILD,{
 			}
 		}
 		else if (.@j >= 0) {
-mes "[Espiga]";
+mes "[Spike]";
 mes "Aún no has terminado tu misión.";
 mes "Continúen con el buen trabajo. Ya casi has terminado.";
 			close;
 		}
 	}
-mes "[Espiga]";
+mes "[Spike]";
 mes "¿Estás buscando trabajo?";
 mes "Siempre tenemos mucho trabajo por hacer.";
 	next;
-mes "[Espiga]";
+mes "[Spike]";
 mes "¿Por qué no miras a tu alrededor y encuentras algunas tareas interesantes?";
 	close;
 
@@ -142,17 +142,17 @@ L_Quest:
 		.@req_amount = getarg(4,0);
 		if (.@item_req) {
 			if (countitem(.@item_req) < .@req_amount) {
-mes "[Espiga]";
+mes "[Spike]";
 mes "No tienes suficiente "+ getitemname(.@item_req) +".";
 mes "Necesitas traer "+ .@req_amount + " " + getitemname(.@item_req) +".";
 				close;
 			}
 		}
-mes "[Espiga]";
+mes "[Spike]";
 mes "Hmm... Déjame ver~";
 mes "Has completado la misión '"+ getarg(1) +"'.";
 		next;
-mes "[Espiga]";
+mes "[Spike]";
 mes "¡¡Buen trabajo~!!";
 mes "Nuestro cliente está muy contento con su trabajo. Él apreciará lo que has hecho.";
 mes "Por favor, ayúdenos de nuevo. ¡Gracias!";

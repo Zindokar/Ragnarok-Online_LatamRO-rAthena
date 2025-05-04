@@ -1,0 +1,201 @@
+//===== rAthena Script =======================================
+//= Eden Group Quests - Mission [86 - 90]
+//===== By: ==================================================
+//= Chilly
+//===== Current Version: =====================================
+//= 1.5
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= Repetable Quests for Players between Baselevel 86 - 90.
+//===== Additional Comments: =================================
+//= 1.0 First Version. [Chilly]
+//= 1.1 Some little improvements here and there. [Masao]
+//= 1.2 Optimized. [Euphy]
+//= 1.3 Updated to match the official script. [Euphy]
+//= 1.4 Added support to Para_Team_Mark_ in Eden Group. [Ragno]
+//= 1.5 Added use of F_HasEdenGroupMark function. [Ragno]
+//============================================================
+
+moc_para01,48,175,3	script	86-90 Mission Board	857,{
+	if (!callfunc("F_HasEdenGroupMark")) {
+mes "﻿¡Espera un momento!";
+mes "-Necesitas tener un-";
+mes "-^4d4dff'Eden Group Mark'^000000-";
+mes "-para recibir estas misiones.-";
+		next;
+		switch(select("Irse caminando.:Misiones del ^0000FFGrupo Edén?^000000?:¿Cómo puedo ser miembro del ^0000FFGrupo Edén^000000?")) {
+		case 1:
+			close;
+		case 2:
+mes "::Las Misiones del Grupo Edén";
+mes "::son básicamente misiones";
+mes "::solicitado por";
+mes "::p gente de todo el reino.";
+mes "::Simplemente los categorizamos.";
+			next;
+mes "::En el Grupo del Edén,";
+mes "::Ordenamos las misiones";
+mes "::según el nivel de dificultad.";
+mes "::De acuerdo con este nivel,";
+mes "::puedes encontrar";
+mes "::misiones que";
+mes "::se adapta a ti.";
+			next;
+mes "::Cuando hayas terminado,";
+mes "::puedes volver";
+mes "::a la junta de misiones.";
+			next;
+mes "::Entonces serás";
+mes "::¡¡Recompensado!!";
+mes "::Sencillo, ¿verdad?";
+mes "::¡No se requiere comisión!!";
+			close;
+		case 3:
+mes "::Puedes convertirte en miembro";
+mes "::del Grupo Edén";
+mes "::to ^0000FFLaime Evenor^000000,";
+mes "::que está esperando en el 1er piso.";
+			next;
+mes "::Si te conviertes en miembro,";
+mes "::Obtendrás un";
+mes "::\^006400Eden Group Mark^000000\.";
+mes "::Entonces podrás";
+mes "::para ver el tablero de misiones.";
+			close;
+		}
+	}
+	if (BaseLevel < 86  || BaseLevel > 90) {
+		// Quest IDs: 4167-4180
+		// Quest cooldown IDs: 4198-4211
+setarray .@na$[0],
+			"Dragon Tail","Spring Rabbit","Pest",
+			"Bathory","Alarm",
+			"Baba Yaga","Yao Jun","Firelock Soldier","Zipper Bear",
+			"Ground Petite","Rafflesia","Venomous","Pitman","Yellow Novus";
+		setarray .@exp[0],
+			76000,82000,82000,
+			72000,76000,
+			72000,78000,82000,80000,
+			72000,72000,72000,86000,80000;
+mes "Debes estar dentro del nivel 86-90 para aceptar estas misiones.";
+		for(set .@quest,4167; .@quest<=4180; set .@quest,.@quest+1) {
+			set .@hunting, checkquest(.@quest,HUNTING);
+			if (.@hunting == 0 || .@hunting == 1) {
+				next;
+mes ":: No se puede proceder en";
+mes ":: ^0000FF"+.@na$[.@quest-4167]+" Caza^000000.";
+mes ":: La inscripción a la misión";
+mes ":: se cancela.";
+				erasequest .@quest;
+				close;
+			} else if (.@hunting == 2) {
+				next;
+mes ":: Has añadido información";
+mes ":: Sobre la misión";
+mes ":: ^0000FF"+.@na$[.@quest-4167]+" Caza^000000";
+mes ":: en el tablero de misiones.";
+mes ":: Tienes un";
+mes ":: Experiencia saludable.";
+				erasequest .@quest;
+				getexp .@exp[.@quest-4167],0;
+				close;
+			}
+		}
+		close;
+	}
+mes "[86-90 Junta de Misiones]";
+mes "Hay varias solicitudes en este foro.";
+	next;
+	switch(select("^8B4513Turtle Island^000000:^8B4513Clock Tower Dungeon^000000:^8B4513Expansion Towns^000000:^8B4513Other Regions^000000")) {
+	case 1:
+mes "^8B4513Isla de la Tortuga^000000.";
+mes "¿Qué monstruo vas a cazar o ya has terminado de cazar?";
+		next;
+		switch(select("^0000FFDragon Tail^000000:^0000FFSpring Rabbit^000000:^0000FFPest^000000")) {
+			case 1: callsub L_Quest,4167,"Dragon Tail",76000,"드래곤테일카드","There is a monster that only can be found on ^8B4513Turtle Island^000000.","s";
+			case 2: callsub L_Quest,4168,"Spring Rabbit",82000,"스프링래빗카드","There is a monster that only can be found on ^8B4513Turtle Island^000000.","s";
+			case 3: callsub L_Quest,4169,"Pest",82000,"페스트카드","There is a monster that only can be found on ^8B4513Turtle Island^000000.","s";
+		}
+	case 2:
+mes "^8B4513Mazmorra de la Torre del Reloj^000000.";
+mes "¿Qué monstruo vas a cazar o ya has terminado de cazar?";
+		next;
+		switch(select("^0000FFBathory^000000:^0000FFAlarm^000000")) {
+			case 1: callsub L_Quest,4170,"Bathory",72000,"바소리카드","The Clock Tower Dungeon is full of dangerous monsters.";
+			case 2: callsub L_Quest,4171,"Alarm",76000,"알람카드","The Clock Tower Dungeon is full of dangerous monsters.";
+		}
+	case 3:
+mes "^8B4513Ciudades de expansión^000000";
+mes "¿Qué monstruo vas a cazar o ya has terminado de cazar?";
+		next;
+		switch(select("^0000FFBaba Yaga^000000:^0000FFYao Jun^000000:^0000FFFirelock Soldier^000000:^0000FFZipper Bear^000000")) {
+			case 1: callsub L_Quest,4172,"Baba Yaga",72000,"","The witch Baba Yaga can be found in the outskirts of Moscovia.";
+			case 2: callsub L_Quest,4173,"Yao Jun",117000,"혜군카드","There are human-like monsters that roam around the dungeon in Luoyang.";
+			case 3: callsub L_Quest,4174,"Firelock Soldier",82000,"구식조총병카드","There are human-like monsters that roam around the dungeon in Amatsu.","s";
+			case 4: callsub L_Quest,4175,"Zipper Bear",120000,"지퍼베어카드","There are bear monsters swarming in the Kunlun dungeon.";
+		}
+	case 4:
+mes "[86-90 Junta de Misiones]";
+mes "Aquí hay una lista de solicitudes aleatorias para cazar monstruos en otras regiones de Midgard.";
+mes "¿Qué monstruo vas a cazar o ya has terminado de cazar?";
+		next;
+		switch(select("^0000FFGround Petite^000000:^0000FFRafflesia^000000:^0000FFVenomous^000000:^0000FFPitman^000000:^0000FFYellow Novus^000000")) {
+			case 1: callsub L_Quest,4176,"Ground Petite",72000,"지상쁘띠카드","There are dragon type monsters swarming the western region of Geffen.";
+			case 2: callsub L_Quest,4177,"Rafflesia",72000,"라플레시아카드","There are plant type monsters infesting the fields of Lighthalzen.";
+			case 3: callsub L_Quest,4178,"Venomous",72000,"베노머스","There are formless monsters floating around the fields of Einbroch.";
+			case 4: callsub L_Quest,4179,"Pitman",86000,"핏맨","There are undead monsters pushing a cart around the fields and dungeons of Einbroch.";
+			case 5: callsub L_Quest,4180,"Yellow Novus",80000,"옐로우노버스","There are yellow dragon type monsters terrorizing the fields of Hugel.";
+		}
+	}
+	end;
+
+//callsub L_Quest,<quest ID>,"<monster name>",<reward EXP>,"<cutin image>","<description>"{,"s"};
+L_Quest:
+	set .@quest1, getarg(0);
+	set .@quest2, .@quest1+31;
+	.@cutin$ = getarg(3);
+	set .@playtime, checkquest(.@quest2,PLAYTIME);
+	if (.@playtime == 0 || .@playtime == 1) {
+mes "[86-90 Junta de Misiones]";
+mes "Debes esperar 3 horas antes de poder volver a realizar esta misión.";
+		close;
+	}
+	set .@hunting, checkquest(.@quest1,HUNTING);
+	if (.@hunting == 0 || .@hunting == 1) {
+mes "[86-90 Junta de Misiones]";
+mes "¿Ya terminaste de cazar los 30 "+getarg(1)+getarg(5)+"?";
+		close;
+	} else if (.@hunting == 2) {
+mes "[86-90 Junta de Misiones]";
+mes "Has completado la caza.";
+mes "Por favor, acepte esta recompensa como una compensación.";
+		erasequest .@quest1;
+		if (.@playtime > -1) erasequest .@quest2;
+		setquest .@quest2;
+		getexp getarg(2),0;
+		close;
+	}/* else if (.@hunting == 3) {
+//		recall_completequest .@quest1
+		erasequest .@quest1;
+mes "[86-90 Junta de Misiones]";
+mes "Has vuelto a aceptar la misión +getarg(1)+ Caza.";
+		close;
+	}*/ else {
+mes "[86-90 Junta de Misiones]";
+mes getarg(4);
+		next;
+		if (.@cutin$ != "") cutin .@cutin$,3;
+mes "[86-90 Junta de Misiones]";
+mes "Caza 30 "+getarg(1)+" monstruos allí y publica tu éxito en este foro.";
+		next;
+		if (.@cutin$ != "") cutin .@cutin$,255;
+		if(select("Voy a cazarlos.:No gracias.") == 1) {
+mes "[86-90 Junta de Misiones]";
+mes "Cuando hayas completado la misión, publícala en este tablero y recoge tu recompensa.";
+			if (.@playtime > -1) erasequest .@quest2;
+			setquest .@quest1;
+		}
+		close;
+	}
+}

@@ -1,0 +1,1203 @@
+//===== rAthena Script =======================================
+//= Eden Group Quests - Mission [100-111]
+//===== By: ==================================================
+//= Capuche
+//===== Current Version: =====================================
+//= 1.2
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= [Official Conversion]
+//= Repeatable quests for players between BaseLevel 100 - 111.
+//===== Additional Comments: =================================
+//= 1.0 First version.
+//= 1.1 Added support to Para_Team_Mark_ in Eden Group. [Ragno]
+//= 1.2 Added use of F_HasEdenGroupMark function. [Ragno]
+//============================================================
+
+moc_para01,37,95,5	script	Gelkah#1	4_F_GELKA,{
+	cutin "gelca01",2;
+	if (checkweight(1201,1) == 0) {
+mes "﻿^FF0000-Mensaje de advertencia-";
+mes "- ¡¡Espera un minuto!! -";
+mes "- Tienes demasiados artículos -";
+mes "- No poder recibir artículos. -";
+mes "- Reducir el peso del cuerpo -";
+mes "- Por favor, inténtelo de nuevo. -^000000";
+		close2;
+		cutin "",255;
+		end;
+	}
+mes "[Gelkah]";
+	if (!callfunc("F_HasEdenGroupMark")) {
+mes "Muéstrame una prueba de que eres parte del Grupo Eden o no tengo nada que ver contigo.";
+mes "Estoy dando solicitudes al nivel base ^FF0000100 - 110^000000 aventureros.";
+	}
+	else if (BaseLevel < 100) {
+mes "No eres un aventurero lo suficientemente maduro. Debes tener al menos el nivel básico 100. Así que, básicamente, al menos una tercera clase.";
+		next;
+mes "[Gelkah]";
+mes "La solicitud es de ^FF0000en otro lugar^000000 que no sea Midgard.";
+	}
+	else if (BaseLevel < 111) {
+		if (para_100lv01 == 0) {
+mes "¡Aventureros!";
+			emotion ET_SMILE;
+			next;
+			cutin "gelca03",2;
+mes "[Gelkah]";
+mes "Recientemente he recibido varias solicitudes de clientes que necesitan la ayuda de aventureros como tú.";
+			next;
+			if (select( "I like requests!", "A boring quest... No thanks!" ) == 2) {
+mes "[Gelkah]";
+mes "Sabes que las solicitudes más difíciles producen mejores recompensas, ¿verdad?";
+				next;
+			}
+mes "[Gelkah]";
+mes "En realidad, no puedo aceptar cualquier tontería de la calle. Mi Maestro odia a las personas indecisas.";
+			next;
+			if (select( "Who's your master?", "I am not indecisive!" ) == 1) {
+				cutin "gelca03",2;
+mes "[Gelkah]";
+mes "Esa persona que está a mi lado es mi maestro... Regresó después de un largo viaje de práctica.";
+				next;
+mes "[Gelkah]";
+mes "Entiendo que podrías	me pregunto por qué una sura quiere a un arzobispo como maestro...";
+			}
+			else {
+				cutin "gelca03",2;
+mes "[Gelkah]";
+				if (BaseLevel < 110)
+mes "Crees que eres un veterano solo porque te has convertido en una tercera clase...";
+				else
+mes "Sé que no eres exactamente un novato, pero mi Maestro piensa que no eres diferente de uno. En mi opinión, ¡eres un gran aventurero!";
+			}
+			next;
+mes "[Gelkah]";
+mes "Necesitamos aventureros que estén dispuestos a ayudar. ¿Nos ayudas?";
+			next;
+			cutin "gelca01",2;
+			if (select( "Ok, I'll help.", "I have no interest in helping you." ) == 2) {
+mes "[Gelkah]";
+mes "¿Cómo saberlo sin hacerlo?";
+			}
+			else {
+mes "[Gelkah]";
+mes "¡Eso es lo que hace un aventurero!";
+				next;
+mes "[Gelkah]";
+mes "Me gustaría saber si eres capaz de hacer una solicitud. Déjame ver...";
+				next;
+mes "[Gelkah]";
+mes "Recoge 50 ^ff0000Brigan.^000000 Es una prueba sencilla y complicada.";
+				next;
+mes "[Gelkah]";
+mes "Es fácil de encontrar entre los monstruos en la Isla de la Tortuga o en Glastheim.";
+				next;
+mes "[Gelkah]";
+mes "Hagamos la solicitud real después de despejar la simple.";
+				setquest 13002;// Brigan collecting
+				para_100lv01 = 1;
+				para_100lv02 += 1;
+			}
+		}
+		else if (para_100lv01 == 1) {
+			if (countitem(7054) > 49) {// Brigan
+mes "¿Trajiste todos los Brigans que pedí?";
+				next;
+mes "[Gelkah]";
+mes "No necesito contar uno por uno. Esta solicitud es para seleccionar al mejor aventurero.";
+				next;
+mes "[Gelkah]";
+mes "No te enfades porque el Maestro es el responsable final si un aventurero se lesiona durante una solicitud.";
+				next;
+mes "[Gelkah]";
+mes "El Maestro decidió que la seguridad de los aventureros es importante porque muchas solicitudes nuevas son peligrosas.";
+				next;
+				cutin "rote01",2;
+mes "[Rohtert]";
+mes "Hmm...";
+				emotion ET_HNG, getnpcid(0, "Rohtert#12");
+				next;
+				cutin "gelca01",2;
+mes "[Gelkah]";
+mes "Espero que no hayas echado un vistazo. La evaluación de la capacidad de las solicitudes estándar está casi terminada.";
+				next;
+mes "[Gelkah]";
+mes "No hay tiempo para hacer ^ff0000La insignia del avanzado Grupo Edén.^000000";
+				next;
+mes "[Gelkah]";
+mes "^ff0000¡El tiempo es dinero novato!^000000";
+mes "Creo que así es como sonaría un verdadero maestro, ¿verdad?";
+				next;
+mes "[Gelkah]";
+mes strcharinfo(0) +" hará una lista de solicitudes para usted, así que vaya a hablar con mi Maestro ahora y muestre sus respetos.";
+				delitem 7054,50;// Brigan
+				completequest 13002;// Brigan collecting
+				para_100lv01 = 2;
+				getitem 6549,1;// Courtesy_Ticket
+			}
+			else {
+				cutin "gelca02",2;
+mes "¿Aún no has encontrado 50 Brigan? El Maestro dice que es una tarea tan simple...";
+				next;
+mes "[Gelkah]";
+mes "¡Por favor, date prisa! Necesitamos un verdadero aventurero para realizar la solicitud.";
+			}
+		}
+		else if (para_100lv01 == 2)
+mes "Espera un momento. Estoy haciendo una lista de solicitudes. Simplemente no sé cuál tengo que darte. Soy un buen hombre.";
+		else if (para_100lv01 > 2) {
+mes "La lista de solicitudes está lista. ¿Quieres empezar?";
+			next;
+			switch( select( "Hunting Quests", "Inquire regards", "Show kindness pass" ) ) {
+mes "[Gelkah]";
+			case 1:
+mes "No es necesario que acepte todas las solicitudes a la vez. Elija un área de solicitud que se adapte a sus habilidades particulares. Uno que le permita realizar la solicitud y disfrutar del viaje al mismo tiempo.";
+				next;
+				switch( select( "Glastheim related request", "Ash Vacuum related request", "Ice Dungeon related request", "Magma Dungeon related request", "Other requests" ) ) {
+mes "[Gelkah]";
+				case 1:
+mes "Estas son las solicitudes de la zona de Glastheim.";
+					next;
+					switch( select( "Carat Hunting", "Arclouse Hunting", "Anolian Hunting", "Sting Hunting", "Majoruros Hunting" ) ) {
+mes "[Gelkah]";
+					case 1:
+						if (checkquest(13004,PLAYTIME) == 0)
+mes "Acaba de terminar una solicitud. Es importante que descanses un rato. Siempre habrá una solicitud esperándote.";
+						else if (checkquest(13003,HUNTING) == 1) {
+mes "Esta solicitud es para despejar ^0000FF30^000000 ^FF0000Carat^000000 dentro del primer piso del castillo de Glastheim.";
+							next;
+							cutin "gelca01",2;
+mes "[Gelkah]";
+mes "Por favor, infórmeme cuando haya completado la solicitud.";
+						}
+						else if (checkquest(13003,HUNTING) == 2) {
+mes "Visitar el viejo castillo aterrador debe ser difícil. Estoy seguro de que algún día sería una buena experiencia para mí.";
+							callsub S_Quest,13003,13004,106000,148000;
+						}
+						else {
+mes "Esta solicitud es de un comerciante de Morocc que de alguna manera está perdiendo negocios con estos monstruos en Glastheim.";
+							next;
+mes "[Gelkah]";
+mes "Eden Group es consciente de que esta no es una gran razón, pero una solicitud es una solicitud. Así que por favor despeja ^FF000030 Carat^000000 monstruos dentro del castillo de Glastheim.";
+							callsub S_Quest,13004,13003;
+						}
+						break;
+					case 2:
+						if (checkquest(13006,PLAYTIME) == 0)
+mes "Acaba de terminar una solicitud. Por favor, tómese un descanso. Siempre habrá una petición para ti.";
+						else if (checkquest(13005,HUNTING) == 1) {
+mes "Por favor, borre ^FF000022 Arclouse^000000.";
+							next;
+							cutin "gelca01",2;
+mes "[Gelkah]";
+mes "Por favor, infórmeme cuando haya superado esta solicitud.";
+						}
+						else if (checkquest(13005,HUNTING) == 2) {
+mes "Buen trabajo.";
+							emotion ET_BEST;
+							callsub S_Quest,13005,13006,106000,148000;
+						}
+						else {
+mes "¿Sabes que hay frijoles que se usan como alimento aquí en Midgard? Cuando un arco rueda, se parece a un frijol.";
+							next;
+mes "[Gelkah]";
+mes "El cuartel general del Grupo Edén quiere investigar al Arclouse como posible mascota.";
+							next;
+mes "[Gelkah]";
+mes "Por favor, borre ^FF000022 Arclouse^000000.";
+							if (callsub( S_Quest,13006,13005 ) == 0) {
+mes "[Gelkah]";
+mes "Es una lástima. Era una petición interesante.";
+							}
+						}
+						break;
+					case 3:
+						if (checkquest(13008,PLAYTIME) == 0)
+mes "Acaba de terminar una solicitud. La aventura es importante, pero descansar también lo es. Siempre habrá una solicitud esperando.";
+						else if (checkquest(13007,HUNTING) == 1) {
+mes "Un monje está en peregrinación y busca protección contra unas criaturas parecidas a caimanes.";
+							next;
+mes "[Gelkah]";
+mes "De todos modos, esta solicitud es para despejar a los anolianos en el canal subterráneo para dar paso a una peregrinación segura.";
+							next;
+							cutin "gelca01",2;
+mes "[Gelkah]";
+mes "Por favor, infórmeme cuando haya superado esta solicitud.";
+						}
+						else if (checkquest(13007,HUNTING) == 2) {
+mes "Le fue bien con esta solicitud.";
+							callsub S_Quest,13007,13008,112000,186500;
+						}
+						else {
+mes "Glastheim parece ser un buen lugar sagrado no solo para los aventureros sino también para los monjes. No tengo ni idea de qué es lo que realmente les atrae allí.";
+							next;
+mes "[Gelkah]";
+mes "Una peregrinación desde el monasterio hasta la vía fluvial subterránea es un viaje. La petición es limpiar ^FF000030 Anolian^000000 en el alcantarillado de Glastheim para una peregrinación segura.";
+							callsub S_Quest,13008,13007;
+						}
+						break;
+					case 4:
+						if (checkquest(13010,PLAYTIME) == 0)
+mes "Acaba de terminar una solicitud. La aventura es importante, pero descansar también lo es. Siempre habrá una solicitud esperando.";
+						else if (checkquest(13009,HUNTING) == 1) {
+mes "Hay muchos monstruos de picadura en el canal subterráneo y la cueva subterránea, por lo que será fácil de eliminar.";
+							next;
+mes "[Gelkah]";
+mes "La solicitud es despejar ^FF000030 Sting^000000 en la vía fluvial subterránea y la cueva subterránea para una peregrinación segura.";
+							next;
+							cutin "gelca01",2;
+mes "[Gelkah]";
+mes "Por favor, infórmeme cuando haya superado esta solicitud.";
+						}
+						else if (checkquest(13009,HUNTING) == 2) {
+mes "Visitar un subsuelo sucio y maloliente debe ser duro. Sería una buena experiencia para ti.";
+							callsub S_Quest,13009,13010,112000,186500;
+						}
+						else {
+mes "¿Has oído hablar de la peregrinación de un monje? Hay tantas picaduras en el canal subterráneo y la cueva que molestan a los monjes pacíficos.";
+							next;
+mes "[Gelkah]";
+mes "El Maestro aceptó esta petición porque respeta a esos monjes. La solicitud es limpiar ^FF000030 Sting^000000 monstruos en el canal subterráneo para una peregrinación segura.";
+							callsub S_Quest,13010,13009;
+						}
+						break;
+					case 5:
+						if (checkquest(13012,PLAYTIME) == 0)
+mes "Acaba de terminar una solicitud. La aventura es importante, pero descansar también lo es. La peregrinación continuará, por lo que volverá a haber otra solicitud.";
+						else if (checkquest(13011,HUNTING) == 1) {
+mes "Me pregunto cuál es la razón detrás de estas peregrinaciones de monjes y por qué siguen haciéndolo... Debe haber una razón oculta.";
+							next;
+mes "[Gelkah]";
+mes "Solía encargarme de la solicitud, pero estoy preocupado. La solicitud es despejar ^FF000030 Majoruros^000000 del 2º piso de la cueva subterránea.";
+							next;
+							cutin "gelca01",2;
+mes "[Gelkah]";
+mes "Por favor, infórmeme cuando haya superado esta solicitud.";
+						}
+						else if (checkquest(13011,HUNTING) == 2) {
+mes "Visitar para una peregrinación larga debe ser agotador.";
+mes "Sería una buena experiencia para ti.";
+							callsub S_Quest,13011,13012,112000,252000;
+						}
+						else {
+mes "El destino de peregrinación de los monjes se encuentra en el 2º piso de la cueva subterránea del castillo de Glastheim. No es un viaje fácil, pero será una buena experiencia.";
+							next;
+mes "[Gelkah]";
+mes "El majoururos no es fácil de cazar, así que ten cuidado. La solicitud es para despejar ^FF000030 Majoruros^000000 en el segundo piso de la cueva subterránea.";
+							callsub S_Quest,13012,13011;
+						}
+					}
+					break;
+				case 2:
+mes "Son muchas las peticiones que llegan de la Expedición Midgard.";
+					next;
+					if (select( "Hunting Quests","Trauma" ) == 1) {
+mes "[Gelkah]";
+						if (checkquest(13014,PLAYTIME) == 0)
+mes "Acaba de terminar una solicitud. La aventura es importante, pero descansar también lo es. Por favor, tómese un descanso. Siempre habrá una petición para ti.";
+						else if (checkquest(13013,HUNTING) == 1) {
+mes "El espacio de salida es misterioso. Los monstruos son únicos.";
+							next;
+mes "[Gelkah]";
+mes "Esta es una solicitud inusual. Por favor, borre ^FF000030 Pinguicula^000000.";
+							next;
+							cutin "gelca01",2;
+mes "[Gelkah]";
+mes "Por favor, infórmeme cuando haya superado esta solicitud.";
+						}
+						else if (checkquest(13013,HUNTING) == 2) {
+mes "Visitar la aspiradora de cenizas debe ser difícil.";
+mes "Sería una buena experiencia para ti.";
+							callsub S_Quest,13013,13014,106000,148000;
+						}
+						else {
+mes "Pinguicula es uno de los primeros monstruos que los aventureros encuentran cuando entran en el Vacío de Cenizas. Esperan que reduzcamos a los monstruos alrededor del Campamento de Expedición.";
+							next;
+mes "[Gelkah]";
+mes "Es natural tener más accidentes con nuevos monstruos. Es una petición común. Por favor, borre ^FF000030 Pinguicula^000000.";
+							callsub S_Quest,13014,13013;
+						}
+					}
+					else {
+mes "[Gelkah]";
+						if (checkquest(13016,PLAYTIME) == 0)
+mes "Acaba de terminar una solicitud. La aventura es importante, pero descansar también lo es. Por favor, tómese un descanso. No vale la pena trabajar tan duro en esta solicitud.";
+						else if (checkquest(13015,HUNTING) == 1) {
+mes "Esta es una petición extraña y una razón extraña, pero debemos aceptarla de todos modos.";
+							next;
+mes "[Gelkah]";
+mes "Por favor, despeje ^FF000030 Luciola Vespa^000000.";
+							next;
+							cutin "gelca01",2;
+mes "[Gelkah]";
+mes "Por favor, infórmeme cuando haya superado esta solicitud.";
+						}
+						else if (checkquest(13015,HUNTING) == 2) {
+mes "Debe ser muy duro hacer una petición tan extraña.";
+							callsub S_Quest,13015,13016,112000,186500;
+						}
+						else {
+mes "Esta es una petición muy personal. Es inusual, pero esta solicitud es de un aventurero que es amigo de Rohtert. Es solicitado por Pretty Boy. ¿Por qué escribió esto?";
+							next;
+mes "[Gelkah]";
+mes "Es demasiado personal que le picara una abeja cuando era joven. Lo traumatizó por lo que no puede viajar a Ash Vacuum.";
+							next;
+mes "Gelkah mira fijamente a Rohtert.";
+							next;
+mes "[Gelkah]";
+mes "Esto parece ser una solicitud para aumentar los viajeros al nuevo mundo. Por favor, despeje ^FF000030 Luciola Vespa^000000.";
+							callsub S_Quest,13016,13015;
+						}
+					}
+					break;
+				case 3:
+mes "Hay muchas solicitudes cerca o en la Mazmorra de Hielo en Rachel.";
+					next;
+					switch( select( "Desert Wolf Hunting", "Snowier Hunting", "Ice Titans..." ) ) {
+mes "[Gelkah]";
+					case 1:
+						if (checkquest(13018,PLAYTIME) == 0)
+mes "Acaba de terminar una solicitud. La aventura es importante, pero descansar también lo es.";
+						else if (checkquest(13017,HUNTING) == 1) {
+mes "¿Has leído libros antiguos? Se trata de un aventurero que luchaba con grandes lobos y terminó con una amistad. Se llama Samba's with Wolves.";
+							next;
+mes "[Gelkah]";
+mes "Una novela es una novela. Por favor, despeja ^FF000030 Lobo del Desierto^000000 cerca de la entrada a la mazmorra de hielo en Rachel.";
+							next;
+							cutin "gelca01",2;
+mes "[Gelkah]";
+mes "Por favor, infórmeme cuando haya superado esta solicitud.";
+						}
+						else if (checkquest(13017,HUNTING) == 2) {
+mes "¿No fue lindo?";
+mes "Sería una buena experiencia para ti.";
+							callsub S_Quest,13017,13018,106000,148000;
+						}
+						else {
+mes "La cueva de hielo está directamente al norte de Rachel. El problema es que los lobos asustan a los turistas cuando se dirigen a ver la cueva de hielo.";
+							next;
+mes "[Gelkah]";
+mes "¡Sería divertido si pudiéramos hablar y hacer samba con lobos! Por favor, despeja ^FF000030 Lobo del Desierto^000000 cerca de la mazmorra de hielo.";
+							callsub S_Quest,13018,13017;
+						}
+						break;
+					case 2:
+						if (checkquest(13020,PLAYTIME) == 0)
+mes "Acaba de terminar una solicitud. La aventura es importante, pero descansar también lo es.";
+						else if (checkquest(13019,HUNTING) == 1) {
+mes "Aliento áspero, ojos inseguros, frío glacial... No es una petición fácil, así que entra en calor.";
+							next;
+mes "[Gelkah]";
+mes "Por favor, despeja ^FF000030 Snowier^000000 en el segundo piso de la mazmorra de hielo.";
+							cutin "gelca01",2;
+							next;
+mes "[Gelkah]";
+mes "Por favor, infórmeme cuando haya superado esta solicitud.";
+						}
+						else if (checkquest(13019,HUNTING) == 2) {
+mes "Visitar la mazmorra de hielo helado debe ser difícil.";
+mes "Sería una buena experiencia para ti.";
+							callsub S_Quest,13019,13020,106000,148000;
+						}
+						else {
+mes "Las personas que han estado en mazmorras de hielo dicen que hay monstruos ruidosos que perturban sus visitas. Por favor, límpialos si puedes soportarlo.";
+							next;
+mes "[Gelkah]";
+mes "Por favor, despeja ^FF000030 Snowier^000000 en el segundo piso de la mazmorra de hielo.";
+							callsub S_Quest,13020,13019;
+						}
+						break;
+					case 3:
+						if (checkquest(13022,PLAYTIME) == 0)
+mes "Acaba de terminar una solicitud. La aventura es importante, pero descansar también lo es.";
+						else if (checkquest(13021,HUNTING) == 1) {
+mes "Por favor, despeja ^FF000030 Titán de Hielo^000000 en la cueva de hielo.";
+							next;
+							cutin "gelca01",2;
+mes "[Gelkah]";
+mes "Por favor, infórmeme cuando haya superado esta solicitud.";
+						}
+						else if (checkquest(13021,HUNTING) == 2) {
+mes "Visitar esa cueva fría y oscura debe ser difícil.";
+mes "Sería una buena experiencia para ti.";
+							callsub S_Quest,13021,13022,112000,186500;
+						}
+						else {
+mes "¿Has estado en la cueva de hielo al norte de Rachel? Hay monstruos llamados Titanes de Hielo en las profundidades de la mazmorra. Los eruditos quieren determinar si son golems o no.";
+							next;
+mes "[Gelkah]";
+mes "La solicitud es reducir el número de ellos por la seguridad del becario. Por favor, despeja ^FF000030 Titán de Hielo^000000 en la cueva de hielo.";
+							callsub S_Quest,13022,13021;
+						}
+					}
+					break;
+				case 4:
+mes "Hay una solicitud para cazar monstruos en Magma Dungeon. ^DA26DAPretty girl wanderer^000000 está solicitando esto a Comodo.";
+					next;
+					if (select( "Nightmare Terror Hunting","Deleter Hunting" ) == 1) {
+mes "[Gelkah]";
+						if (checkquest(13024,PLAYTIME) == 0)
+mes "Acaba de terminar una solicitud. Gracias por guardar la memoria. pero deberías tomarte un descanso.";
+						else if (checkquest(13023,HUNTING) == 1) {
+mes "¡La memoria de una niña es importante! Por favor, borra ^FF000030 Nightmare Terror^000000.";
+							next;
+							cutin "gelca01",2;
+mes "[Gelkah]";
+mes "Por favor, infórmeme cuando haya superado esta solicitud.";
+						}
+						else if (checkquest(13023,HUNTING) == 2) {
+mes "Piensa en la memoria de los demás. Todavía hay belleza en el mundo. Sería una buena experiencia para ti.";
+							callsub S_Quest,13023,13024,106000,148000;
+						}
+						else {
+mes "Esta solicitud es de un cliente que está triste porque la mazmorra de magma está llena de monstruos cuando regresó para regresar después de romper con su amante. Aparentemente, ella pasó mucho tiempo con él allí y quiere un poco de paz.";
+							next;
+mes "[Gelkah]";
+mes "¡La memoria de una niña es importante! Por favor, borra ^FF000030 Nightmare Terror^000000.";
+							callsub S_Quest,13024,13023;
+						}
+					}
+					else {
+mes "[Gelkah]";
+						if (checkquest(13026,PLAYTIME) == 0)
+mes "Acaba de terminar una solicitud. ¿Te tomaste el tiempo suficiente para calmarte? Descansa lo suficiente.";
+						else if (checkquest(13025,HUNTING) == 1) {
+mes "Un cliente le mostró un baile maravilloso a un amante. Un día, fueron atacados desde un Deleter mientras bailaban en la mazmorra de magma.";
+							next;
+mes "[Gelkah]";
+mes "El ataque arruinó su baile y, finalmente, su relación porque el chico culpó a la chica por haber sido atacada.";
+							next;
+mes "[Gelkah]";
+mes "Ahora ella bla los Deleters, por lo que ha hecho esta solicitud. Por favor, borre ^FF000030 Flying Deleter^000000.";
+							next;
+							cutin "gelca03",2;
+mes "[Gelkah]";
+mes "Por favor, infórmeme cuando haya superado esta solicitud.";
+						}
+						else if (checkquest(13025,HUNTING) == 2) {
+							cutin "gelca03",2;
+mes "¡Eden Group protege el amor, la justicia y Midgard! ¡hurra!";
+mes "Sería un buen recuerdo.";
+							callsub S_Quest,13025,13026,106000,148000;
+						}
+						else {
+mes "Un cliente le mostró un baile maravilloso a un amante. Un día, fueron atacados desde un Deleter mientras bailaban en la mazmorra de magma.";
+							next;
+mes "[Gelkah]";
+mes "El ataque arruinó su baile y, finalmente, su relación porque el chico culpó a la chica por haber sido atacada.";
+							next;
+mes "[Gelkah]";
+mes "Ahora ella bla los Deleters, por lo que ha hecho esta solicitud. Por favor, borre ^FF000030 Flying Deleter^000000.";
+							callsub S_Quest,13026,13025;
+						}
+					}
+					break;
+				case 5:
+mes "Aquí hay una lista de otras solicitudes de todo Midgard.";
+					next;
+					switch( select( "Loli Ruri Hunting - Niflheim", "Medusa Hunting - Comodo", "Anubis Hunting - Sphinx" ) ) {
+mes "[Gelkah]";
+					case 1:
+						if (checkquest(13041,PLAYTIME) == 0)
+mes "Creo que deberías descansar un poco. Incluso los aventureros necesitan descansar, ¿verdad?";
+						else if (checkquest(13040,HUNTING) == 1) {
+mes "Eden Group planea enviar un aviso de que los aventureros inmaduros no son enviados a solicitudes nocturnas porque es demasiado peligroso.";
+							next;
+mes "[Gelkah]";
+mes "Me pregunto por qué están tramando este tipo de ^FF0000tonterías^000000... Me hace preguntarme si siquiera saben algo de aventuras.";
+							next;
+mes "[Gelkah]";
+mes "Deberíamos aceptar esta simple petición antes de que empecemos a recibir aún más tonterías. Por favor, borre ^FF000030 Loli Ruri^000000 en Niflheim.";
+							next;
+							cutin "gelca02",2;
+mes "[Gelkah]";
+mes "Por favor, infórmeme cuando haya superado esta solicitud.";
+						}
+						else if (checkquest(13040,HUNTING) == 2) {
+mes "¿Está usted herido mentalmente? Estoy feliz de que hayas regresado sano y salvo.";
+mes "Sería una buena experiencia para ti.";
+							callsub S_Quest,13040,13041,112000,186500;
+						}
+						else {
+mes "Una sociedad secreta solicitó la protección del Grupo Edén a los Loli Ruris porque creen que tienen poderes mentales.";
+							next;
+mes "[Gelkah]";
+mes "Dijeron que curarían a los aventureros del Grupo Edén que estuvieran agotados a cambio de la solicitud, pero no estamos seguros de que lo cumplan.";
+							next;
+mes "[Gelkah]";
+mes "De todos modos, deberíamos aceptar la simple solicitud. Por favor, borre ^FF000030 Loli Ruri^000000 en Niflheim.";
+							callsub S_Quest,13041,13040;
+						}
+						break;
+					case 2:
+						if (checkquest(13043,PLAYTIME) == 0)
+mes "La aventura es importante, pero descansar también lo es.";
+						else if (checkquest(13042,HUNTING) == 1) {
+mes "No sé por qué al maestro le gusta este tipo de solicitud. También solía decir que cualquier petición es una buena petición para un aventurero...";
+							next;
+mes "[Gelkah]";
+mes "Por favor, despeje ^FF000030 Medusa^000000 en la cueva occidental de Comodo.";
+							next;
+							cutin "gelca01",2;
+mes "[Gelkah]";
+mes "Por favor, infórmeme cuando haya superado esta solicitud.";
+						}
+						else if (checkquest(13042,HUNTING) == 2) {
+mes "¿Cómo es la playa de Comodo? Echa un vistazo a tu alrededor en lugar de prestar demasiada atención a la solicitud.";
+mes "Seguro que será una buena experiencia.";
+							callsub S_Quest,13042,13043,106000,148000;
+						}
+						else {
+mes "Esta es una solicitud de un diseñador de cabello en Alberta. Quiere saber si las serpientes en la cabeza de la Medusa son realmente serpientes o pelo de fantasía...";
+							next;
+mes "[Gelkah]";
+mes "Obviamente son serpientes, pero ¿quiénes somos nosotros para pisotear los sueños de este loco, verdad?";
+							next;
+mes "[Gelkah]";
+mes "Mi maestro aceptó esta petición simplemente porque era una locura. Por favor, despeja ^FF000030 monstruo Medusa^000000 en la cueva oeste de Comodo.";
+							callsub S_Quest,13043,13042;
+						}
+						break;
+					case 3:
+						if (checkquest(13045,PLAYTIME) == 0)
+mes "La petición de Sphinx está hecha. Por favor, tómese un descanso.";
+						else if (checkquest(13044,HUNTING) == 1) {
+mes "Debería investigar sobre el cliente por mí mismo, pero por ahora, por favor, despeje ^FF000020 Anubis^000000 en el 4º piso de la mazmorra Sphinx.";
+							next;
+							cutin "gelca01",2;
+mes "[Gelkah]";
+mes "Por favor, infórmeme cuando haya superado esta solicitud.";
+						}
+						else if (checkquest(13044,HUNTING) == 2) {
+							cutin "gelca02",2;
+mes "La mazmorra de la Esfinge es un laberinto.";
+mes "Sería una buena experiencia para ti.";
+							callsub S_Quest,13044,13045,112000,186500;
+						}
+						else {
+mes "Un cliente anónimo envió una solicitud para ayudar a eliminar monstruos en la mazmorra Sphinx porque los aventureros ya casi no visitan Morocc. Los monstruos parecen estar corriendo desenfrenados allí.";
+							next;
+mes "[Gelkah]";
+mes "Por favor, despeje ^FF000020 Anubis^000000 en el 4º piso de la mazmorra Sphinx.";
+							callsub S_Quest,13045,13044;
+						}
+					}
+				}
+				break;
+			case 2:
+				if (para_100lv02 < 20) {
+					.@ran = rand(1,3);
+					if (.@ran == 1)
+mes "Estamos muy ocupados tomando solicitudes que necesitan ser atendidas. Es la primera vez que manejo tanta presión.";
+					else if (.@ran == 2)
+mes "Pensé que Eden Group estaba ocupado, pero no podía imaginar que fuera tanto. ¡Debería hacer más como aventurero!";
+					else {
+						cutin "gelca02",2;
+mes "Ojalá pudiera tomar un vaso de jugo de fruta fresca...";
+					}
+				}
+				else if (para_100lv02 < 40) {
+					.@ran = rand(1,3);
+					if (.@ran == 1) {
+						cutin "gelca03",2;
+mes "Los aventureros a veces traen cosas especiales o trofeos de donde visitaron para una solicitud. ¡Es muy bueno!";
+					}
+					else if (.@ran == 2)
+mes "Si hay algo bueno "+ strcharinfo(0) +" intentaré darte un par de cosas. No estoy seguro de si habrá suficiente para dar debido a tantos aventureros.";
+					else
+mes "El manejo de documentos debe ser difícil. Es mucho más fácil estar en el campo.";
+				}
+				else if (para_100lv02 < 60) {
+					if (para_100lv01 > 3) {
+						.@ran = rand(1,3);
+						if (.@ran == 1)
+mes "Te avisaré si hay algo bueno.";
+						else if (.@ran == 2)
+mes "¿Te estás acostumbrando a las peticiones? Es extraño que esté guiando a los aventureros en lugar de recibir solicitudes yo mismo.";
+						else
+mes "Será bueno que borre uno a la vez después de recibir todas las solicitudes de Glastheim.";
+					}
+					else {
+						cutin "gelca03",2;
+mes "Estoy ocupado pero resolviendo muchas solicitudes "+ strcharinfo(0) +" lo agradezco. Veamos. Conseguí una buena comida de un aventurero que recibió durante una solicitud.";
+						next;
+mes "[Gelkah]";
+mes "¿Vaya, me comí todo? Está bien, solo queda uno. ¡Por favor, pásate más tarde!";
+						para_100lv01 = 4;
+						getitem 608,1;// Seed_Of_Yggdrasil
+					}
+				}
+				else if (para_100lv02 < 80) {
+					cutin "gelca03",2;
+					if (para_100lv01 > 4)
+mes "¡Anímate! "+ strcharinfo(0) +" No estoy seguro de si te considera su alumno. Está fuera de control.";
+					else {
+mes "Hay una gran cantidad de regalos que llegan siempre que las solicitudes se realizan de manera eficiente. Aquí, toma esto como un premio.";
+						para_100lv01 = 5;
+						getitem 607,1;// Yggdrasilberry
+					}
+				}
+				else if (para_100lv02 > 100) {
+mes "Es un trabajo duro pero también divertido con el derecho maestro "+ strcharinfo(0) +"?";
+					next;
+					switch( select( "I hate that hot-tempered fool.", "I want you to be the master.", "I would follow you to any battle." ) ) {
+mes "[Gelkah]";
+					case 1:
+mes "Te entiendo. Me metí en una pelea cuando conocí al maestro en la aldea de Mora.";
+						next;
+mes "[Gelkah]";
+mes "Estaba casi llorando cuando lo conocí. Era difícil fingir que perdía contra él. Por favor, manténgalo en secreto.";
+						emotion ET_SMILE;
+						break;
+					case 2:
+						if (Sex == SEX_MALE)
+mes "No estoy seguro de si estoy hecho para ese trabajo. Además...";
+						else
+mes "Lamento decir esto, pero soy el único alumno del maestro ahora y siempre... Dijo ^FF0000I no necesito una alumna fea^000000, pero aún así me quedo con él.";
+						break;
+					case 3:
+						cutin "gelca04",2;
+mes "No... Por favor, no hagas eso. Lo siento, por favor, manténgalo en secreto para un maestro. Fui descuidado.";
+						emotion ET_SHY;
+						break;
+					}
+					next;
+					cutin "gelca03",2;
+mes "[Gelkah]";
+					if (para_100lv01 > 5)
+mes "Buena suerte en las solicitudes restantes.";
+					else {
+mes "Buena suerte en la solicitud restante. ^FF0000El maestro dice que tiene algo que decirte.^000000";
+						para_100lv01 = 6;
+					}
+				}
+				else
+mes "Lo siento, pero estoy un poco ocupado. ¿Podemos hablar más tarde?";
+				break;
+			case 3:
+				cutin "gelca03",2;
+mes "¿Trajiste el pase de amabilidad?";
+				next;
+				if (countitem(6549) > 0) {// Courtesy_Ticket
+					if (select( "The ^FF0000kindness pass^000000?", "Exchange pass for prizes." ) == 1) {
+mes "[Gelkah]";
+mes "Sé que suena infantil. ¿Derecha? La forma es como la carta que solíamos jugar cuando éramos niños.";
+						next;
+						if (select( "A card? What is it?", "Uh, yeah those were fun..." ) == 1) {
+							cutin "gelca02",2;
+mes "[Gelkah]";
+mes "Lo siento... Debe ser popular solo en nuestro pueblo. Tira, calienta y deja que vuele.";
+							emotion ET_SORRY;
+							next;
+						}
+						cutin "gelca01",2;
+mes "[Gelkah]";
+mes "Como ves, el maestro lo hizo él mismo y puso su imagen en él. Solía viajar en busca del material de papel para hacer la tarjeta.";
+						next;
+						cutin "gelca02",2;
+mes "[Gelkah]";
+mes "Si no se presentaron correctamente, la solicitud de búsqueda de un documento se incluirá en la lista de solicitudes.";
+						next;
+mes "[Gelkah]";
+mes "Es muy amable aunque no lo parezca. El Maestro lo usaba para dar algo a los aventureros por su devoción.";
+						next;
+						cutin "gelca01",2;
+mes "[Gelkah]";
+mes "Cuenta la historia sobre la aventura o el trofeo usando tarjetas de 1, 10, 20 y 30.";
+						next;
+mes "[Gelkah]";
+mes "Será una buena experiencia si escuchas la historia del aventurero. Hay tantas aventuras que escuchamos de un maestro.";
+						next;
+mes "[Gelkah]";
+mes "Si eres lo suficientemente maduro como para no necesitar una solicitud, asegúrate de que no se te permita usar un pase.";
+					}
+					else {
+mes "[Gelkah]";
+mes "¿Cómo quieres usar este pase?";
+						next;
+						if (select( "Exchange for prizes", "Listen to a story and get EXP" ) == 1) {
+							cutin "gelca03",2;
+mes "[Gelkah]";
+mes "Puedes elegir un trofeo en esta bolsa. Por favor, no te decepciones aunque hayas recogido algo que no quieres. ¿Cuántos quieres intercambiar?";
+							next;
+							.@amount = select( "Exchange kindness ^FF00001^000000 pass", "Exchange kindness ^FF000010^000000 pass" ) == 1 ? 1 : 10;
+mes "[Gelkah]";
+mes "Por favor, dame un pase y mete la mano en una bolsa para recoger.";
+							next;
+							if (countitem(6549) < .@amount) {// Courtesy_Ticket
+mes "[Gelkah]";
+mes "^FF0000El pase de amabilidad^000000 es insuficiente.";
+							}
+							else {
+mes "ramoneo";
+								next;
+								.@ran = rand(1,1000);
+								if (.@amount == 1) {
+									if (.@ran <= 100)
+										setarray .@item[0],505,2;// Blue_Potion
+									else if (.@ran <= 200)
+										setarray .@item[0],547,10;// White_Slim_Potion
+									else if (.@ran == 333)
+										setarray .@item[0],603,1;// Old_Blue_Box
+									else if (.@ran == 777)
+										setarray .@item[0],617,1;// Old_Violet_Box
+									else
+										setarray .@item[0],547,5;// White_Slim_Potion
+								}
+								else {
+									if (.@ran <= 100)
+										setarray .@item[0],608,1;	// Seed_Of_Yggdrasil
+									else if (.@ran <= 200)
+										setarray .@item[0],547,100;	// White_Slim_Potion
+									else if (.@ran >= 300 && .@ran <= 399)
+										setarray .@item[0],603,1;	// Old_Blue_Box
+									else if (.@ran >= 600 && .@ran <= 650)
+										setarray .@item[0],616,1;	// Old_Card_Album
+									else if (.@ran >= 700 && .@ran <= 800)
+										setarray .@item[0],617,1;	// Old_Violet_Box
+									else
+										setarray .@item[0],547,60;	// White_Slim_Potion
+								}
+								delitem 6549,.@amount;// Courtesy_Ticket
+								getitem .@item[0], .@item[1];
+mes "Metes la mano en la bolsa y agarras ^0000FF"+ .@item[1] +" "+ getitemname(.@item[0]) +"^000000.";
+								next;
+								if (.@amount == 10)
+									cutin "gelca03",2;
+mes "[Gelkah]";
+mes "Haz un buen uso de ella.";
+							}
+						}
+						else {
+mes "[Gelkah]";
+mes "Ok, tengo una historia para ti a cambio del pase de amabilidad.";
+							next;
+							switch( select( "Give ^FF000010^000000 kindness pass", "Give ^FF000020^000000 kindness pass", "Give ^FF000030^000000 kindness pass" ) ) {
+mes "[Gelkah]";
+							case 1:
+								if (countitem(6549) < 10)// Courtesy_Ticket
+mes "No tienes suficientes pases de amabilidad.";
+								else {
+									.@story = rand(1,3);
+									if (.@story == 1) {
+										cutin "gelca02",2;
+mes "¿Has visto el barco hundido cerca de Alberta?";
+										next;
+mes "El Maestro Rohter y yo viajamos a lo profundo de la nave y luchamos contra un monstruo conocido como ^FF0000Drake^000000. Ese día estaba decidido a ser el mejor aventurero.";
+										.@exp = 200000;
+										.@jexp = 148000;
+									}
+									else if (.@story == 2) {
+										cutin "gelca03",2;
+mes "Una vez, el maestro y yo fuimos a la cueva al oeste de Comodo y cuando vimos al monstruo Medusa...";
+										next;
+mes "¡Oh, chico, la expresión de su rostro no tenía precio!";
+										emotion ET_BIGTHROB;
+										emotion ET_THINK, playerattached();
+										.@exp = 180000;
+										.@jexp = 168000;
+									}
+									else {
+mes "Una vez me perdí en un laberinto al norte de Prontera. Pensé que iba a dar vueltas para siempre hasta que finalmente lo logré.";
+										next;
+mes "Se rumorea que si te pierdes en ese laberinto, te convertirás en uno de los monstruos que hay allí.";
+										.@exp = 220000;
+										.@jexp = 128000;
+									}
+									if (JobLevel < 6)
+										.@jexp = 106000;
+									getexp .@exp,.@jexp;
+									delitem 6549,10;
+									para_100lv02 += 1;
+								}
+								break;
+							case 2:
+								if (countitem(6549) < 20)// Courtesy_Ticket
+mes "No tienes suficientes pases de amabilidad.";
+								else {
+									.@story = rand(1,3);
+									if (.@story == 1) {
+										cutin "gelca04",2;
+mes "Una vez encontré una ruta secreta para llegar a Jawaii... Es solo para parejas, pero algunos de nosotros sabemos cómo llegar allí.";
+										next;
+mes "Es un poco inútil estar allí sin un compañero, pero bueno.";
+										emotion ET_THROB;
+										.@exp = 550000;
+										.@jexp = 340000;
+									}
+									else if (.@story == 2) {
+										cutin "gelca03",2;
+mes "Así que una vez, el maestro era parte de un gremio llamado wing something... ¿Alita de pollo...?";
+										next;
+mes "Fue un gremio divertido porque nadie se tomó las cosas en serio, pero el maestro se cansó de su pereza, así que se fue.";
+										.@exp = 400000;
+										.@jexp = 240000;
+									}
+									else {
+mes "¿Has estado hasta ^FF0000torre sin fin^000000? El Maestro y yo fuimos allí, pero solo llegamos al piso 20 porque su rodilla cedió mientras subía...";
+										next;
+mes "^FF0000Torre sin fin^000000 está en algún lugar del mar. Tienes que encontrar a un tipo llamado Jansor o Jans-algo en Alberta y él te llevará hasta allí.";
+										.@exp = 550000;
+										.@jexp = 290000;
+									}
+									if (JobLevel < 6)
+										.@jexp = 206000;
+									getexp .@exp, .@jexp;
+									delitem 6549,20;
+									para_100lv02 += 1;
+								}
+								break;
+							case 3:
+								if (countitem(6549) < 30)// Courtesy_Ticket
+mes "No tienes suficientes pases de amabilidad.";
+								else {
+									.@story = rand(1,2);
+									if (.@story == 1) {
+										cutin "gelca04",2;
+mes "El gremio de maestros fue despedido en el Vacío de Cenizas porque su maestro de gremio desapareció después de una batalla con algunos monstruos Cornus.";
+										next;
+mes "[Gelkah]";
+mes "Desde entonces empezó a ser malo con los aventureros más débiles...";
+										next;
+mes "[Gelkah]";
+mes "No creo que volviera a ver a ese maestro del gremio después de ese día.";
+										getexp 650000,488000;
+									}
+									else {
+										cutin "gelca03",2;
+mes "[Gelkah]";
+mes "El Maestro comenzó como un popular monje de apoyo en el monasterio de Prontera.";
+										next;
+mes "[Gelkah]";
+mes "Pero también era considerado un alborotador debido a su naturaleza competitiva, por lo que se fue.";
+										getexp 700000,430000;
+									}
+									delitem 6549,30;
+									para_100lv02 += 1;
+								}
+								break;
+							}
+						}
+					}
+				}
+				else {
+mes "[Gelkah]";
+mes "¡Por favor, vuelva a mí si recibe más pases de amabilidad!";
+				}
+			}
+		}
+	}
+	else {
+		cutin "gelca03",2;
+		if (para_100lv02 > 100)
+mes strcharinfo(0) +"! ¡Hiciste un buen trabajo! Hay más solicitudes, pero resérvalas para los demás aventureros.";
+		if (para_100lv02 < 101)
+mes "No creo que sea adecuado para la solicitud que puedo darle. Por favor, encuentre otras aventuras.";
+		callsub S_Hunting,13003,106000,148000,"Carat";// <quest id>, <job exp if joblevel < 6>, <job exp>, <quest name>
+		callsub S_Hunting,13005,106000,148000,"Arclouse";
+		callsub S_Hunting,13007,112000,186500,"Anolian";
+		callsub S_Hunting,13009,112000,186500,"Sting";
+		callsub S_Hunting,13011,112000,252000,"Majoruros";
+		callsub S_Hunting,13013,106000,148000,"Pinguicula";
+		callsub S_Hunting,13015,112000,186500,"Luciola Vespa";
+		callsub S_Hunting,13017,106000,148000,"Desert Wolf";
+		callsub S_Hunting,13019,106000,148000,"Snowier";
+		callsub S_Hunting,13021,112000,186500,"Ice Titan";
+		callsub S_Hunting,13023,106000,148000,"Nightmare Terror";
+		callsub S_Hunting,13025,106000,148000,"Flying Deleter";
+		callsub S_Hunting,13040,112000,186500,"Loli Ruri";
+		callsub S_Hunting,13042,106000,148000,"Medusa";
+		callsub S_Hunting,13044,112000,186500,"Anubis";
+		setarray .@quest_id[0],13004,13006,13008,130010,13012,13014,13016,13018,13020,13022,13024,13026,13041,13043,13045;
+		for ( .@i = 0; .@i < 15; .@i++ ) {
+			if (checkquest(.@quest_id[.@i],PLAYTIME) == 2) {
+				erasequest .@quest_id[.@i];
+				break;
+			}
+		}
+	}
+	close2;
+	cutin "",255;
+	end;
+S_Quest:
+	if (getarg(2,0)) {
+		getitem 6549,1;// Courtesy_Ticket
+		para_100lv02 += 1;
+		if (JobLevel < 6)
+			getexp 550000,getarg(1);
+		else
+			getexp 550000,getarg(2);
+	}
+	else {
+		next;
+		cutin "gelca01",2;
+		if (select( "Accept the request.","Decline." ) == 2)
+			return 0;
+mes "[Gelkah]";
+mes "Por favor, avíseme cuando haya aprobado la solicitud.";
+		if (getarg(0) == 13012) {
+			next;
+mes "[Gelkah]";
+mes "El viaje hasta el piso más bajo de Glastheim es un viaje largo, pero puede ser divertido si vas con una fiesta.";
+		}
+	}
+	if (isbegin_quest(getarg(0)))
+		erasequest getarg(0);
+	setquest getarg(1);
+	return 1;
+
+S_Hunting:
+	switch( checkquest(getarg(0),HUNTING) ) {
+	case -1:
+		return;
+	case 2:
+		next;
+mes "[Gelkah]";
+mes "Ha completado la solicitud";
+mes "^FF0000"+ getarg(3) +" Caza^000000.";
+mes "Te anotaré como que has completado esta solicitud.";
+		para_100lv02 += 1;
+		if (JobLevel < 6)
+			getexp 550000,getarg(1);
+		else
+			getexp 550000,getarg(2);
+		break;
+	case 0:
+	case 1:// untranslated these cases
+	}
+	erasequest getarg(0);
+	close2;
+	cutin "",255;
+	end;
+}
+
+moc_para01,41,95,5	script	Rohtert#12	4_M_ROTERT,{
+mes "[Rohtert]";
+	if (!callfunc("F_HasEdenGroupMark")) {
+		cutin "rote01",2;
+mes "Ni siquiera eres miembro del Grupo Edén. ¿Qué haces aquí?";
+mes "Solo estoy tratando con el nivel básico ^FF0000100 - 110^000000 aventureros.";
+	}
+	else {
+		cutin "rote03",2;
+mes "......";
+		next;
+mes "[Rohtert]";
+		if (BaseLevel < 100)
+mes "Un novato así... Ve y entrénate más. ¿Qué? ¿No te gusta cómo hablo? Luego hazte más fuerte.";
+		else if (BaseLevel > 110) {
+mes "Eres un aventurero demasiado maduro. No tienes nada que ver conmigo. Simplemente vete. Mi negocio es con nuevos aventureros de tercera clase hasta el nivel 110.";
+			if (checkquest(13047,PLAYTIME) == 2)
+				erasequest 13047;
+			if (checkquest(13049,PLAYTIME) == 2)
+				erasequest 13049;
+			if (checkquest(13048,HUNTING) > -1)
+				erasequest 13048;
+			if (checkquest(13046,HUNTING) > -1)
+				erasequest 13046;
+		}
+		else if (para_100lv01 < 2) {
+mes "¿Sí waddya quieres de mí, niño? ¿Crees que voy a decir, ok, seré tu maestro y te enseñaré todo lo que sé?";
+			next;
+mes "[Rohtert]";
+mes "No soy una organización benéfica, así que piérdete.";
+		}
+		else if (para_100lv01 == 2) {
+mes "¿Eres un nuevo aventurero?";
+			next;
+mes "[Rohtert]";
+mes "Hay tantas cosas que hacer y estás perdiendo el tiempo conmigo. Habla con Gelkah, ella es más habladora de lo que yo jamás seré contigo.";
+			next;
+mes "[Rohtert]";
+mes "Pareces lo suficientemente valiente como para ser un buen aventurero, pero no eres más que un novato a mis ojos.";
+			para_100lv01 = 3;
+		}
+		else if (para_100lv01 == 3) {
+mes "Solía ser un aventurero del Grupo Edén como tú, pero por supuesto era el mejor.";
+			next;
+mes "[Rohtert]";
+mes "Supongo que ahora estoy jubilado porque mis habilidades de aventura son demasiado buenas para competir con todos ustedes, niños.";
+		}
+		else if (para_100lv01 == 4) {
+mes "De todos modos, le estoy haciendo un favor al Grupo Edén.";
+			next;
+mes "[Rohtert]";
+mes "Busco a alguien que considere la amistad o la lealtad como un trozo de cuchara.";
+			next;
+			if (select( "A Spoon what?", "You're a bad person." ) == 1) {
+				cutin "rote03",2;
+mes "[Rohtert]";
+mes "¿Sabes? Un trozo de cuchara. Los Zombie Prisoners los dejan caer y parecen ser útiles, pero en realidad son un poco inútiles.";
+				next;
+mes "[Rohtert]";
+mes "De todos modos, supongo que pareces del tipo leal... más o menos...";
+			}
+			else {
+mes "[Rohtert]";
+mes "Eso me hace sentir raro. Eso no está mal, pero supongo que soy malo y no me importa.";
+			}
+			next;
+			cutin "rote04",2;
+mes "[Rohtert]";
+mes "Recuerda seguir siendo valiente, aventurero tonto.";
+		}
+		else if (para_100lv01 == 5) {
+			cutin "rote03",2;
+mes "¡Bien! Estás haciendo lo mejor que puedes hacer.";
+			next;
+mes "[Rohtert]";
+mes "Tengo miedo de que te estés volviendo como Gelkah. Es como un cachorro perdido. No seas como ella. ¿Bien?";
+		}
+		else if (para_100lv01 == 6) {
+			cutin "rote03",2;
+mes "Estás ocupado mirando a tu alrededor.";
+			next;
+mes "[Rohtert]";
+			if (checkquest(13046) == 2) {
+				if (checkquest(13047,PLAYTIME) == 0) {
+mes "Ya terminé con mis asuntos.";
+mes "Soy responsable de borrar los documentos. Odio hacer estas cosas.";
+					next;
+mes "[Rohtert]";
+mes "Supongo que debería hablar con él una vez más... ¡Vuelve mañana!";
+				}
+				else if (checkquest(13047,PLAYTIME) == 2) {
+mes "Oh, ¿cuánto tiempo ha pasado?";
+					erasequest 13047;// Tendrilion Request Timer
+				}
+				else if (checkquest(13049,PLAYTIME) == 0)
+mes "El blanco es un papel y el negro es una letra. Odio los documentos públicos. Pero, tengo que hacer esto, así que estoy ocupado por un tiempo.";
+				else if (checkquest(13048,HUNTING) == 1)
+mes "Sé que cazar al Tens Drillion no puede ser demasiado difícil para ti.";
+				else if (checkquest(13048,HUNTING) == 2) {
+					cutin "rote02",2;
+mes "¡Bien! ¡Te estás convirtiendo en un buen aventurero! ¡Haz tu mejor esfuerzo!";
+					erasequest 13048;// Tendrilion Request
+					setquest 13049;// Tendrilion Request Timer
+					getexp 352000,253000;
+				}
+				else {
+					cutin "rote02",2;
+mes "Tens Drillion: ¡Creo que deberíamos darle más lecciones para mostrarle quién manda!";
+					next;
+					if (select( "Lets give a good lesson for sure.", "I think once is enough." ) == 2) {
+mes "[Rohtert]";
+mes "Está bien, todavía hay muchos aventureros que pueden hacer esto.";
+					}
+					else {
+						cutin "rote04",2;
+mes "[Rohtert]";
+mes "No es porque sea cobarde.";
+						next;
+mes "[Rohtert]";
+mes "Buena suerte. Asegúrate de terminarlo esta vez. ¡Ja, ja!";
+						if (checkquest(13049,PLAYTIME) == 2)
+							erasequest 13049;
+						setquest 13048;// Tendrilion Request
+					}
+				}
+			}
+			else if (checkquest(13046,HUNTING) == 1)
+mes "¿Sigues ahí, novato? Si no puedes manejar esto por ti mismo, pregúntale a tus amigos porque esto no es lo más fácil de hacer.";
+			else if (checkquest(13046,HUNTING) == 2) {
+mes "¡Oh, has vuelto sano y salvo!";
+mes "Supongo que no eres un fregado como yo pensaba que eras.";
+				completequest 13046;// Tendrilion Request
+				setquest 13047;// Tendrilion Request Timer
+				getexp 352000,253000;
+			}
+			else {
+				cutin "rote04",2;
+mes "¿Te importa hacer un simple recado?";
+				next;
+				if (select( "No I don't mind!", "Simple errands are for simpletons." ) == 2) {
+mes "[Rohtert]";
+mes "Eres un extraño aventurero...";
+				}
+				else {
+mes "[Rohtert]";
+mes "Un buen día de viento, estaba recogiendo flores en el oeste sur del Puesto de las Fuerzas Aliadas de Midgard para cumplir con una solicitud del Grupo Edén.";
+					next;
+mes "[Rohtert]";
+mes "Entonces, de repente, apareció ese.";
+					next;
+					select("One what?");
+					cutin "rote02",2;
+mes "[Rohtert]";
+mes "Era un ^FF0000Tens Drillion.^000000";
+					next;
+					cutin "gelca03",2;
+mes "[^FF0000Gelkah^000000]";
+mes "¡Vaya! ¡Es en realidad ^FF0000Tendrilion^000000!! ¡Maestro!";
+					next;
+					cutin "rote04",2;
+mes "[Rohtert]";
+mes "¡Sí, sí, papa po-tah-toh!";
+					emotion ET_HNG;
+					next;
+					cutin "gelca02",2;
+mes "[^FF0000Gelkah^000000]";
+mes "......";
+					next;
+					cutin "rote04",2;
+mes "[Rohtert]";
+mes "Cuando nos enfrentamos a los ojos de la bestia, nos dimos cuenta de que parecía un león, pero no es un animal normal.";
+					emotion ET_HNG;
+					next;
+mes "[Rohtert]";
+mes "^8008F8Sabía que era matar o ser asesinado.^000000";
+					next;
+mes "[Rohtert]";
+mes "¡Por supuesto que vencí a esa bestia fácilmente! Era más fácil que tomar un caramelo de un Poring.";
+					next;
+mes "[Rohtert]";
+mes "Pero para mi sorpresa, la bestia volvió a levantarse. Me vi obligado a golpearlo 12 veces más antes de que se quedara abajo. Este no era un Tens Drillion normal.";
+					next;
+mes "[Rohtert]";
+mes "Escuché que todavía es un lugar errante para palce, pero ahora estoy un poco ocupado.";
+					next;
+mes "[Rohtert]";
+mes "Quiero que te ocupes de ello. Para mí estaba bien estar allí solo. Pero para ti. Te recomiendo que traigas más aventureros.";
+					next;
+					select("You sure you did this yourself?");
+mes "[Rohtert]";
+mes "El hecho de que soy fuerte es más importante que el número. Solo ve allí y saca a la bestia.";
+					next;
+mes "[Rohtert]";
+mes "Lo encontrarás al oeste del Puesto de las Fuerzas Aliadas de Midgard en el Vacío de Cenizas.";
+					next;
+					select("I guess I have no choice.");
+					cutin "rote03",2;
+mes "[Rohtert]";
+mes "¿Sigues ahí, novato? Si no puedes arreglártelas solo, pregunta a tus amigos porque no es fácil.";
+					next;
+					cutin "gelca02",2;
+mes "[^FF0000Gelkah^000000]";
+mes "......."+ strcharinfo(0) +" esperar...";
+					next;
+					cutin "gelca01",2;
+mes "[^FF0000Gelkah^000000]";
+mes "Si lo encuentras, no te asustes. El Maestro no tuvo que luchar contra el Tendrilion 12 ti.";
+					next;
+					cutin "gelca03",2;
+mes "[^FF0000Gelkah^000000]";
+mes "De hecho, el maestro estaba tan borracho que apenas se acordaba de la cosa.";
+					next;
+					cutin "gelca04",2;
+mes "[^FF0000Gelkah^000000]";
+mes "Lo dejé solo porque era un poco lindo que un maestro estuviera peleando con un Tendrilion. Ahora se está convirtiendo en un problema.";
+					next;
+					cutin "gelca01",2;
+mes "[^FF0000Gelkah^000000]";
+mes "Por favor, regresa después de eliminar un tendrilio. Ah, y por favor, mantén esto en secreto del maestro.";
+					setquest 13046;// Tendrilion Request
+				}
+			}
+		}
+	}
+	close2;
+	cutin "",255;
+	end;
+}
