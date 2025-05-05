@@ -16,112 +16,112 @@
 //============================================================
 
 moc_para01,44,81,3	script	Melody-Jack#1	4_M_MELODY,8,8,{
-mes "[MelodÃ­a-Jack]";
+mes "[Melodía-Jack]";
 	if (!callfunc("F_HasEdenGroupMark")) {
-mes "Â¿QuiÃ©n demonios eres tÃº? Â¡Largo de aquÃ­!";
+mes "¿Quién demonios eres tú? ¡Largo de aquí!";
 mes "Solo estoy hablando con los aventureros de nivel base ^FF0000121-130^000000.";
 	}
 	else if (para_120lv01 == 0)
-mes "Â¿QuÃ©? no me molestes. Ahora estoy ocupado.";
+mes "¿Qué? no me molestes. Ahora estoy ocupado.";
 	else if (para_120lv01 == 1) {
-mes "Â¿Tienes una peticiÃ³n de esa niÃ±a? Â¿El pequeÃ±o, parlanchÃ­n y semidesnudo de allÃ­?";
+mes "¿Tienes una petición de esa niña? ¿El pequeño, parlanchín y semidesnudo de allí?";
 		next;
-		select("Decir sÃ­.", "Evadir responder.");
-mes "[MelodÃ­a-Jack]";
-mes "No. No me importa, estarÃ¡ bien si entras en esta habitaciÃ³n, no porque estÃ©s perdido. Necesito a cualquiera, excepto a ese tipo de tonto.";
+		select("Decir sí.", "Evadir responder.");
+mes "[Melodía-Jack]";
+mes "No. No me importa, estará bien si entras en esta habitación, no porque estés perdido. Necesito a cualquiera, excepto a ese tipo de tonto.";
 		next;
-mes "[MelodÃ­a-Jack]";
-mes "Por favor, escÃºchame, te ofrecerÃ© una sugerencia atractiva.";
+mes "[Melodía-Jack]";
+mes "Por favor, escúchame, te ofreceré una sugerencia atractiva.";
 		next;
-mes "[MelodÃ­a-Jack]";
+mes "[Melodía-Jack]";
 mes "Soy ^ff0000Melody - Jack!^000000 El mejor hombre con las mejores habilidades con la daga.";
 		next;
-mes "Melody-Jack desliza una daga en tu direcciÃ³n.";
+mes "Melody-Jack desliza una daga en tu dirección.";
 		next;
-mes "[MelodÃ­a-Jack]";
-mes "Estoy calificado para tomar misiones secretas. Y ahora mismo estÃ¡s de suerte.";
+mes "[Melodía-Jack]";
+mes "Estoy calificado para tomar misiones secretas. Y ahora mismo estás de suerte.";
 		next;
-mes "[MelodÃ­a-Jack]";
-mes "Parece que tengo que perder una misiÃ³n, trato y promesa, no puedo tomarla en este momento.";
+mes "[Melodía-Jack]";
+mes "Parece que tengo que perder una misión, trato y promesa, no puedo tomarla en este momento.";
 		next;
-mes "[MelodÃ­a-Jack]";
-mes "Toma mi misiÃ³n y resuelve la solicitud de Aigu. Te compensarÃ©.";
+mes "[Melodía-Jack]";
+mes "Toma mi misión y resuelve la solicitud de Aigu. Te compensaré.";
 		next;
-mes "[MelodÃ­a-Jack]";
-mes "Nuestro acuerdo se mantendrÃ¡ en secreto para Aigu. Si no tienes 9 vidas. Empecemos.";
+mes "[Melodía-Jack]";
+mes "Nuestro acuerdo se mantendrá en secreto para Aigu. Si no tienes 9 vidas. Empecemos.";
 		para_120lv01 = 2;
 	}
 	else if (para_120lv01 > 1) {
 mes "......";
 		next;
 		if (select( "Show me the requests!", "Make small-talk." ) == 2) {
-mes "[MelodÃ­a-Jack]";
-mes "Â¿QuÃ©? Â¿Te interesa yo?";
+mes "[Melodía-Jack]";
+mes "¿Qué? ¿Te interesa yo?";
 			next;
 			switch( select( "I am interested.", "About requests", "About a deal", "What is a promise?" ) ) {
-mes "[MelodÃ­a-Jack]";
+mes "[Melodía-Jack]";
 			case 1:
-mes "Bueno, vete. No tengo ningÃºn interÃ©s en ti.";
+mes "Bueno, vete. No tengo ningún interés en ti.";
 				close;
 			case 2:
-mes "No puedo detenerlo debido a mi mal crÃ©dito. Me vuelve loco.";
+mes "No puedo detenerlo debido a mi mal crédito. Me vuelve loco.";
 				next;
-mes "[MelodÃ­a-Jack]";
-mes "Tengo la suerte de hacer un doble contrato con un aventurero como tÃº. No estÃ¡n incluidos en nuestro contrato.";
+mes "[Melodía-Jack]";
+mes "Tengo la suerte de hacer un doble contrato con un aventurero como tú. No están incluidos en nuestro contrato.";
 				close;
 			case 3:
-mes "Para ser honesto, no creo que haya nadie digno de confianza. La confianza o las promesas son tonterÃ­as.";
+mes "Para ser honesto, no creo que haya nadie digno de confianza. La confianza o las promesas son tonterías.";
 				next;
-mes "[MelodÃ­a-Jack]";
-mes "Solo confÃ­o en mÃ­ y en mi trato. La confianza o las promesas son vacÃ­as si se rompen, pero si se rompe un trato, hay compensaciÃ³n o venganza.";
+mes "[Melodía-Jack]";
+mes "Solo confío en mí y en mi trato. La confianza o las promesas son vacías si se rompen, pero si se rompe un trato, hay compensación o venganza.";
 				close;
 			case 4:
-mes "Â¿QuiÃ©nes son todos estos niÃ±os?";
+mes "¿Quiénes son todos estos niños?";
 				next;
-mes "[MelodÃ­a-Jack]";
-mes "SalÃ­ por nada, pero se supone que debo cumplir con mi deber. No le debo nada a nadie.";
+mes "[Melodía-Jack]";
+mes "Salí por nada, pero se supone que debo cumplir con mi deber. No le debo nada a nadie.";
 				close;
 			}
 		}
-mes "[MelodÃ­a-Jack]";
+mes "[Melodía-Jack]";
 		if (BaseLevel < 121)
-mes "Oh, cometÃ­ un error. No eres el nivel de aventurero que estoy buscando. Estoy buscando aventureros de nivel base 121 a 130.";
+mes "Oh, cometí un error. No eres el nivel de aventurero que estoy buscando. Estoy buscando aventureros de nivel base 121 a 130.";
 		else if (BaseLevel < 131) {
-mes "No me gusta, pero un trato es un trato. Por favor, regresa despuÃ©s de eliminar monstruos en los lugares donde Aigu pidiÃ³ buscar.";
+mes "No me gusta, pero un trato es un trato. Por favor, regresa después de eliminar monstruos en los lugares donde Aigu pidió buscar.";
 			next;
 			switch( select( "Thanatos Tower related ", "Rachel Shrine related ", "Nameless Island related ", "Abyss Lake related " ) ) {
-mes "[MelodÃ­a-Jack]";
+mes "[Melodía-Jack]";
 			case 1:
-mes "La torre de TÃ¡natos es el lugar mÃ¡s molesto. No te preocupes por tu compensaciÃ³n. Cumplo mi palabra.";
+mes "La torre de Tánatos es el lugar más molesto. No te preocupes por tu compensación. Cumplo mi palabra.";
 				next;
 				switch( select( "Baroness of Retribution", "Lady Solace", "Mistress of Shelter", "Dame of Sentinel" ) ) {
-mes "[MelodÃ­a-Jack]";
+mes "[Melodía-Jack]";
 				case 1:
 					if (checkquest(13120,PLAYTIME) == 0)
-mes "Creo que terminÃ© la actuaciÃ³n de hoy. No puedo relajarme si los monstruos aparecen de repente.";
+mes "Creo que terminé la actuación de hoy. No puedo relajarme si los monstruos aparecen de repente.";
 					else if (checkquest(13119,HUNTING) == 1) {
-mes "No me gusta esa criatura, no porque a Aigu no le gusten... Â¿CÃ³mo te atreves? Â¿QuiÃ©n castiga a quiÃ©n?";
+mes "No me gusta esa criatura, no porque a Aigu no le gusten... ¿Cómo te atreves? ¿Quién castiga a quién?";
 						next;
-mes "[MelodÃ­a-Jack]";
-mes "Estas son algunas de las criaturas mÃ¡s peligrosas del mundo. Estas criaturas no merecen justicia.";
+mes "[Melodía-Jack]";
+mes "Estas son algunas de las criaturas más peligrosas del mundo. Estas criaturas no merecen justicia.";
 						next;
 						cutin "",255;
-mes "[MelodÃ­a-Jack]";
-mes "Por supuesto que puedes confiar en mÃ­. Porque creo en los negocios reales. Vamos a barrer a las criaturas.";
+mes "[Melodía-Jack]";
+mes "Por supuesto que puedes confiar en mí. Porque creo en los negocios reales. Vamos a barrer a las criaturas.";
 					}
 					else if (checkquest(13119,HUNTING) == 2) {
-mes "Â¿Los borraste? AsÃ­ que eso no molesta a ese niÃ±o por un dÃ­a. Buen trabajo.";
+mes "¿Los borraste? Así que eso no molesta a ese niño por un día. Buen trabajo.";
 						callsub S_Quest,13119,13120,1;
 					}
 					else {
-mes "Como sabes, la Torre TÃ¡natos es el lugar donde mÃ¡s le importa a Aigu. Es el lugar mÃ¡s peligroso en algunos aspectos.";
+mes "Como sabes, la Torre Tánatos es el lugar donde más le importa a Aigu. Es el lugar más peligroso en algunos aspectos.";
 						next;
-mes "[MelodÃ­a-Jack]";
-mes "Por favor, elimina monstruos para ayudar a Aigu. Los aficionados harÃ¡n las cosas fÃ¡ciles.";
+mes "[Melodía-Jack]";
+mes "Por favor, elimina monstruos para ayudar a Aigu. Los aficionados harán las cosas fáciles.";
 						next;
 						cutin "",255;
 						if (select( "Take the request.", "Stop." ) == 1) {
-mes "[MelodÃ­a-Jack]";
+mes "[Melodía-Jack]";
 mes "Debe haber muchos de ellos. No olvides mantener esto en secreto.";
 							callsub S_Quest,13120,13119;
 						}
@@ -129,30 +129,30 @@ mes "Debe haber muchos de ellos. No olvides mantener esto en secreto.";
 					close;
 				case 2:
 					if (checkquest(13122,PLAYTIME) == 0)
-mes "Creo que terminÃ© la actuaciÃ³n de hoy. No puedo relajarme... Â¿Y si los monstruos aparecen de repente?";
+mes "Creo que terminé la actuación de hoy. No puedo relajarme... ¿Y si los monstruos aparecen de repente?";
 					else if (checkquest(13121,HUNTING) == 1) {
-mes "El edificio no parece haber sido diseÃ±ado por seres humanos y siempre suena allÃ­ una extraÃ±a melodÃ­a.";
+mes "El edificio no parece haber sido diseñado por seres humanos y siempre suena allí una extraña melodía.";
 						next;
-mes "[MelodÃ­a-Jack]";
-mes "No caigas en el estado de Ã¡nimo de la melodÃ­a porque puede ser la Ãºltima canciÃ³n que escuches.";
+mes "[Melodía-Jack]";
+mes "No caigas en el estado de ánimo de la melodía porque puede ser la última canción que escuches.";
 						next;
 						cutin "",255;
-mes "[MelodÃ­a-Jack]";
-mes "Recuerda, hay una mÃºsica extraÃ±a tan afilada como un cuchillo para matar personas en el mundo.";
+mes "[Melodía-Jack]";
+mes "Recuerda, hay una música extraña tan afilada como un cuchillo para matar personas en el mundo.";
 					}
 					else if (checkquest(13121,HUNTING) == 2) {
-mes "Â¿Alguna vez has escuchado la melodÃ­a que estÃ¡n tocando? TendrÃ¡s una oportunidad si ese niÃ±o comienza a tocar la actuaciÃ³n de nuevo.";
+mes "¿Alguna vez has escuchado la melodía que están tocando? Tendrás una oportunidad si ese niño comienza a tocar la actuación de nuevo.";
 						callsub S_Quest,13121,13122,1;
 					}
 					else {
-mes "Hermosa melodÃ­a. Tal vez suene hermoso porque las criaturas estÃ¡n jugando.";
+mes "Hermosa melodía. Tal vez suene hermoso porque las criaturas están jugando.";
 						next;
-mes "[MelodÃ­a-Jack]";
-mes "Sin embargo, ese es otro obstÃ¡culo. Un trato es previo al interÃ©s personal en cualquier momento. Tan claro Lady Solace.";
+mes "[Melodía-Jack]";
+mes "Sin embargo, ese es otro obstáculo. Un trato es previo al interés personal en cualquier momento. Tan claro Lady Solace.";
 						next;
 						cutin "",255;
 						if (select( "Take the request.", "Stop." ) == 1) {
-mes "[MelodÃ­a-Jack]";
+mes "[Melodía-Jack]";
 mes "Simplemente estamos cumpliendo nuestra parte del trato. Elimina a esas criaturas ahora.";
 							callsub S_Quest,13122,13121;
 						}
@@ -160,30 +160,30 @@ mes "Simplemente estamos cumpliendo nuestra parte del trato. Elimina a esas cria
 					close;
 				case 3:
 					if (checkquest(13124,PLAYTIME) == 0)
-mes "Creo que terminÃ© la actuaciÃ³n de hoy. No puedo relajarme... Â¿Y si los monstruos aparecen de repente?";
+mes "Creo que terminé la actuación de hoy. No puedo relajarme... ¿Y si los monstruos aparecen de repente?";
 					else if (checkquest(13123,HUNTING) == 1) {
-mes "Â¿Conoces a un Ã¡ngel que se convirtiÃ³ en un monstruo? No sÃ© si era un Ã¡ngel o no. Pero su apariencia era la de un Ã¡ngel.";
+mes "¿Conoces a un ángel que se convirtió en un monstruo? No sé si era un ángel o no. Pero su apariencia era la de un ángel.";
 						next;
-mes "[MelodÃ­a-Jack]";
-mes "No entres en pÃ¡nico debido a las hermosas apariencias, independientemente de si se trata de un Ã¡ngel o una criatura. Debes hacer tu trabajo.";
+mes "[Melodía-Jack]";
+mes "No entres en pánico debido a las hermosas apariencias, independientemente de si se trata de un ángel o una criatura. Debes hacer tu trabajo.";
 						next;
-mes "[MelodÃ­a-Jack]";
+mes "[Melodía-Jack]";
 mes "Todo tiene su tiempo. Tal vez lo solicitaste porque ese momento ha llegado.";
 						cutin "",255;
 					}
 					else if (checkquest(13123,HUNTING) == 2) {
-mes "Bien. AvÃ­same si alguien me estÃ¡ buscando. Si es asÃ­, es posible que tenga que cambiar los detalles del trato.";
+mes "Bien. Avísame si alguien me está buscando. Si es así, es posible que tenga que cambiar los detalles del trato.";
 						callsub S_Quest,13123,13124,1;
 					}
 					else {
-mes "Â¿Conoces a un Ã¡ngel que se convirtiÃ³ en un monstruo? No sÃ© si era un Ã¡ngel o no. Pero su apariencia era la de un Ã¡ngel.";
+mes "¿Conoces a un ángel que se convirtió en un monstruo? No sé si era un ángel o no. Pero su apariencia era la de un ángel.";
 						next;
-mes "[MelodÃ­a-Jack]";
-mes "No me importa si es un Ã¡ngel real o simplemente una criatura. Clara dueÃ±a de la casa.";
+mes "[Melodía-Jack]";
+mes "No me importa si es un ángel real o simplemente una criatura. Clara dueña de la casa.";
 						next;
 						cutin "",255;
 						if (select( "Take the request.", "Stop." ) == 1) {
-mes "[MelodÃ­a-Jack]";
+mes "[Melodía-Jack]";
 mes "Las flores moribundas caen por la lluvia y el viento. Eso es lo que tienes que hacer.";
 							emotion ET_BEST;
 							callsub S_Quest,13124,13123;
@@ -192,30 +192,30 @@ mes "Las flores moribundas caen por la lluvia y el viento. Eso es lo que tienes 
 					close;
 				case 4:
 					if (checkquest(13126,PLAYTIME) == 0)
-mes "TerminÃ© mi actuaciÃ³n de hoy. No puedo relajarme si los monstruos aparecen de repente.";
+mes "Terminé mi actuación de hoy. No puedo relajarme si los monstruos aparecen de repente.";
 					else if (checkquest(13125,HUNTING) == 1) {
-mes "Es posible que hayas sentido que te estÃ¡n mirando una vez que pisaste el Ã¡rea superior de la Torre Thanatos.";
+mes "Es posible que hayas sentido que te están mirando una vez que pisaste el área superior de la Torre Thanatos.";
 						next;
-mes "[MelodÃ­a-Jack]";
-mes "Dame of Sentinel no es fÃ¡cil de manejar, asÃ­ que asegÃºrate de estar listo para luchar.";
+mes "[Melodía-Jack]";
+mes "Dame of Sentinel no es fácil de manejar, así que asegúrate de estar listo para luchar.";
 						next;
-mes "[MelodÃ­a-Jack]";
-mes "Es un buen dÃ­a para morir. SerÃ¡s tÃº o ellos, asÃ­ que haz lo mejor que puedas.";
+mes "[Melodía-Jack]";
+mes "Es un buen día para morir. Serás tú o ellos, así que haz lo mejor que puedas.";
 						cutin "",255;
 					}
 					else if (checkquest(13125,HUNTING) == 2) {
-mes "Te ves bien. Â¿QuizÃ¡s eres mejor de lo que pensaba? Sin embargo, no lo comprobÃ© con mis ojos.";
+mes "Te ves bien. ¿Quizás eres mejor de lo que pensaba? Sin embargo, no lo comprobé con mis ojos.";
 						callsub S_Quest,13125,13126,1;
 					}
 					else {
-mes "Se reunirÃ¡ con ellos si Aigu lo solicita. La Dama de los Centinelas.";
+mes "Se reunirá con ellos si Aigu lo solicita. La Dama de los Centinelas.";
 						next;
-mes "[MelodÃ­a-Jack]";
-mes "Deseo que tambiÃ©n estÃ©n despejados para que ella pueda solicitar esta aventura fÃ¡cilmente.";
+mes "[Melodía-Jack]";
+mes "Deseo que también estén despejados para que ella pueda solicitar esta aventura fácilmente.";
 						next;
 						cutin "",255;
 						if (select( "Take the request.", "Stop." ) == 1) {
-mes "[MelodÃ­a-Jack]";
+mes "[Melodía-Jack]";
 mes "Una solicitud de una solicitud... Lo que sea.";
 							callsub S_Quest,13126,13125;
 						}
@@ -223,37 +223,37 @@ mes "Una solicitud de una solicitud... Lo que sea.";
 					close;
 				}
 			case 2:
-mes "La aventura de Aigu conduce al Santuario de Raquel. Bien... No es extraÃ±o que ^FF0000ese humano^000000 Aigu buscando se encuentre en cualquier parte.";
+mes "La aventura de Aigu conduce al Santuario de Raquel. Bien... No es extraño que ^FF0000ese humano^000000 Aigu buscando se encuentre en cualquier parte.";
 				next;
 				switch( select( "Vanberk and Isilla", "Hodremlin", "Agav and Echio" ) ) {
-mes "[MelodÃ­a-Jack]";
+mes "[Melodía-Jack]";
 				case 1:
 					if (checkquest(13128,PLAYTIME) == 0)
-mes "Puede tomar un descanso por un dÃ­a. Has despejado lo suficiente, pero el fanÃ¡tico ha aumentado.";
+mes "Puede tomar un descanso por un día. Has despejado lo suficiente, pero el fanático ha aumentado.";
 					else if (checkquest(13127,HUNTING) == 1) {
-mes "Alguien que cree que tiene razÃ³n es el mÃ¡s peligroso. Este mundo estÃ¡ lleno de tontos.";
+mes "Alguien que cree que tiene razón es el más peligroso. Este mundo está lleno de tontos.";
 						next;
-mes "[MelodÃ­a-Jack]";
-mes "Finalmente, obliga a los demÃ¡s a creer lo que ellos creen. Vamos a despejar Vanberk e Isilla.";
+mes "[Melodía-Jack]";
+mes "Finalmente, obliga a los demás a creer lo que ellos creen. Vamos a despejar Vanberk e Isilla.";
 						next;
-mes "[MelodÃ­a-Jack]";
-mes "No es asunto mÃ­o. Pero esta vez es diferente. Un niÃ±o pequeÃ±o podrÃ­a estar en peligro, asÃ­ que apresurÃ©monos a eliminar a estos monstruos.";
+mes "[Melodía-Jack]";
+mes "No es asunto mío. Pero esta vez es diferente. Un niño pequeño podría estar en peligro, así que apresurémonos a eliminar a estos monstruos.";
 						cutin "",255;
 					}
 					else if (checkquest(13127,HUNTING) == 2) {
-mes "Solo un dÃ­a. EstarÃ¡ bien.";
+mes "Solo un día. Estará bien.";
 						callsub S_Quest,13127,13128,1;
 					}
 					else {
-mes "El Santuario en Rachel estÃ¡ prohibido para la gente normal. Tienes que saberlo.";
+mes "El Santuario en Rachel está prohibido para la gente normal. Tienes que saberlo.";
 						next;
-mes "[MelodÃ­a-Jack]";
-mes "Creen que pueden encontrar una pista allÃ­, pero no es un lugar seguro. Debes despejar Vanberk e Isilla con anticipaciÃ³n.";
+mes "[Melodía-Jack]";
+mes "Creen que pueden encontrar una pista allí, pero no es un lugar seguro. Debes despejar Vanberk e Isilla con anticipación.";
 						next;
 						cutin "",255;
 						if (select( "Take the request.", "Stop." ) == 1) {
-mes "[MelodÃ­a-Jack]";
-mes "Borra todo lo mÃ¡s rÃ¡pido que puedas.";
+mes "[Melodía-Jack]";
+mes "Borra todo lo más rápido que puedas.";
 							emotion ET_SPARK;
 							callsub S_Quest,13128,13127;
 						}
@@ -261,62 +261,62 @@ mes "Borra todo lo mÃ¡s rÃ¡pido que puedas.";
 					close;
 				case 2:
 					if (checkquest(13130,PLAYTIME) == 0)
-mes "Los mosmos desconocidos son peligrosos, asÃ­ que elimÃ­nalos primero. Te informarÃ© si pasa algo.";
+mes "Los mosmos desconocidos son peligrosos, así que elimínalos primero. Te informaré si pasa algo.";
 					else if (checkquest(13129,HUNTING) == 1) {
-mes "Es posible que se acerquen los dientes frÃ­os. Sus dientes son mÃ¡s rÃ¡pidos que tus manos.";
+mes "Es posible que se acerquen los dientes fríos. Sus dientes son más rápidos que tus manos.";
 						next;
-mes "[MelodÃ­a-Jack]";
-mes "El santuario de Rachel se acercarÃ¡ desde todas partes. Debes tener cuidado con este.";
+mes "[Melodía-Jack]";
+mes "El santuario de Rachel se acercará desde todas partes. Debes tener cuidado con este.";
 						next;
-mes "[MelodÃ­a-Jack]";
+mes "[Melodía-Jack]";
 mes "Solo piensa en el trabajo que tienes entre manos. Con eso basta.";
 						cutin "",255;
 					}
 					else if (checkquest(13129,HUNTING) == 2) {
-mes "No estoy tan preocupado, pero Â¿estÃ¡s a salvo? Â¿No te ha mordido?";
+mes "No estoy tan preocupado, pero ¿estás a salvo? ¿No te ha mordido?";
 						callsub S_Quest,13129,13130,1;
 					}
 					else {
-mes "Los fanÃ¡ticos son un problema. Un problema mÃ¡s grave es que aparecen de repente.";
+mes "Los fanáticos son un problema. Un problema más grave es que aparecen de repente.";
 						next;
-mes "[MelodÃ­a-Jack]";
+mes "[Melodía-Jack]";
 mes "Deshazte de ^FF0000Hodremlin^000000 sin dudarlo. Porque son muy peligrosos.";
 						next;
 						cutin "",255;
 						if (select( "Take the request.", "Stop." ) == 1) {
-mes "[MelodÃ­a-Jack]";
-mes "Necesitan manos mÃ¡s rÃ¡pidas que una cabeza. No me preocupo, pero debes tener cuidado.";
+mes "[Melodía-Jack]";
+mes "Necesitan manos más rápidas que una cabeza. No me preocupo, pero debes tener cuidado.";
 							callsub S_Quest,13130,13129;
 						}
 					}
 					close;
 				case 3:
 					if (checkquest(13132,PLAYTIME) == 0)
-mes "Si puedes hablar. No hay solicitudes en este momento. TÃ³mate un descanso por el dÃ­a.";
+mes "Si puedes hablar. No hay solicitudes en este momento. Tómate un descanso por el día.";
 					else if (checkquest(13131,HUNTING) == 1) {
-mes "Lleno de locura aquÃ­. Me siento repugnante.";
+mes "Lleno de locura aquí. Me siento repugnante.";
 						next;
-mes "[MelodÃ­a-Jack]";
-mes "Es mi sensaciÃ³n, pero puede que te guste. Estoy seguro de que ^FF0000Agav^000000 y ^FF0000Echio^000000 no te caerÃ¡n bien.";
+mes "[Melodía-Jack]";
+mes "Es mi sensación, pero puede que te guste. Estoy seguro de que ^FF0000Agav^000000 y ^FF0000Echio^000000 no te caerán bien.";
 						next;
-mes "[MelodÃ­a-Jack]";
-mes "Se toparÃ¡n contigo. No lo dudes y mantente enfocado en el trabajo.";
+mes "[Melodía-Jack]";
+mes "Se toparán contigo. No lo dudes y mantente enfocado en el trabajo.";
 						cutin "",255;
 					}
 					else if (checkquest(13131,HUNTING) == 2) {
-mes "Â¿Encontraste a alguien? No me preocuparÃ­a. Una promesa es una promesa y un trato es un trato.";
+mes "¿Encontraste a alguien? No me preocuparía. Una promesa es una promesa y un trato es un trato.";
 						callsub S_Quest,13131,13132,1;
 					}
 					else {
-mes "Es cierto que se estÃ¡ volviendo mÃ¡s peligroso dentro del santuario de Rachel, pero a Aigu no le importarÃ¡n las cosas de las que no estamos seguros.";
+mes "Es cierto que se está volviendo más peligroso dentro del santuario de Rachel, pero a Aigu no le importarán las cosas de las que no estamos seguros.";
 						next;
-mes "[MelodÃ­a-Jack]";
-mes "Eso no fue tan malo. Â¿Pero alguien tiene que ayudar? Despejemos ^FF0000Agav^000000 y ^FF0000Echio^000000 dentro del Santuario de Raquel.";
+mes "[Melodía-Jack]";
+mes "Eso no fue tan malo. ¿Pero alguien tiene que ayudar? Despejemos ^FF0000Agav^000000 y ^FF0000Echio^000000 dentro del Santuario de Raquel.";
 						next;
 						cutin "",255;
 						if (select( "Take the request.", "Stop." ) == 1) {
-mes "[MelodÃ­a-Jack]";
-mes "No puedo irme tan adiÃ³s.";
+mes "[Melodía-Jack]";
+mes "No puedo irme tan adiós.";
 							callsub S_Quest,13132,13131;
 						}
 					}

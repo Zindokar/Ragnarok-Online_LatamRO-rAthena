@@ -25,16 +25,16 @@ moc_para01,34,178,3	script	Instructor del Tutorial	904,{
 			set @tutorial_restart,0;
 		}
 mes "[Instructor del Tutorial]";
-mes "Ãšltimamente se ha dicho que";
-mes "EstÃ¡n desarrollando formas de agregar opciones";
+mes "Últimamente se ha dicho que";
+mes "Están desarrollando formas de agregar opciones";
 mes "para poner en sockets o agregar estados";
 mes "en equipos que normalmente no lo tienen.";
 mes "A eso lo llaman ^006400Enchant^000000.";
 		next;
 mes "[Instructor del Tutorial]";
-mes "DespuÃ©s de ver cÃ³mo se desarrollaba,";
-mes "Me inspirÃ³ mucho";
-mes "que trabajÃ© duro para descubrir";
+mes "Después de ver cómo se desarrollaba,";
+mes "Me inspiró mucho";
+mes "que trabajé duro para descubrir";
 mes "una manera de hacerlo y finalmente";
 mes "hice mi propio camino a ^006400Enchant^000000!";
 		next;
@@ -42,30 +42,30 @@ mes "[Instructor del Tutorial]";
 mes "Pero para hacer esto";
 mes "Necesito algunos materiales especiales.";
 mes "Si te parece bien...";
-mes "Â¿Crees que puedes?";
-mes "Â¿Me ayudas reuniÃ©ndolas?";
+mes "¿Crees que puedes?";
+mes "¿Me ayudas reuniéndolas?";
 		next;
-		switch(select("Â¡Claro! puedo ayudar:Ahora ando un poco ocupado...")) {
+		switch(select("¡Claro! puedo ayudar:Ahora ando un poco ocupado...")) {
 		case 1:
 mes "[Instructor del Tutorial]";
-mes "Sin embargo, mirÃ¡ndote a ti";
+mes "Sin embargo, mirándote a ti";
 mes "en tu estado actual me hace";
 mes "dudar de tu capacidad para reunir";
-mes "los artÃ­culos que necesito...";
+mes "los artículos que necesito...";
 			next;
 mes "[Instructor del Tutorial]";
 mes "Bueno, supongo que si empleas";
 mes "a ^006400Mercenary^000000 para esto";
 mes "entonces creo que puedo confiarte";
-mes "con mis peticiones... Â¿Derecha?";
+mes "con mis peticiones... ¿Derecha?";
 			next;
 mes "[Instructor del Tutorial]";
 mes "Con el fin de emplear a un mercenario,";
 mes "ve a buscar el ^006400Gremio de mercenarios^000000";
-mes "que estÃ¡ junto a la puerta principal de ^8B4513Prontera^000000.";
-mes "Vaya al ^006400Agente de informaciÃ³n^000000";
-mes "y preguntarles dÃ³nde estÃ¡ el ^006400Oficial del Gremio de Mercenarios^000000";
-mes "se encuentra y te lo harÃ¡n saber.";
+mes "que está junto a la puerta principal de ^8B4513Prontera^000000.";
+mes "Vaya al ^006400Agente de información^000000";
+mes "y preguntarles dónde está el ^006400Oficial del Gremio de Mercenarios^000000";
+mes "se encuentra y te lo harán saber.";
 			next;
 			if (.@tutorial_restart) {
 				erasequest 9167;
@@ -78,75 +78,75 @@ mes "se encuentra y te lo harÃ¡n saber.";
 				erasequest 9173;
 			}
 mes "[Instructor del Tutorial]";
-mes "Ahora... ApresÃºrate y emplea";
-mes "a ^006400Mercenario^000000 y vuelve a mÃ­!";
+mes "Ahora... Apresúrate y emplea";
+mes "a ^006400Mercenario^000000 y vuelve a mí!";
 			setquest 9167;
 			close;
 		case 2:
 mes "[Instructor del Tutorial]";
 mes "Bueno, ya que dijiste que estabas ocupado";
 mes "No me pueden ayudar...";
-mes "Cuando no estÃ©s tan ocupado, ven a buscarme de nuevo.";
+mes "Cuando no estés tan ocupado, ven a buscarme de nuevo.";
 			close;
 		}
 	} else if (checkquest(9167) == 0 || checkquest(9167) == 1) {
 		if (!getmercinfo(1)) {
 mes "[Instructor del Tutorial]";
-mes "TodavÃ­a no has conseguido un mercenario.";
+mes "Todavía no has conseguido un mercenario.";
 			next;
 mes "[Instructor del Tutorial]";
 mes "Con el fin de emplear a un mercenario,";
 mes "ve a buscar el ^006400Gremio de mercenarios^000000";
-mes "que estÃ¡ junto a la puerta principal de ^8B4513Prontera^000000.";
-mes "Vaya al ^006400Agente de informaciÃ³n^000000";
-mes "y preguntarles dÃ³nde estÃ¡ el ^006400Oficial del Gremio de Mercenarios^000000";
-mes "se encuentra y te lo harÃ¡n saber.";
+mes "que está junto a la puerta principal de ^8B4513Prontera^000000.";
+mes "Vaya al ^006400Agente de información^000000";
+mes "y preguntarles dónde está el ^006400Oficial del Gremio de Mercenarios^000000";
+mes "se encuentra y te lo harán saber.";
 			next;
 mes "[Instructor del Tutorial]";
-mes "Ahora... ApresÃºrate y emplea";
-mes "a ^006400Mercenario^000000 y vuelve a mÃ­!";
+mes "Ahora... Apresúrate y emplea";
+mes "a ^006400Mercenario^000000 y vuelve a mí!";
 			close;
 		}
 mes "[Instructor del Tutorial]";
-mes "Verte con un ^006400Mercenary^000000 definitivamente me hace confiar mÃ¡s en ti.";
+mes "Verte con un ^006400Mercenary^000000 definitivamente me hace confiar más en ti.";
 		next;
 mes "[Instructor del Tutorial]";
 mes "Si un 006400Mercenary^000000 le da efecto directo";
 mes "luchando por ti";
 mes "entonces un ^006400Pet^000000 te ayuda indirectamente con su";
 mes "habilidades y apariencias variadas,";
-mes "Y captura tu corazÃ³n.";
-mes "Intente criar un ^006400Pet^000000 en el futuro tambiÃ©n.";
+mes "Y captura tu corazón.";
+mes "Intente criar un ^006400Pet^000000 en el futuro también.";
 		next;
 mes "[Instructor del Tutorial]";
 mes "Ahora, veamos... Con el fin de";
-mes "consigue que este ^006400Enchant^000000 tenga Ã©xito";
-mes "tienes que ir a buscar algunos materiales para mÃ­...";
+mes "consigue que este ^006400Enchant^000000 tenga éxito";
+mes "tienes que ir a buscar algunos materiales para mí...";
 mes "Lo que necesito es...";
 mes "..............";
 		next;
 		select("Creo que no te he escuchado bien...");
 mes "[Instructor del Tutorial]";
 mes "Realmente no me gusta repetirme.";
-mes "Si me vuelves a preguntar asÃ­";
-mes "Â¿Solo te cansa la boca?";
+mes "Si me vuelves a preguntar así";
+mes "¿Solo te cansa la boca?";
 mes "En estas situaciones, abra su ^006400Quest Window^000000";
 mes "y puedes ver lo que se te pide";
 mes "y los detalles de mi solicitud.";
 		next;
 mes "[Instructor del Tutorial]";
 mes "Si nos fijamos en la parte superior izquierda";
-mes "en el Ã¡rea con la informaciÃ³n,";
+mes "en el área con la información,";
 mes "dice ^006400QUEST^000000";
 mes "Y si haces clic en eso";
-mes "MostrarÃ¡ toda la informaciÃ³n";
+mes "Mostrará toda la información";
 mes "que se refiere a la solicitud.";
 		next;
 mes "[Instructor del Tutorial]";
-mes "Una vez que verifique quÃ© materiales";
+mes "Una vez que verifique qué materiales";
 mes "Necesitas ir a recoger";
 mes "la ventana de ^006400Quest^000000,";
-mes "Ven a buscarme y hÃ¡blame de nuevo.";
+mes "Ven a buscarme y háblame de nuevo.";
 		completequest 9167;
 		setquest 9168;
 		close;
@@ -154,16 +154,16 @@ mes "Ven a buscarme y hÃ¡blame de nuevo.";
 		if (checkweight(607,1) == 0) {
 			if (MaxWeight - Weight < getiteminfo(607, ITEMINFO_WEIGHT)) {
 mes "[Instructor del Tutorial]";
-mes "ParecÃ­a ser lento con muchos artÃ­culos";
-mes "en tu inventario haciÃ©ndote pesado...";
-mes "SerÃ¡ difÃ­cil cumplir con mi peticiÃ³n";
-mes "Â¡Cuando estÃ¡s cargado con toda esa basura!";
-mes "Ve a vaciar tu inventario y vuelve a mÃ­.";
+mes "Parecía ser lento con muchos artículos";
+mes "en tu inventario haciéndote pesado...";
+mes "Será difícil cumplir con mi petición";
+mes "¡Cuando estás cargado con toda esa basura!";
+mes "Ve a vaciar tu inventario y vuelve a mí.";
 				close;
 			} else {
 mes "[Instructor del Tutorial]";
-mes "Parece que sÃ­";
-mes "demasiados artÃ­culos en ti...";
+mes "Parece que sí";
+mes "demasiados artículos en ti...";
 mes "Si quieres ayudarme";
 mes "entonces vas a tener que poner algo";
 mes "cosas y luego vuelve.";
@@ -171,57 +171,57 @@ mes "cosas y luego vuelve.";
 			}
 		}
 mes "[Instructor del Tutorial]";
-mes "Â¿Abriste tu ^006400Quest Window^000000";
+mes "¿Abriste tu ^006400Quest Window^000000";
 mes "para verificar los materiales?";
 		next;
-		switch(select("Â¡SÃ­!:No...:Â¿DÃ³nde estÃ¡ la ventana de misiones?..")) {
+		switch(select("¡Sí!:No...:¿Dónde está la ventana de misiones?..")) {
 		case 1:
 mes "[Instructor del Tutorial]";
-mes "Â¿Venga, sÃ­? Entonces te pondrÃ© a prueba para ver";
-mes "Â¿Si realmente lo comprobaste?";
-mes "Escribe el material que te pedÃ­ que consiguieras.";
+mes "¿Venga, sí? Entonces te pondré a prueba para ver";
+mes "¿Si realmente lo comprobaste?";
+mes "Escribe el material que te pedí que consiguieras.";
 			next;
 			input .@inputstr$;
 			if (.@inputstr$ == "10 Jellopy") {
 mes "[Instructor del Tutorial]";
 mes "Bien, ya sabes.";
-mes "Ahora, Â¿te sientes bastante familiar?";
+mes "Ahora, ¿te sientes bastante familiar?";
 mes "sobre la ^006400Quest Window^000000?";
 mes "Pero hay un problema...";
-mes "Sabes quÃ© material recolectar,";
-mes "Pero reunirlo no serÃ¡ fÃ¡cil.";
+mes "Sabes qué material recolectar,";
+mes "Pero reunirlo no será fácil.";
 				next;
 mes "[Instructor del Tutorial]";
-mes "AdemÃ¡s, hay una cosa";
+mes "Además, hay una cosa";
 mes "Creo absolutamente que tienes que intentarlo.";
 mes "Y eso es...";
-mes "el ^006400CatÃ¡logo Universal de Plata^000000.";
+mes "el ^006400Catálogo Universal de Plata^000000.";
 				next;
 mes "[Instructor del Tutorial]";
-mes "El ^006400CatÃ¡logo Universal de Plata^000000";
+mes "El ^006400Catálogo Universal de Plata^000000";
 mes "se puede obtener de";
 mes "el Asistente de ^0000FFCatalogue^000000";
 mes "que se encuentra en la sede central de Eden Group.";
 				next;
 mes "[Instructor del Tutorial]";
-mes "Ahora, ve y obtÃ©n";
-mes "a ^006400CatÃ¡logo Universal de Plata^000000";
-mes "Luego vuelve y hÃ¡blame.";
+mes "Ahora, ve y obtén";
+mes "a ^006400Catálogo Universal de Plata^000000";
+mes "Luego vuelve y háblame.";
 				completequest 9168;
 				setquest 9169;
 				close;
 			}
 mes "[Instructor del Tutorial]";
-mes "TÃº... todavÃ­a no parece";
+mes "Tú... todavía no parece";
 mes "para saber mucho sobre el";
-mes "^006400Ventana de bÃºsqueda^000000.";
-mes "Te informarÃ© de nuevo.";
+mes "^006400Ventana de búsqueda^000000.";
+mes "Te informaré de nuevo.";
 			next;
 			break;
 		case 2:
 mes "[Instructor del Tutorial]";
-mes "Â¡ApresÃºrate y comprueba para ver";
-mes "Â¿QuÃ© materiales se requieren en";
+mes "¡Apresúrate y comprueba para ver";
+mes "¿Qué materiales se requieren en";
 mes "su ^006400Quest Window^000000.";
 			close;
 		case 3:
@@ -229,97 +229,97 @@ mes "su ^006400Quest Window^000000.";
 		}
 mes "[Instructor del Tutorial]";
 mes "Si nos fijamos en la parte superior izquierda";
-mes "en el Ã¡rea con la informaciÃ³n,";
+mes "en el área con la información,";
 mes "dice ^006400QUEST^000000";
 mes "Y si haces clic en eso";
-mes "MostrarÃ¡ toda la informaciÃ³n";
+mes "Mostrará toda la información";
 mes "que se refiere a la solicitud.";
 		next;
 mes "[Instructor del Tutorial]";
-mes "Una vez que verifique quÃ© materiales";
+mes "Una vez que verifique qué materiales";
 mes "Necesitas ir a recoger";
 mes "la ventana de ^006400Quest^000000,";
-mes "Ven a buscarme y hÃ¡blame de nuevo.";
+mes "Ven a buscarme y háblame de nuevo.";
 		close;
 	} else if (checkquest(9169) == 0 || checkquest(9169) == 1) {
 		if (countitem(12580) == 0) {
 mes "[Instructor del Tutorial]";
-mes "Â¿Hmm? AsÃ­ que me di cuenta de que";
+mes "¿Hmm? Así que me di cuenta de que";
 mes "No has ido a recoger un";
-mes "^006400CatÃ¡logo Universal de Plata^000000 todavÃ­a!";
+mes "^006400Catálogo Universal de Plata^000000 todavía!";
 			next;
 mes "[Instructor del Tutorial]";
 mes "Puede obtener el";
-mes "^006400CatÃ¡logo Universal de Plata^000000";
+mes "^006400Catálogo Universal de Plata^000000";
 mes "del Asistente para ^0000FFCatalogue^000000";
 mes "que se encuentra en la sede central de Eden Group.";
 			next;
 mes "[Instructor del Tutorial]";
-mes "AsÃ­ que, ve y consigue el";
-mes "^006400CatÃ¡logo Universal de Plata^000000";
-mes "luego vuelve a mÃ­.";
+mes "Así que, ve y consigue el";
+mes "^006400Catálogo Universal de Plata^000000";
+mes "luego vuelve a mí.";
 			close;
 		}
 mes "[Instructor del Tutorial]";
-mes "Â¡Oh! Lograste obtener un";
-mes "^006400CatÃ¡logo Universal de Plata^000000!";
+mes "¡Oh! Lograste obtener un";
+mes "^006400Catálogo Universal de Plata^000000!";
 		next;
 mes "[Instructor del Tutorial]";
 mes "Esto le permite navegar y buscar";
-mes "a travÃ©s de todas las tiendas";
-mes "que estÃ¡n en el mismo mapa y";
-mes "estÃ¡n abiertos para la venta ambulante.";
+mes "a través de todas las tiendas";
+mes "que están en el mismo mapa y";
+mes "están abiertos para la venta ambulante.";
 		next;
 mes "[Instructor del Tutorial]";
 mes "Solo cuesta 200 zeny por uno";
 mes "de estos y con ello se puede";
-mes "BÃºsqueda hasta 10 Ti.";
+mes "Búsqueda hasta 10 Ti.";
 mes "Se puede decir que es una necesidad.";
 		next;
 mes "[Instructor del Tutorial]";
 mes "Entonces, ve a la zona que quieras";
-mes "y pruebe el ^006400CatÃ¡logo Universal de Plata^000000";
+mes "y pruebe el ^006400Catálogo Universal de Plata^000000";
 mes "entonces ven a buscarme";
-mes "despuÃ©s de haber hecho esto.";
+mes "después de haber hecho esto.";
 		completequest 9169;
 		setquest 9170;
 		close;
 	} else if (checkquest(9170) == 0 || checkquest(9170) == 1) {
 		if (countitem(12580)) {
 mes "[Instructor del Tutorial]";
-mes "Hmm... Parece que todavÃ­a tienes";
-mes "el ^006400CatÃ¡logo Universal de Plata^000000 en su inventario.";
-mes "Ya que dices que olvidaste cÃ³mo usarlo";
+mes "Hmm... Parece que todavía tienes";
+mes "el ^006400Catálogo Universal de Plata^000000 en su inventario.";
+mes "Ya que dices que olvidaste cómo usarlo";
 mes "Te lo vuelvo a explicar.";
 			next;
 mes "[Instructor del Tutorial]";
-mes "Lo ves... el ^006400CatÃ¡logo Universal de Plata^000000";
+mes "Lo ves... el ^006400Catálogo Universal de Plata^000000";
 mes "Le permite navegar y buscar";
-mes "a travÃ©s de todas las tiendas";
-mes "que estÃ¡n en el mismo mapa y";
-mes "estÃ¡n abiertos para la venta ambulante.";
+mes "a través de todas las tiendas";
+mes "que están en el mismo mapa y";
+mes "están abiertos para la venta ambulante.";
 			next;
 mes "[Instructor del Tutorial]";
 mes "Entonces, ve a la zona que quieras";
-mes "y pruebe el ^006400CatÃ¡logo Universal de Plata^000000";
+mes "y pruebe el ^006400Catálogo Universal de Plata^000000";
 mes "ellos vienen a buscarme";
-mes "despuÃ©s de haber hecho esto.";
+mes "después de haber hecho esto.";
 			close;
 		}
 mes "[Instructor del Tutorial]";
-mes "Â¿CÃ³mo te sientes despuÃ©s de probar?";
-mes "el ^006400CatÃ¡logo Universal de Plata^000000?";
-mes "Se siente mucho mÃ¡s fÃ¡cil que";
+mes "¿Cómo te sientes después de probar?";
+mes "el ^006400Catálogo Universal de Plata^000000?";
+mes "Se siente mucho más fácil que";
 mes "pasando por cada individuo";
-mes "proveedor y encontrar el artÃ­culo";
-mes "Lo necesitas, Â¿verdad?";
+mes "proveedor y encontrar el artículo";
+mes "Lo necesitas, ¿verdad?";
 		next;
 mes "[Instructor del Tutorial]";
-mes "Ahora, salgan y reÃºnanse";
+mes "Ahora, salgan y reúnanse";
 mes "los materiales que necesito y";
-mes "Me asegurarÃ© de darte";
-mes "Â¡Un fantÃ¡stico ^006400enchant^000000!";
-mes "Â¡Te estarÃ© esperando!";
+mes "Me aseguraré de darte";
+mes "¡Un fantástico ^006400enchant^000000!";
+mes "¡Te estaré esperando!";
 		completequest 9170;
 		setquest 9171;
 		close;
@@ -327,29 +327,29 @@ mes "Â¡Te estarÃ© esperando!";
 		if (countitem(909) < 10) {
 mes "[Instructor del Tutorial]";
 mes "Parece que no trajiste";
-mes "suficientes materiales. Â¿Te olvidaste?";
-mes "Â¿QuÃ© necesitabas reunir?";
+mes "suficientes materiales. ¿Te olvidaste?";
+mes "¿Qué necesitabas reunir?";
 			next;
-			switch(select("Claro...:Â¡No!")) {
+			switch(select("Claro...:¡No!")) {
 			case 1:
 mes "[Instructor del Tutorial]";
-mes "Me han dicho que si haces clic en el botÃ³n";
+mes "Me han dicho que si haces clic en el botón";
 mes "cosa en la parte superior izquierda que dice";
-mes "^006400QUEST^000000, te lo mostrarÃ¡ todo";
-mes "La informaciÃ³n que necesitas";
+mes "^006400QUEST^000000, te lo mostrará todo";
+mes "La información que necesitas";
 mes "que se refiere a sus solicitudes.";
 				next;
 mes "[Instructor del Tutorial]";
-mes "Una vez que reÃºnas todos los materiales";
+mes "Una vez que reúnas todos los materiales";
 mes "que se enumeran en su ^006400Quest Window^000000";
 mes "Ven y habla conmigo.";
 				close;
 			case 2:
 mes "[Instructor del Tutorial]";
 mes "Al reunir los elementos";
-mes "ven a mÃ­ y te mostrarÃ©";
+mes "ven a mí y te mostraré";
 mes "un impresionante ^006400ENCHANT^000000.";
-mes "Â¡Te estarÃ© esperando!";
+mes "¡Te estaré esperando!";
 				close;
 			}
 		}
@@ -358,39 +358,39 @@ mes "Â¡Te estarÃ© esperando!";
 mes "[Instructor del Tutorial]";
 mes "Tu inventario parece estar realmente lleno";
 mes "con varias cosas... Crees";
-mes "puedes hacer cualquier cosa cuando estÃ¡s tan";
-mes "Â¿Lastrada? Ve a guardar algunas cosas";
-mes "luego vuelve a mÃ­.";
+mes "puedes hacer cualquier cosa cuando estás tan";
+mes "¿Lastrada? Ve a guardar algunas cosas";
+mes "luego vuelve a mí.";
 				close;
 			} else {
 mes "[Instructor del Tutorial]";
 mes "Parece que tienes demasiadas cosas";
 mes "en tu inventario... Ve a poner algo";
-mes "cosas lejos y luego vuelven a mÃ­";
+mes "cosas lejos y luego vuelven a mí";
 mes "cuando tienes menos suficiente contigo.";
 				close;
 			}
 		}
 mes "[Instructor del Tutorial]";
-mes "Â¡Tienes todo lo que pedÃ­!";
-mes "Entonces~ Â¿Comencemos con lo asombroso?";
-mes "Â¿Encantamiento que encontrÃ© y desarrollÃ©?";
+mes "¡Tienes todo lo que pedí!";
+mes "Entonces~ ¿Comencemos con lo asombroso?";
+mes "¿Encantamiento que encontré y desarrollé?";
 		next;
 		specialeffect EF_BASH3D2;
 mes "[Instructor del Tutorial]";
-mes "Â¡Bien! Â¡Ahora para la primera habilidad!";
-mes "Para aÃ±adir una nueva habilidad a tu armadura...";
+mes "¡Bien! ¡Ahora para la primera habilidad!";
+mes "Para añadir una nueva habilidad a tu armadura...";
 mes "^006400ENCANTO DE ZÃ“CALO OCULTO^000000!!";
 		next;
 		specialeffect EF_BASH3D2;
 mes "[Instructor del Tutorial]";
-mes "Â¡Â¡Y para la segunda habilidad!!";
+mes "¡¡Y para la segunda habilidad!!";
 mes "Para agregar un nuevo socket a su";
 mes "arma y escudo...";
 mes "^006400SOCKET ENCANTAR^000000!!";
 		next;
 mes "[Instructor del Tutorial]";
-mes "AllÃ­. El encantamiento estÃ¡ hecho. No puedes entender el proceso con solo mirarme, asÃ­ que te dejarÃ© ver los artÃ­culos en sÃ­.";
+mes "Allí. El encantamiento está hecho. No puedes entender el proceso con solo mirarme, así que te dejaré ver los artículos en sí.";
 		delitem 909,10; //Jellopy
 		completequest 9171;
 		setquest 9172;
@@ -399,37 +399,37 @@ mes "AllÃ­. El encantamiento estÃ¡ hecho. No puedes entender el proceso con solo
 		getitem 15034,1; //Tutorial_Mattle_
 		next;
 mes "[Instructor del Tutorial]";
-mes "Esos artÃ­culos no pueden ser";
-mes "usado o intercambiado, asÃ­ que ni siquiera";
+mes "Esos artículos no pueden ser";
+mes "usado o intercambiado, así que ni siquiera";
 mes "Piensa en huir con ellos.";
 mes "Cuando termines de mirarlos,";
-mes "DevuÃ©lvemelos.";
+mes "Devuélvemelos.";
 		close;
 	} else if (checkquest(9172) == 0 || checkquest(9172) == 1) {
 		if (countitem(15033) == 0 || countitem(15034) == 0) {
 mes "[Instructor del Tutorial]";
-mes "Â¿QuÃ© hiciste con el Encantado?";
-mes "Â¿Te prestÃ© los artÃ­culos para que los miraras?";
+mes "¿Qué hiciste con el Encantado?";
+mes "¿Te presté los artículos para que los miraras?";
 mes "Hasta que traigas de vuelta los frutos de";
 mes "mi trabajo, no quiero hablar contigo,";
 mes "y mucho menos ver tu cara.";
 			close;
 		}
 mes "[Instructor del Tutorial]";
-mes "Â¿Has terminado de revisar?";
-mes "los artÃ­culos que encantÃ©?";
+mes "¿Has terminado de revisar?";
+mes "los artículos que encanté?";
 		next;
-		switch(select("SÃ­, gracias.:No lo he revisado todavÃ­a.")) {
+		switch(select("Sí, gracias.:No lo he revisado todavía.")) {
 		case 1:
 mes "[Instructor del Tutorial]";
-mes "Entonces, Â¿quÃ© pensÃ³ despuÃ©s de inspeccionarlo? Ahora que has visto un objeto encantado real, Â¿lo entiendes?";
+mes "Entonces, ¿qué pensó después de inspeccionarlo? Ahora que has visto un objeto encantado real, ¿lo entiendes?";
 			// Item deletions moved below to prevent errors.
 			next;
 mes "[Instructor del Tutorial]";
-mes "Gracias a ustedes pude ver grandes resultados de mi investigaciÃ³n y estudio.";
+mes "Gracias a ustedes pude ver grandes resultados de mi investigación y estudio.";
 			next;
 mes "[Instructor del Tutorial]";
-mes "Si tienes alguna pregunta sobre algo de lo que discutÃ­ contigo, Â¡te lo dirÃ© todo! Â¡Gracias por su arduo trabajo!";
+mes "Si tienes alguna pregunta sobre algo de lo que discutí contigo, ¡te lo diré todo! ¡Gracias por su arduo trabajo!";
 			delitem 15033,2;
 			delitem 15034,1;
 			completequest 9172;
@@ -438,39 +438,39 @@ mes "Si tienes alguna pregunta sobre algo de lo que discutÃ­ contigo, Â¡te lo di
 			close;
 		case 2:
 mes "[Instructor del Tutorial]";
-mes "TÃ³mate tu tiempo para revisarlos";
-mes "luego trÃ¡emelos.";
+mes "Tómate tu tiempo para revisarlos";
+mes "luego tráemelos.";
 			close;
 		}
 	} else if (checkquest(9173) == 0 || checkquest(9173) == 1) {
 mes "[Instructor del Tutorial]";
-mes "Â¿Tienes alguna duda?";
+mes "¿Tienes alguna duda?";
 		next;
-		switch(select("Â¿Puedo hacer la misma misiÃ³n otra vez?:Acerca de la ventana de misiones...:Acerca de ENCHANT...:Acerca de la bÃºsqueda de ventas...:Acerca de Mercenarios y mascotas...:Finalizar conversaciÃ³n.")) {
+		switch(select("¿Puedo hacer la misma misión otra vez?:Acerca de la ventana de misiones...:Acerca de ENCHANT...:Acerca de la búsqueda de ventas...:Acerca de Mercenarios y mascotas...:Finalizar conversación.")) {
 		case 1:
 			if (checkquest(9173,PLAYTIME) == 0 || checkquest(9173,PLAYTIME) == 1) {
 mes "[Instructor del Tutorial]";
-mes "El Ãºnico mÃ©todo para hacer las mismas misiones repetidamente es hacer las ^006400Misiones diarias^000000.";
+mes "El único método para hacer las mismas misiones repetidamente es hacer las ^006400Misiones diarias^000000.";
 				next;
 mes "[Instructor del Tutorial]";
-mes "Una vez que completes una ^006400MisiÃ³n diaria^000000 y la entregues, espera alrededor de un dÃ­a y luego regresa para obtener la solicitud y hazlo todo de nuevo.";
+mes "Una vez que completes una ^006400Misión diaria^000000 y la entregues, espera alrededor de un día y luego regresa para obtener la solicitud y hazlo todo de nuevo.";
 mes "[Instructor del Tutorial]";
-mes "Si recibiste una misiÃ³n diaria, mira en la parte inferior derecha de la ventana de ^006400Quest^000000. Hay una secciÃ³n que se llama ^006400LIMITED^000000. En esa secciÃ³n, te dirÃ¡ cuÃ¡nto tiempo debe pasar antes de que puedas realizar otra misiÃ³n diaria.";
+mes "Si recibiste una misión diaria, mira en la parte inferior derecha de la ventana de ^006400Quest^000000. Hay una sección que se llama ^006400LIMITED^000000. En esa sección, te dirá cuánto tiempo debe pasar antes de que puedas realizar otra misión diaria.";
 				next;
 mes "[Instructor del Tutorial]";
-mes "Parece que todavÃ­a te queda algo de tiempo para esperar despuÃ©s de terminar mi misiÃ³n. Espera un poco mÃ¡s, luego ven a buscarme y podrÃ¡s volver a obtener la misma misiÃ³n.";
+mes "Parece que todavía te queda algo de tiempo para esperar después de terminar mi misión. Espera un poco más, luego ven a buscarme y podrás volver a obtener la misma misión.";
 				close;
 			}
 mes "[Instructor del Tutorial]";
-mes "Parece que ha pasado un dÃ­a desde que terminaste mi bÃºsqueda. Muy bien, al igual que las ^006400Misiones diarias^000000, puedes obtener una misiÃ³n de mÃ­. Â¿QuerÃ­as continuar?";
+mes "Parece que ha pasado un día desde que terminaste mi búsqueda. Muy bien, al igual que las ^006400Misiones diarias^000000, puedes obtener una misión de mí. ¿Querías continuar?";
 			next;
-			switch(select("SÃ­:No")) {
+			switch(select("Sí:No")) {
 			case 1:
 				set @tutorial_restart,1;
 				goto OnStartQuest;
 			case 2:
 mes "[Instructor del Tutorial]";
-mes "Bien. Pero si cambias de opiniÃ³n y quieres recibir una misiÃ³n, ven a buscarme.";
+mes "Bien. Pero si cambias de opinión y quieres recibir una misión, ven a buscarme.";
 				close;
 			}
 		case 2:
@@ -479,40 +479,40 @@ mes "Dicen que la ^006400Quest Window^000000 detalla todo lo que necesitas saber
 			next;
 mes "[Instructor del Tutorial]";
 mes "Si nos fijamos en la parte superior izquierda";
-mes "en el Ã¡rea con la informaciÃ³n,";
+mes "en el área con la información,";
 mes "dice ^006400QUEST^000000";
 mes "Y si haces clic en eso";
-mes "MostrarÃ¡ toda la informaciÃ³n";
+mes "Mostrará toda la información";
 mes "que se refiere a la solicitud.";
 			next;
 mes "[Instructor del Tutorial]";
-mes "Usar la ventana de ^006400Quest^000000 le harÃ¡ la vida mÃ¡s fÃ¡cil. Le dirÃ¡ a dÃ³nde ir, quÃ© artÃ­culos obtener o a quiÃ©n encontrar, etc.";
+mes "Usar la ventana de ^006400Quest^000000 le hará la vida más fácil. Le dirá a dónde ir, qué artículos obtener o a quién encontrar, etc.";
 			close;
 		case 3:
 mes "[Instructor del Tutorial]";
 mes "^006400ENCHANT^000000, en general, se divide en dos partes: ^006400SOCKET ENCHANT^000000 y ^006400HIDDEN SOCKET ENCHANT^000000.";
 			next;
 mes "[Instructor del Tutorial]";
-mes "^006400SOCKET ENCHANT^000000 se usa para agregar un SOCKET a los equipos y ^006400HIDDEN SOCKET ENCHANT^000000 se usa para poner estadÃ­sticas en un socket de una armadura.";
+mes "^006400SOCKET ENCHANT^000000 se usa para agregar un SOCKET a los equipos y ^006400HIDDEN SOCKET ENCHANT^000000 se usa para poner estadísticas en un socket de una armadura.";
 			next;
 mes "[Instructor del Tutorial]";
-mes "Por supuesto, para hacer esto necesitamos algunos materiales y existe la posibilidad de que falle, pero ese es el riesgo que estÃ¡ corriendo.";
+mes "Por supuesto, para hacer esto necesitamos algunos materiales y existe la posibilidad de que falle, pero ese es el riesgo que está corriendo.";
 			next;
 mes "[Instructor del Tutorial]";
-mes "Las personas que hacen el ^006400SOCKET ENCHANT^000000 se pueden encontrar en ^8B4513Prontera, Marruecos, Payon,^000000. ^8B4513Rhitalzen^000000 estÃ¡ en la RefinerÃ­a y ^0000FFSeiyablem^000000 y ^0000FFReiablem^000000 se pueden encontrar cerca de la entrada.";
+mes "Las personas que hacen el ^006400SOCKET ENCHANT^000000 se pueden encontrar en ^8B4513Prontera, Marruecos, Payon,^000000. ^8B4513Rhitalzen^000000 está en la Refinería y ^0000FFSeiyablem^000000 y ^0000FFReiablem^000000 se pueden encontrar cerca de la entrada.";
 			next;
 mes "[Instructor del Tutorial]";
-mes "El que hace ^006400HIDDEN SOCKET ENCHANT^000000 se encuentra en la ubicaciÃ³n de las 6 en punto de ^8B4513Prontera^000000. Busque el ^0000FFCraftman Apprentice^000000.";
+mes "El que hace ^006400HIDDEN SOCKET ENCHANT^000000 se encuentra en la ubicación de las 6 en punto de ^8B4513Prontera^000000. Busque el ^0000FFCraftman Apprentice^000000.";
 			next;
 mes "[Instructor del Tutorial]";
-mes "Â¿Crees que entiendes un poco mÃ¡s sobre ^006400ENCHANT^000000?";
+mes "¿Crees que entiendes un poco más sobre ^006400ENCHANT^000000?";
 			close;
 		case 4:
 mes "[Instructor del Tutorial]";
-mes "^006400Vend Search^000000 puede ser utilizado por el artÃ­culo ^006400Universal Silver Catalog^000000. Dado que busca como vendedor en ese mapa, le resultarÃ¡ mÃ¡s fÃ¡cil encontrar el artÃ­culo que estÃ¡ buscando.";
+mes "^006400Vend Search^000000 puede ser utilizado por el artículo ^006400Universal Silver Catalog^000000. Dado que busca como vendedor en ese mapa, le resultará más fácil encontrar el artículo que está buscando.";
 			next;
 mes "[Instructor del Tutorial]";
-mes "El ^006400CatÃ¡logo Universal de Plata^000000";
+mes "El ^006400Catálogo Universal de Plata^000000";
 mes "se puede obtener de";
 mes "el Asistente de ^0000FFCatalogue^000000";
 mes "que se encuentra en la sede central de Eden Group.";
@@ -520,11 +520,11 @@ mes "que se encuentra en la sede central de Eden Group.";
 mes "[Instructor del Tutorial]";
 mes "Solo cuesta 200 zeny por uno";
 mes "de estos y con ello se puede";
-mes "BÃºsqueda hasta 10 Ti.";
+mes "Búsqueda hasta 10 Ti.";
 mes "Se puede decir que es una necesidad.";
 			next;
 mes "[Instructor del Tutorial]";
-mes "Entonces, Â¿se estÃ¡ familiarizando con ^006400Vend Search^000000? No te quedes ahÃ­ parado y escÃºchame. Â¡AnÃ­mate y pruÃ©balo por ti mismo!";
+mes "Entonces, ¿se está familiarizando con ^006400Vend Search^000000? No te quedes ahí parado y escúchame. ¡Anímate y pruébalo por ti mismo!";
 			close;
 		case 5:
 mes "[Instructor del Tutorial]";
@@ -535,27 +535,27 @@ mes "Si un 006400Mercenary^000000 le da efecto directo";
 mes "luchando por ti";
 mes "entonces un ^006400Pet^000000 te ayuda indirectamente con su";
 mes "habilidades y apariencias variadas,";
-mes "Y captura tu corazÃ³n.";
+mes "Y captura tu corazón.";
 			next;
 mes "[Instructor del Tutorial]";
 mes "Con el fin de emplear a un mercenario";
 mes "Ve a buscar el ^006400Gremio de mercenarios^000000";
-mes "que estÃ¡ junto a la puerta principal de ^8B4513Prontera^000000.";
-mes "Vaya al ^006400Agente de informaciÃ³n^000000";
-mes "y preguntarles dÃ³nde estÃ¡ el ^006400Oficial del Gremio de Mercenarios^000000";
-mes "se encuentra y te lo harÃ¡n saber.";
+mes "que está junto a la puerta principal de ^8B4513Prontera^000000.";
+mes "Vaya al ^006400Agente de información^000000";
+mes "y preguntarles dónde está el ^006400Oficial del Gremio de Mercenarios^000000";
+mes "se encuentra y te lo harán saber.";
 			next;
 mes "[Instructor del Tutorial]";
-mes "Para obtener una ^006400Pet^000000, mientras cazas obtendrÃ¡s objetos de domesticaciÃ³n. Usa el domesticado en el monstruo para el que es y podrÃ¡s conseguir una mascota.";
+mes "Para obtener una ^006400Pet^000000, mientras cazas obtendrás objetos de domesticación. Usa el domesticado en el monstruo para el que es y podrás conseguir una mascota.";
 			next;
 mes "[Instructor del Tutorial]";
-mes "Debido a que existe la posibilidad de fallar, use el artÃ­culo de domesticaciÃ³n con mucho cuidado.";
+mes "Debido a que existe la posibilidad de fallar, use el artículo de domesticación con mucho cuidado.";
 			next;
 mes "[Instructor del Tutorial]";
-mes "Aparte de eso... puedes obtener un ^006400Mercenary^000000 del Gremio de Mercenarios y puedes obtener un ^006400Pet^000000 intercambiÃ¡ndolo o comprÃ¡ndolo a otro jugador.";
+mes "Aparte de eso... puedes obtener un ^006400Mercenary^000000 del Gremio de Mercenarios y puedes obtener un ^006400Pet^000000 intercambiándolo o comprándolo a otro jugador.";
 			next;
 mes "[Instructor del Tutorial]";
-mes "Ahora, Â¿entiendes un poco mÃ¡s sobre el uso de un ^006400Mercenary^000000 y un ^006400Pet^000000? Espero que tengas la oportunidad de usarlos en el futuro.";
+mes "Ahora, ¿entiendes un poco más sobre el uso de un ^006400Mercenary^000000 y un ^006400Pet^000000? Espero que tengas la oportunidad de usarlos en el futuro.";
 			close;
 		case 6:
 mes "[Instructor del Tutorial]";
@@ -565,7 +565,7 @@ mes "Si tienes alguna pregunta, ven a buscarme de nuevo.";
 	}
 mes "[Instructor del Tutorial]";
 mes "Ãšltimamente se ha dicho que";
-mes "EstÃ¡n desarrollando formas de agregar opciones";
+mes "Están desarrollando formas de agregar opciones";
 mes "para poner en sockets o agregar estados";
 mes "en equipos que normalmente no lo tienen.";
 	close;
@@ -575,50 +575,50 @@ moc_para01,32,179,4	script	Objetivos del Tutorial	895,{
 	if (checkweight(608,7) == 0) {
 		if (MaxWeight - Weight < getiteminfo(608, ITEMINFO_WEIGHT)) {
 mes "[Objetivos del Tutorial]";
-mes "Parece tener sobrepeso con los artÃ­culos. Ve a guardar algunas cosas y luego vuelve.";
+mes "Parece tener sobrepeso con los artículos. Ve a guardar algunas cosas y luego vuelve.";
 			close;
 		} else {
 mes "[Objetivos del Tutorial]";
-mes "Tienes demasiados artÃ­culos encima. Ve a guardar algunas cosas y luego vuelve.";
+mes "Tienes demasiados artículos encima. Ve a guardar algunas cosas y luego vuelve.";
 			close;
 		}
 	}
 	if (checkquest(4161) == 0 || checkquest(4161) == 1) {
 mes "[Objetivos del Tutorial]";
-mes "Bueno~ Tenemos que ir a desafiar a los expertos, Â¿verdad?";
-mes "Â¡Comencemos por encontrar al ^006400Experto en asedios^000000!";
+mes "Bueno~ Tenemos que ir a desafiar a los expertos, ¿verdad?";
+mes "¡Comencemos por encontrar al ^006400Experto en asedios^000000!";
 		close;
 	} else if (checkquest(4162) == 0 || checkquest(4162) == 1) {
 mes "[Objetivos del Tutorial]";
-mes "Â¡Has pasado la prueba de ^006400Experto en asedios^000000! Â¡Felicidades!";
+mes "¡Has pasado la prueba de ^006400Experto en asedios^000000! ¡Felicidades!";
 mes "Ahora, ve a buscar al ^006400Party Recruiting Expert^000000!";
 		close;
 	} else if (checkquest(4163) == 0 || checkquest(4163) == 1) {
 mes "[Objetivos del Tutorial]";
-mes "Â¡Oh! Â¡Has pasado la prueba de ^006400Party Recruiting Expert^000000! Â¡Felicidades!";
+mes "¡Oh! ¡Has pasado la prueba de ^006400Party Recruiting Expert^000000! ¡Felicidades!";
 mes "Ahora, ve a buscar el ^006400Experto en Campos de Batalla^000000!";
 		close;
 	} else if (checkquest(4164) == 0 || checkquest(4164) == 1) {
 mes "[Objetivos del Tutorial]";
-mes "Â¡Yay! Â¡Pasaste la prueba del ^006400Experto en Campos de Batalla^000000! Â¡Felicidades!";
-mes "A continuaciÃ³n, ve a buscar el ^006400Experto en Mazmorras Memorial^000000!";
+mes "¡Yay! ¡Pasaste la prueba del ^006400Experto en Campos de Batalla^000000! ¡Felicidades!";
+mes "A continuación, ve a buscar el ^006400Experto en Mazmorras Memorial^000000!";
 		close;
 	} else if (checkquest(4165) == 0 || checkquest(4165) == 1) {
 mes "[Objetivos del Tutorial]";
-mes "Â¡Pasaste la prueba de ^006400Experto en Mazmorras Memorial^000000! Â¡Genial!";
-mes "Â¡Intente encontrar el ^006400Map Expert^000000!";
+mes "¡Pasaste la prueba de ^006400Experto en Mazmorras Memorial^000000! ¡Genial!";
+mes "¡Intente encontrar el ^006400Map Expert^000000!";
 		close;
 	} else if (checkquest(4166) == 0 || checkquest(4166) == 1) {
 mes "[Objetivos del Tutorial]";
-mes "Â¡Has pasado la prueba de ^006400Map Expert^000000! Â¡Felicidades!";
-mes "Â¡Me alegro mucho de que hayas pasado todas las pruebas de los expertos! Â¡Eres mejor de lo que esperaba!";
+mes "¡Has pasado la prueba de ^006400Map Expert^000000! ¡Felicidades!";
+mes "¡Me alegro mucho de que hayas pasado todas las pruebas de los expertos! ¡Eres mejor de lo que esperaba!";
 		next;
 mes "[Objetivos del Tutorial]";
-mes "Â¡Ahora, incluso tÃº eres un ^006400Experto^000000! Â¡QuÃ© apodo tan apropiado para ti!";
-mes "Muchas gracias por su arduo trabajo. Como prometiste, aquÃ­ hay una pequeÃ±a recompensa para ti.";
+mes "¡Ahora, incluso tú eres un ^006400Experto^000000! ¡Qué apodo tan apropiado para ti!";
+mes "Muchas gracias por su arduo trabajo. Como prometiste, aquí hay una pequeña recompensa para ti.";
 		next;
 mes "[Objetivos del Tutorial]";
-mes "Creo que te serÃ¡ Ãºtil durante tus aventuras. Te deseo suerte en tus futuras aventuras~";
+mes "Creo que te será útil durante tus aventuras. Te deseo suerte en tus futuras aventuras~";
 		completequest 4166;
 		getitem 510,5; //Blue_Herb
 		getitem 511,5; //Green_Herb
@@ -627,41 +627,41 @@ mes "Creo que te serÃ¡ Ãºtil durante tus aventuras. Te deseo suerte en tus futur
 		close;
 	} else if (checkquest(4166) == 2) {
 mes "[Objetivos del Tutorial]";
-mes "Â¡Ahora, incluso tÃº eres un ^006400Experto^000000! Â¡QuÃ© apodo tan apropiado para ti!";
+mes "¡Ahora, incluso tú eres un ^006400Experto^000000! ¡Qué apodo tan apropiado para ti!";
 mes "Muchas gracias por su arduo trabajo.";
-mes "Espero que tus futuras aventuras estÃ©n llenas de buena suerte.";
+mes "Espero que tus futuras aventuras estén llenas de buena suerte.";
 		close;
 	}
 	if (Class == Job_Novice) {
 mes "[Objetivos del Tutorial]";
-mes "Hmm, me pregunto si hay algÃºn aventurero que sea lo suficientemente inteligente como para desafiar a nuestros expertos...";
+mes "Hmm, me pregunto si hay algún aventurero que sea lo suficientemente inteligente como para desafiar a nuestros expertos...";
 		close;
 	}
 mes "[Objetivos del Tutorial]";
-mes "Â¡Oye, tÃº! Pareces un aventurero... Aunque te veas un poco aburrido...";
+mes "¡Oye, tú! Pareces un aventurero... Aunque te veas un poco aburrido...";
 	next;
-	if(select("Â¿QuÃ© dijiste? Â¡Soy inteligente!:SÃ­... estoy aburrido.") == 1) {
+	if(select("¿Qué dijiste? ¡Soy inteligente!:Sí... estoy aburrido.") == 1) {
 mes "[Objetivos del Tutorial]";
-mes "Â¿Serio? Aunque no sÃ© si puedo creerlo. Â¡Mira al experto que estÃ¡ frente a mÃ­! Â¡TomÃ³ solo una Ã¡rea de estudio durante 16 aÃ±os y ahora es tan digno como puede ser!";
+mes "¿Serio? Aunque no sé si puedo creerlo. ¡Mira al experto que está frente a mí! ¡Tomó solo una área de estudio durante 16 años y ahora es tan digno como puede ser!";
 		next;
 mes "[Objetivos del Tutorial]";
-mes "Bueno, si logras pasar todas sus pruebas, entonces creerÃ© en tus habilidades.";
+mes "Bueno, si logras pasar todas sus pruebas, entonces creeré en tus habilidades.";
 		next;
 mes "[Objetivos del Tutorial]";
-mes "Y me disculparÃ© por llamarte aburrido. Â¡Â¿QuÃ© te parece, Dull Expert?! Â¿Quieres desafiarlos?";
+mes "Y me disculparé por llamarte aburrido. ¡¿Qué te parece, Dull Expert?! ¿Quieres desafiarlos?";
 		next;
-		if(select("Un... Â¡Â¡Reto!!:Um... Creo que lo dejarÃ© por ahora...") == 1) {
+		if(select("Un... ¡¡Reto!!:Um... Creo que lo dejaré por ahora...") == 1) {
 mes "[Objetivos del Tutorial]";
-mes "Eres mÃ¡s valiente de lo que pareces. Â¡No puedes volver atrÃ¡s ahora que has decidido desafiar!";
+mes "Eres más valiente de lo que pareces. ¡No puedes volver atrás ahora que has decidido desafiar!";
 			next;
 mes "[Objetivos del Tutorial]";
-mes "EstÃ¡ bien~ Empieza hablando con el ^006400Experto en asedios^000000 que estÃ¡ justo enfrente.";
+mes "Está bien~ Empieza hablando con el ^006400Experto en asedios^000000 que está justo enfrente.";
 			setquest 4161;
 			close;
 		}
 	}
 mes "[Objetivos del Tutorial]";
-mes "Bueno, no te desanimes... Si cambias de opiniÃ³n y quieres hacer el reto, ven a buscarme.";
+mes "Bueno, no te desanimes... Si cambias de opinión y quieres hacer el reto, ven a buscarme.";
 	close;
 }
 
@@ -671,11 +671,11 @@ moc_para01,24,175,4	script	Experto en asedio de castillos	734,{
 mes "[Experto en asedio de castillos]";
 mes "Ya que has vuelto, supongo que tienes curiosidad por ^006400Asedio^000000?";
 		next;
-		switch(select("Escuchar sobre asedios.:Fin de la conversaciÃ³n.")) {
+		switch(select("Escuchar sobre asedios.:Fin de la conversación.")) {
 		case 1:
 			callsub L_Info;
 mes "[Experto en asedio de castillos]";
-mes "Ahora que has pasado por todo esto con un experto, Â¿no es fÃ¡cil de entender? Si quieres repasar algo, ven a hablar conmigo.";
+mes "Ahora que has pasado por todo esto con un experto, ¿no es fácil de entender? Si quieres repasar algo, ven a hablar conmigo.";
 			close;
 		case 2:
 mes "[Experto en asedio de castillos]";
@@ -684,46 +684,46 @@ mes "Si quieres repasar algo, ven a hablar conmigo.";
 		}
 	} else if (.@checkquest == 0 || .@checkquest == 1) {
 mes "[Experto en asedio de castillos]";
-mes "Â¡Soy alguien que ha estudiado War of Emperium durante 16 aÃ±os! Â¡AsÃ­ que eso me convierte en un experto! Ya que viniste a buscarme, supongo que quieres saber mÃ¡s sobre ^006400Asedio^000000.";
+mes "¡Soy alguien que ha estudiado War of Emperium durante 16 años! ¡Así que eso me convierte en un experto! Ya que viniste a buscarme, supongo que quieres saber más sobre ^006400Asedio^000000.";
 		next;
 mes "[Experto en asedio de castillos]";
-mes "Tienes muchas ganas y entusiasmo. Como Experto de ^006400Asedio^000000, Â¡me has motivado! Â¡Todos los demÃ¡s expertos te estÃ¡n esperando! Â¡Ve a por ellos!";
+mes "Tienes muchas ganas y entusiasmo. Como Experto de ^006400Asedio^000000, ¡me has motivado! ¡Todos los demás expertos te están esperando! ¡Ve a por ellos!";
 		next;
 mes "[Experto en asedio de castillos]";
-mes "Si te dijera que hay un gran premio por ser capaz de pasar todas las pruebas de Expertos ~ Â¿aceptarÃ­as el reto?";
+mes "Si te dijera que hay un gran premio por ser capaz de pasar todas las pruebas de Expertos ~ ¿aceptarías el reto?";
 		next;
 mes "[Experto en asedio de castillos]";
-mes "Como el primer Experto, puedo enseÃ±arte sobre ^006400Asedio^000000. Â¿QuÃ© te parece? Â¿QuerÃ­as aprender sobre ^006400Asedio^000000s?";
+mes "Como el primer Experto, puedo enseñarte sobre ^006400Asedio^000000. ¿Qué te parece? ¿Querías aprender sobre ^006400Asedio^000000s?";
 		next;
-		switch(select("Escuchar sobre asedios.:Fin de la conversaciÃ³n.")) {
+		switch(select("Escuchar sobre asedios.:Fin de la conversación.")) {
 		case 1:
 			callsub L_Info;
 mes "[Experto en asedio de castillos]";
-mes "Ahora que has pasado por todo esto con un experto, Â¿no es fÃ¡cil de entender?";
-mes "Ahora te darÃ© 3 preguntas ~ Â¡hazlas bien y habrÃ¡s aprobado! Â¿Quieres un reto?";
+mes "Ahora que has pasado por todo esto con un experto, ¿no es fácil de entender?";
+mes "Ahora te daré 3 preguntas ~ ¡hazlas bien y habrás aprobado! ¿Quieres un reto?";
 			while(1) {
 				set .@correct,0;
 				next;
-				switch(select("Â¡DesafÃ­ame!:Escucha de nuevo:Salir")) {
+				switch(select("¡Desafíame!:Escucha de nuevo:Salir")) {
 				case 1:
 					switch(rand(1,3)) {
 					case 1:
 mes "[Experto en asedio de castillos]";
 mes "Se realiza un asedio con el fin de apoderarse de un [].";
 mes "Es una guerra que ocurre entre un [] y otro [].";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("Castillo, Usuario, Gremio:Castillo, Gremio, Gremio:Ciudad, Gremio, Gremio:Ciudad, Usuario, Usuario") == 2)
 							set .@correct, .@correct+10;
 mes "[Experto en asedio de castillos]";
-mes "Â¿CuÃ¡l es el tiempo de asedio incorrecto?";
-mes "[^FF000000Nota del administrador^000000]: Las WoE podrÃ¡n tener un horario diferente. Cualquier respuesta es correcta.";
+mes "¿Cuál es el tiempo de asedio incorrecto?";
+mes "[^FF000000Nota del administrador^000000]: Las WoE podrán tener un horario diferente. Cualquier respuesta es correcta.";
 						next;
-						select("WoE 1 Martes 9-11:WoE 1 SÃ¡bado 4-6:WoE 1 Jueves 8-10");
+						select("WoE 1 Martes 9-11:WoE 1 Sábado 4-6:WoE 1 Jueves 8-10");
 						set .@correct, .@correct+10;
 mes "[Experto en asedio de castillos]";
 mes "Cuando consigas un castillo, debes subir [] para obtener mejores beneficios.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("Desarrollo del comercio:Desarrollo industrial:Desarrollo gremial:Desarrollo de la ciudad") == 1)
 							set .@correct, .@correct+10;
@@ -731,39 +731,39 @@ mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
 					case 2:
 mes "[Experto en asedio de castillos]";
 mes "Hay 2 tipos de asedio.";
-mes "EstÃ¡ la Guerra de Emperium normal";
-mes "Y luego estÃ¡ [].";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "Está la Guerra de Emperium normal";
+mes "Y luego está [].";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("War of Emperium MO:War of Emperium NE:War of Emperium SK:War of Emperium SE") == 4)
 							set .@correct, .@correct+10;
 mes "[Experto en asedio de castillos]";
 mes "Como gremio que posee un castillo, debes proteger el [].";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("Emperial:Emperium:Emperiom:Imperial") == 2)
 							set .@correct, .@correct+10;
 mes "[Experto en asedio de castillos]";
-mes "Â¿QuÃ© beneficios obtiene el gremio por ganar el Asedio?";
+mes "¿Qué beneficios obtiene el gremio por ganar el Asedio?";
 						next;
-						if(select("30% de descuento en todos los artÃ­culos al comprar:Aumentar la experiencia obtenida en un 20%:Acceso a Guild Dungeon:Obtener armas todos los dÃ­as a medianoche.") == 3)
+						if(select("30% de descuento en todos los artículos al comprar:Aumentar la experiencia obtenida en un 20%:Acceso a Guild Dungeon:Obtener armas todos los días a medianoche.") == 3)
 							set .@correct, .@correct+10;
 						break;
 					case 3:
 mes "[Experto en asedio de castillos]";
-mes "Â¿QuÃ© beneficios obtiene el gremio por ganar el Asedio?";
+mes "¿Qué beneficios obtiene el gremio por ganar el Asedio?";
 						next;
-						if(select("Aumenta la experiencia obtenida en un 20 %:30 % de descuento en todos los artÃ­culos al comprar:Acceso al campo del gremio:Caja del tesoro todos los dÃ­as a medianoche") == 4)
+						if(select("Aumenta la experiencia obtenida en un 20 %:30 % de descuento en todos los artículos al comprar:Acceso al campo del gremio:Caja del tesoro todos los días a medianoche") == 4)
 							set .@correct, .@correct+10;
 mes "[Experto en asedio de castillos]";
-mes "Â¿CuÃ¡ntas horas dura un asedio?";
-mes "[^FF000000Nota del administrador^000000]: Las WoE podrÃ¡n una duraciÃ³n diferente. Cualquier respuesta es correcta.";
+mes "¿Cuántas horas dura un asedio?";
+mes "[^FF000000Nota del administrador^000000]: Las WoE podrán una duración diferente. Cualquier respuesta es correcta.";
 						next;
 						select("1 Hora:2 Horas:3 Horas:4 Horas");
 						set .@correct, .@correct+10;
 mes "[Experto en asedio de castillos]";
 mes "Cuando consigas un castillo, debes subir [] para obtener mejores beneficios.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("Desarrollo de la ciudad:Desarrollo de la industria:Desarrollo del gremio:Desarrollo del comercio") == 4)
 							set .@correct, .@correct+10;
@@ -771,45 +771,45 @@ mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
 					}
 					if (.@correct == 30) {
 mes "[Experto en asedio de castillos]";
-mes "Â¡Uau! Â¡Has acertado las 3 preguntas! Entonces, Â¿te sientes bastante bien acerca de ^006400Asedio^000000s? Â¿Derecha?";
+mes "¡Uau! ¡Has acertado las 3 preguntas! Entonces, ¿te sientes bastante bien acerca de ^006400Asedio^000000s? ¿Derecha?";
 						next;
 mes "[Experto en asedio de castillos]";
 mes "Si alguna vez quieres aprender sobre ^006400Asedio^000000, ven a buscarme.";
 						next;
 mes "[Experto en asedio de castillos]";
-mes "Ahora, ve a buscar al ^0000FFParty Recruiting Expert^000000. Ã‰l te estÃ¡ esperando.";
+mes "Ahora, ve a buscar al ^0000FFParty Recruiting Expert^000000. Ã‰l te está esperando.";
 						completequest 4161;
 						setquest 4162;
 						getexp 2000,1000;
 						close;
 					}
 mes "[Experto en asedio de castillos]";
-mes "Â¡Solo hay 3 preguntas y no las acertaste todas! A este ritmo, suspenderÃ¡s todas las pruebas de los expertos.";
+mes "¡Solo hay 3 preguntas y no las acertaste todas! A este ritmo, suspenderás todas las pruebas de los expertos.";
 					next;
 mes "[Experto en asedio de castillos]";
-mes "Pero cuando te miro, sÃ© que tienes potencial. Â¿QuerÃ­as intentar abordarlo de nuevo?";
+mes "Pero cuando te miro, sé que tienes potencial. ¿Querías intentar abordarlo de nuevo?";
 					break;
 				case 2:
 					callsub L_Info;
 mes "[Experto en asedio de castillos]";
-mes "Ahora que has pasado por todo esto con un experto, Â¿no es fÃ¡cil de entender?";
-mes "Ahora te darÃ© 3 preguntas ~ Â¡hazlas bien y habrÃ¡s aprobado! Â¿Quieres un reto?";
+mes "Ahora que has pasado por todo esto con un experto, ¿no es fácil de entender?";
+mes "Ahora te daré 3 preguntas ~ ¡hazlas bien y habrás aprobado! ¿Quieres un reto?";
 					break;
 				case 3:
 mes "[Experto en asedio de castillos]";
-mes "Â¡Bah! No eres divertido... Â¡Te rindes demasiado fÃ¡cil! Si cambias de opiniÃ³n, ven a buscarme.";
+mes "¡Bah! No eres divertido... ¡Te rindes demasiado fácil! Si cambias de opinión, ven a buscarme.";
 					close;
 				}
 			}
 			close;
 		case 2:
 mes "[Experto en asedio de castillos]";
-mes "Â¿Te estÃ¡s dando por vencido? Si cambias de opiniÃ³n, ven a buscarme.";
+mes "¿Te estás dando por vencido? Si cambias de opinión, ven a buscarme.";
 			close;
 		}
 	}
 mes "[Experto en asedio de castillos]";
-mes "Si quieres aprender algo de mÃ­, ve a conocer ^006400Objetivos del Tutorial^000000 primero.";
+mes "Si quieres aprender algo de mí, ve a conocer ^006400Objetivos del Tutorial^000000 primero.";
 	close;
 
 L_Info:
@@ -818,24 +818,24 @@ mes "Un ^006400Asedio^000000 es un ^0000FFGuild vs. Gremio^000000 guerra con la 
 	next;
 mes "[Experto en asedio de castillos]";
 mes "Hay 2 tipos diferentes de ^006400Asedio^000000.";
-mes "Existe el estÃ¡ndar ^006400War of Emperium^000000 y uno que es ligeramente diferente que se conoce como ^006400War of Emperium 2^000000.";
+mes "Existe el estándar ^006400War of Emperium^000000 y uno que es ligeramente diferente que se conoce como ^006400War of Emperium 2^000000.";
 	next;
 mes "[Experto en asedio de castillos]";
-mes "AsÃ­ que durante este tiempo, hay dos lados de la guerra.";
+mes "Así que durante este tiempo, hay dos lados de la guerra.";
 mes "El ^0000FFGuild que posee un castillo^000000 intenta proteger el ^006400Emperium^000000 y el ^0000FFGuild que ataca un castillo^000000 intenta romper el ^0064000Emperium^000000.";
 	next;
 mes "[Experto en asedio de castillos]";
 mes "Puedes encontrar ^006400Asedio^000000 ti en nuestro sitio web.";
-mes "Y los gremios que ganan tambiÃ©n obtienen algo especial.";
+mes "Y los gremios que ganan también obtienen algo especial.";
 	next;
 mes "[Experto en asedio de castillos]";
 mes "Gremios que ganan durante el asedio";
-mes "obtÃ©n acceso a una mazmorra de ^006400Guild^000000";
-mes "y el Maestro del Gremio puede abrir ^006400Treasure Box^000000es a ^0000FFMidnight cada dÃ­a^000000.";
-mes "Â¿No es un gran beneficio?";
+mes "obtén acceso a una mazmorra de ^006400Guild^000000";
+mes "y el Maestro del Gremio puede abrir ^006400Treasure Box^000000es a ^0000FFMidnight cada día^000000.";
+mes "¿No es un gran beneficio?";
 	next;
 mes "[Experto en asedio de castillos]";
-mes "Otra cosa que tienes que hacer cuando ganas un castillo se llama ^006400Commerce Development^000000. Cuanto mÃ¡s lo hagas, mejores serÃ¡n los beneficios.";
+mes "Otra cosa que tienes que hacer cuando ganas un castillo se llama ^006400Commerce Development^000000. Cuanto más lo hagas, mejores serán los beneficios.";
 	next;
 	return;
 }
@@ -846,11 +846,11 @@ moc_para01,21,172,4	script	Experto en reclutamiento de grupos	878,{
 mes "[Experto en reclutamiento de grupos]";
 mes "Ya que has venido y me has encontrado, parece que tienes curiosidad por ^006400Party Recruiting^000000?";
 		next;
-		switch(select("Escuchar sobre el reclutamiento del grupos.:Fin de la conversaciÃ³n.")) {
+		switch(select("Escuchar sobre el reclutamiento del grupos.:Fin de la conversación.")) {
 		case 1:
 			callsub L_Info;
 mes "[Experto en reclutamiento de grupos]";
-mes "La explicaciÃ³n de este experto fue bastante buena, Â¿eh? Si necesitas un repaso, ven a buscarme de nuevo.";
+mes "La explicación de este experto fue bastante buena, ¿eh? Si necesitas un repaso, ven a buscarme de nuevo.";
 			close;
 		case 2:
 mes "[Experto en reclutamiento de grupos]";
@@ -859,23 +859,23 @@ mes "Bueno, si tienes alguna pregunta, ven a buscarme.";
 		}
 	} else if (.@checkquest == 0 || .@checkquest == 1) {
 mes "[Experto en reclutamiento de grupos]";
-mes "Â¡Soy el ^006400Party Recruiting^000000 experto porque investiguÃ© sobre Party Recruting durante 16 aÃ±os! Parece que el ^006400Experto en asedios^000000 te enviÃ³ a mi camino ya que pasaste sus pruebas, Â¿hmm?";
+mes "¡Soy el ^006400Party Recruiting^000000 experto porque investigué sobre Party Recruting durante 16 años! Parece que el ^006400Experto en asedios^000000 te envió a mi camino ya que pasaste sus pruebas, ¿hmm?";
 		next;
 mes "[Experto en reclutamiento de grupos]";
-mes "Es posible que ya lo hayas escuchado, pero si apruebas todos los cuestionarios de los expertos, Â¡obtendrÃ¡s un premio increÃ­ble!";
+mes "Es posible que ya lo hayas escuchado, pero si apruebas todos los cuestionarios de los expertos, ¡obtendrás un premio increíble!";
 		next;
 mes "[Experto en reclutamiento de grupos]";
-mes "Como 2Âº experto, te contarÃ© todo sobre ^006400Party Recruiting^000000! Â¿QuÃ© te parece?";
+mes "Como 2Âº experto, te contaré todo sobre ^006400Party Recruiting^000000! ¿Qué te parece?";
 		next;
-		switch(select("Escuchar sobre el reclutamiento del grupos.:Fin de la conversaciÃ³n.")) {
+		switch(select("Escuchar sobre el reclutamiento del grupos.:Fin de la conversación.")) {
 		case 1:
 			callsub L_Info;
 mes "[Experto en reclutamiento de grupos]";
-mes "Ahora~ mis explicaciones fueron mÃ¡s suaves que las de un criminal suave, Â¿verdad? Ahora te voy a dar un cuestionario con 3 preguntas. Hazlos todos bien y habrÃ¡s aprobado. Â¿Quieres aceptar el reto?";
+mes "Ahora~ mis explicaciones fueron más suaves que las de un criminal suave, ¿verdad? Ahora te voy a dar un cuestionario con 3 preguntas. Hazlos todos bien y habrás aprobado. ¿Quieres aceptar el reto?";
 			while(1) {
 				set .@correct,0;
 				next;
-				switch(select("Â¡Vamos al cuestionario!: Â¿ExplÃ­cate de nuevo, por favor?: Rendirse.")) {
+				switch(select("¡Vamos al cuestionario!: ¿Explícate de nuevo, por favor?: Rendirse.")) {
 				case 1:
 					switch(rand(1,3)) {
 					case 1:
@@ -883,18 +883,18 @@ mes "[Experto en reclutamiento de grupos]";
 mes "El reclutamiento de grupos se utiliza para ayudar";
 mes "Usuarios que buscan []";
 mes "y aquellos que buscan un [].";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("Gremio, Miembros de gremio:Club, Miembros del club:grupo, Miembros de la fiesta:Grupo, miembros del grupo") == 4)
 							set .@correct, .@correct+10;
 mes "[Experto en reclutamiento de grupos]";
 mes "La ventana que se utiliza para ayudar a los usuarios a buscar y buscar una fiesta se denomina [].";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("Lista de grupos:Lista de grupos buscados:Lista de reclutamiento de grupos:Lista de grupos de disfraces") == 3)
 							set .@correct, .@correct+10;
 mes "[Experto en reclutamiento de grupos]";
-mes "Â¿CuÃ¡l de las opciones no aparece como una opciÃ³n para elegir al hacer un aviso de reclutamiento de grupo?";
+mes "¿Cuál de las opciones no aparece como una opción para elegir al hacer un aviso de reclutamiento de grupo?";
 						next;
 						if(select("NIVEL:HABILIDAD:TRABAJO:MAPA") == 2)
 							set .@correct, .@correct+10;
@@ -904,21 +904,21 @@ mes "[Experto en reclutamiento de grupos]";
 mes "Hay 2 tipos de reclutamiento de grupo.";
 mes "El registro de reclutamiento de grupo es uno";
 mes "y el 2Âº es [].";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
-						if(select("Buscar grupos que estÃ©n reclutando:Grupos que estÃ¡n comenzando a cazar:Reclutamiento de grupos y distribuciÃ³n de artÃ­culos:Cosas del grupo") == 1)
+						if(select("Buscar grupos que estén reclutando:Grupos que están comenzando a cazar:Reclutamiento de grupos y distribución de artículos:Cosas del grupo") == 1)
 							set .@correct, .@correct+10;
 mes "[Experto en reclutamiento de grupos]";
-mes "Para iniciar el reclutamiento de grupos, debe hacer clic en el botÃ³n [] que se encuentra en la secciÃ³n de informaciÃ³n de la parte superior izquierda.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "Para iniciar el reclutamiento de grupos, debe hacer clic en el botón [] que se encuentra en la sección de información de la parte superior izquierda.";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("grupo:gremio:reclutamiento:habilidad") == 3)
 							set .@correct, .@correct+10;
 mes "[Experto en reclutamiento de grupos]";
-mes "Si quieres saber mÃ¡s sobre los comandos para el reclutamiento de grupos, tienes que pulsar el botÃ³n [] en la ventana de la lista de reclutamiento de grupos.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "Si quieres saber más sobre los comandos para el reclutamiento de grupos, tienes que pulsar el botón [] en la ventana de la lista de reclutamiento de grupos.";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
-						if(select("InformaciÃ³n bÃ¡sica:Ayuda:Grupo:Confirmar") == 2)
+						if(select("Información básica:Ayuda:Grupo:Confirmar") == 2)
 							set .@correct, .@correct+10;
 						break;
 					case 3:
@@ -926,14 +926,14 @@ mes "[Experto en reclutamiento de grupos]";
 mes "Para el reclutamiento de grupo, con el fin de hacer que la";
 mes "Ventana emergente de reclutamiento de grupo,";
 mes "Escriba este comando [].";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
-						if(select("/Ventana de recolecciÃ³n de grupos:/RecolecciÃ³n en grupos:/Ventana de reclutamiento de grupos:/Reclutamiento de grupos") == 4)
+						if(select("/Ventana de recolección de grupos:/Recolección en grupos:/Ventana de reclutamiento de grupos:/Reclutamiento de grupos") == 4)
 							set .@correct, .@correct+10;
 mes "[Experto en reclutamiento de grupos]";
-mes "Al reclutar para un grupo, puede establecer 3 parÃ¡metros. Esos 3 son";
+mes "Al reclutar para un grupo, puede establecer 3 parámetros. Esos 3 son";
 mes "LEVEL, JOB y [].";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("HABILIDAD:GREMIO:MAPA:OPCIONES") == 3)
 							set .@correct, .@correct+10;
@@ -941,7 +941,7 @@ mes "[Experto en reclutamiento de grupos]";
 mes "El reclutamiento de grupos se utiliza para ayudar";
 mes "Usuarios que buscan []";
 mes "y aquellos que buscan un [].";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("Fiesta, miembros de la fiesta:Club, miembros del club:Grupo, miembros del grupo:Gremio, miembros del gremio") == 3)
 							set .@correct, .@correct+10;
@@ -949,49 +949,49 @@ mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
 					}
 					if (.@correct == 30) {
 mes "[Experto en reclutamiento de grupos]";
-mes "Â¡Muy bien! Â¡Tienes los 3 correctos! Â¿Ahora te sientes mÃ¡s seguro acerca de ^006400Party Recruiting^000000?";
+mes "¡Muy bien! ¡Tienes los 3 correctos! ¿Ahora te sientes más seguro acerca de ^006400Party Recruiting^000000?";
 						next;
 mes "[Experto en reclutamiento de grupos]";
-mes "Si alguna vez quieres saber mÃ¡s sobre ^006400Party Recruiting^000000, ven a buscarme en cualquier momento.";
+mes "Si alguna vez quieres saber más sobre ^006400Party Recruiting^000000, ven a buscarme en cualquier momento.";
 						next;
 mes "[Experto en reclutamiento de grupos]";
-mes "Bueno, Â¡ve al ^0000FFExperto en Campos de Batalla^000000! Probablemente te estÃ© esperando.";
+mes "Bueno, ¡ve al ^0000FFExperto en Campos de Batalla^000000! Probablemente te esté esperando.";
 						completequest 4162;
 						setquest 4163;
 						getexp 2000,1000;
 						close;
 					}
 mes "[Experto en reclutamiento de grupos]";
-mes "Â¡Solo hay 3 preguntas y no las acertaste todas! A este ritmo, suspenderÃ¡s todas las pruebas de los expertos.";
+mes "¡Solo hay 3 preguntas y no las acertaste todas! A este ritmo, suspenderás todas las pruebas de los expertos.";
 					next;
 mes "[Experto en reclutamiento de grupos]";
-mes "Â¡Pero si quieres repetir el cuestionario! Â¡Adelante! Â¡Creo que tienes potencial! Â¿Quieres volver a hacer el cuestionario?";
+mes "¡Pero si quieres repetir el cuestionario! ¡Adelante! ¡Creo que tienes potencial! ¿Quieres volver a hacer el cuestionario?";
 					break;
 				case 2:
 					callsub L_Info;
 mes "[Experto en reclutamiento de grupos]";
-mes "Ahora~ mis explicaciones fueron mÃ¡s suaves que las de un criminal suave, Â¿verdad? Ahora te voy a dar un cuestionario con 3 preguntas. Hazlos todos bien y habrÃ¡s aprobado. Â¿Quieres aceptar el reto?";
+mes "Ahora~ mis explicaciones fueron más suaves que las de un criminal suave, ¿verdad? Ahora te voy a dar un cuestionario con 3 preguntas. Hazlos todos bien y habrás aprobado. ¿Quieres aceptar el reto?";
 					break;
 				case 3:
 mes "[Experto en reclutamiento de grupos]";
-mes "Â¡No te rindas! Â¡TÃº puedes hacerlo! Si cambias de opiniÃ³n, Â¡ven a hablar conmigo de nuevo!";
+mes "¡No te rindas! ¡Tú puedes hacerlo! Si cambias de opinión, ¡ven a hablar conmigo de nuevo!";
 					close;
 				}
 			}
 			close;
 		case 2:
 mes "[Experto en reclutamiento de grupos]";
-mes "Â¿Te vas a rendir sin siquiera escucharme? Si cambias de opiniÃ³n, Â¡ven a hablar conmigo de nuevo!";
+mes "¿Te vas a rendir sin siquiera escucharme? Si cambias de opinión, ¡ven a hablar conmigo de nuevo!";
 			close;
 		}
 	}
 mes "[Experto en reclutamiento de grupos]";
-mes "Si quieres aprender algo de mÃ­, habla primero con el ^006400Experto en Asedios^000000.";
+mes "Si quieres aprender algo de mí, habla primero con el ^006400Experto en Asedios^000000.";
 	close;
 
 L_Info:
 mes "[Experto en reclutamiento de grupos]";
-mes "^006400Party Recruiting^000000 se explica por sÃ­ mismo. Ayuda a las personas a encontrar miembros del grupo y ayuda a las personas a encontrar grupos.";
+mes "^006400Party Recruiting^000000 se explica por sí mismo. Ayuda a las personas a encontrar miembros del grupo y ayuda a las personas a encontrar grupos.";
 	next;
 mes "[Experto en reclutamiento de grupos]";
 mes "Hay 2 partes en el reclutamiento de grupos.";
@@ -999,25 +999,25 @@ mes "El 1er paso es ^0000FFRegistering Party Recruiting^000000,";
 mes "y el 2Âº paso es ^0000FFParty Search^000000.";
 	next;
 mes "[Experto en reclutamiento de grupos]";
-mes "Para buscar Party Recruiting, en la ventana de informaciÃ³n en la parte superior izquierda, haga clic en el botÃ³n que dice ^006400booking^000000. Entonces aparecerÃ¡ la ^006400Lista de Reclutamiento del Partido^000000.";
+mes "Para buscar Party Recruiting, en la ventana de información en la parte superior izquierda, haga clic en el botón que dice ^006400booking^000000. Entonces aparecerá la ^006400Lista de Reclutamiento del Partido^000000.";
 	next;
 mes "[Experto en reclutamiento de grupos]";
-mes "La ventana ^006400Party Recruiting List^000000 le muestra las partes que estÃ¡n buscando miembros que fueron enumerados por otros usuarios. Puedes buscar a travÃ©s de Ã©l.";
+mes "La ventana ^006400Party Recruiting List^000000 le muestra las partes que están buscando miembros que fueron enumerados por otros usuarios. Puedes buscar a través de él.";
 	next;
 mes "[Experto en reclutamiento de grupos]";
-mes "En el caso de que no quieras unirte a un grupo, pero quieras reclutar para uno, escribe en el comando ^0000FF/Party Recruit^000000 y luego en la ventana ^006400Party Recruiting^000000, Â¡puedes hacer algo de reclutamiento!";
+mes "En el caso de que no quieras unirte a un grupo, pero quieras reclutar para uno, escribe en el comando ^0000FF/Party Recruit^000000 y luego en la ventana ^006400Party Recruiting^000000, ¡puedes hacer algo de reclutamiento!";
 	next;
 mes "[Experto en reclutamiento de grupos]";
 mes "Una vez que registre su aviso de reclutamiento de grupo en la ventana ^006400Party Recruiting^000000, los usuarios pueden buscar su ^006400Party Recruiting List^000000";
 	next;
 mes "[Experto en reclutamiento de grupos]";
 mes "En la lista de reclutamiento del partido ^0064000^00000 y";
-mes "^006400Party Recruiting^000000 puedes poner informaciÃ³n bÃ¡sica de lo que vas a hacer, o lo que estÃ¡s buscando como";
+mes "^006400Party Recruiting^000000 puedes poner información básica de lo que vas a hacer, o lo que estás buscando como";
 mes "^006400LEVEL^000000, ^006400MAPA^000000, ^006400JOB^000000.";
-mes "Luego, los usuarios pueden buscar usando esos parÃ¡metros y utilizando el sistema ^006400Party Recruitment^000000.";
+mes "Luego, los usuarios pueden buscar usando esos parámetros y utilizando el sistema ^006400Party Recruitment^000000.";
 	next;
 mes "[Experto en reclutamiento de grupos]";
-mes "Si desea obtener mÃ¡s informaciÃ³n sobre ^006400Party Recruiting^000000, haga clic en el botÃ³n ^006400Help^000000 en la parte inferior derecha de la lista de ^006400Party Recruiting^0000000.";
+mes "Si desea obtener más información sobre ^006400Party Recruiting^000000, haga clic en el botón ^006400Help^000000 en la parte inferior derecha de la lista de ^006400Party Recruiting^0000000.";
 	next;
 	return;
 }
@@ -1026,178 +1026,178 @@ moc_para01,12,179,6	script	Master de Campos de Batalla	419,{
 	set .@checkquest, checkquest(4163);
 	if (.@checkquest == 2) {
 mes "[Experto en campos de batalla]";
-mes "Al ver que me buscaste, supongo que quieres aprender sobre ^006400Campos de Batalla^000000s, Â¿eh?";
+mes "Al ver que me buscaste, supongo que quieres aprender sobre ^006400Campos de Batalla^000000s, ¿eh?";
 		next;
-		switch(select("Conocer informaciÃ³n sobre los campos de batalla.:Finalizar conversaciÃ³n.")) {
+		switch(select("Conocer información sobre los campos de batalla.:Finalizar conversación.")) {
 		case 1:
 			callsub L_Info;
 mes "[Experto en campos de batalla]";
-mes "Â¡No hay nada mejor que escucharlo directamente del experto! Si quieres repasarlo de nuevo, solo habla conmigo.";
+mes "¡No hay nada mejor que escucharlo directamente del experto! Si quieres repasarlo de nuevo, solo habla conmigo.";
 			close;
 		case 2:
 mes "[Experto en campos de batalla]";
-mes "Si quieres repasar algo, hÃ¡zmelo saber.";
+mes "Si quieres repasar algo, házmelo saber.";
 			close;
 		}
 	} else if (.@checkquest == 0 || .@checkquest == 1) {
 mes "[Experto en campos de batalla]";
-mes "Durante 16 aÃ±os, experimentÃ© el intenso calor de la batalla en el ^006400Campos de Batalla^000000s... Â¡Soy el ^006400Campos de Batalla^000000 Experto!";
-mes "Parece que el ^006400Party Recruiting Expert^000000 te enviÃ³ a mÃ­ desde que pasaste su cuestionario.";
+mes "Durante 16 años, experimenté el intenso calor de la batalla en el ^006400Campos de Batalla^000000s... ¡Soy el ^006400Campos de Batalla^000000 Experto!";
+mes "Parece que el ^006400Party Recruiting Expert^000000 te envió a mí desde que pasaste su cuestionario.";
 		next;
 mes "[Experto en campos de batalla]";
-mes "Es posible que ya lo sepas, pero si superas todos los cuestionarios de los Expertos, Â¡obtendrÃ¡s un premio!";
+mes "Es posible que ya lo sepas, pero si superas todos los cuestionarios de los Expertos, ¡obtendrás un premio!";
 		next;
 mes "[Experto en campos de batalla]";
-mes "Â¡Te contarÃ© sobre el ^006400Campos de Batalla^000000s! Â¡Te dirÃ© todo lo que sÃ©! Â¿QuÃ© te parece? Â¿Quieres saber mÃ¡s de Ã©l?";
+mes "¡Te contaré sobre el ^006400Campos de Batalla^000000s! ¡Te diré todo lo que sé! ¿Qué te parece? ¿Quieres saber más de él?";
 		next;
-		switch(select("Obtener informaciÃ³n sobre los campos de batalla.:Finalizar conversaciÃ³n.")) {
+		switch(select("Obtener información sobre los campos de batalla.:Finalizar conversación.")) {
 		case 1:
 			callsub L_Info;
 mes "[Experto en campos de batalla]";
-mes "Â¡No hay nada mejor que escucharlo directamente del experto! Ahora, Â¿quieres hacer mi cuestionario de 3 preguntas? Â¡Tienes que responder las 3 correctamente para aprobar!";
+mes "¡No hay nada mejor que escucharlo directamente del experto! Ahora, ¿quieres hacer mi cuestionario de 3 preguntas? ¡Tienes que responder las 3 correctamente para aprobar!";
 			while(1) {
 				set .@correct,0;
 				next;
-				switch(select("Â¡Vamos al cuestionario!: Â¿ExplÃ­cate de nuevo, por favor?: Rendirse.")) {
+				switch(select("¡Vamos al cuestionario!: ¿Explícate de nuevo, por favor?: Rendirse.")) {
 				case 1:
 					switch(rand(1,3)) {
 					case 1:
 mes "[Experto en campos de batalla]";
 mes "Para empezar, tienes que elegir el lado del campamento [] o el campamento [] para participar en el campo de batalla.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("Guillaume, Tierra:Rachel, KVM:Guillaume, Croix:Maroll, KVM") == 3)
 							set .@correct, .@correct+10;
 mes "[Experto en campos de batalla]";
 mes "[] puedes hacer 10vs10 y tienes que atacar los cristales del equipo contrario mientras proteges el tuyo.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("Tierra:Flavius:KVM:Maroll") == 2)
 							set .@correct, .@correct+10;
 mes "[Experto en campos de batalla]";
-mes "Â¡Cuando completes una batalla, puedes obtener una recompensa! De una batalla KVM, se obtiene [].";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "¡Cuando completes una batalla, puedes obtener una recompensa! De una batalla KVM, se obtiene [].";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
-						if(select("Insignia KVM:Insignia de Valor:Insignia de ValentÃ­a:Insignia de Honor") == 1)
+						if(select("Insignia KVM:Insignia de Valor:Insignia de Valentía:Insignia de Honor") == 1)
 							set .@correct, .@correct+10;
 						break;
 					case 2:
 mes "[Experto en campos de batalla]";
-mes "Para [], es 10vs10. TambiÃ©n debes atacar el depÃ³sito de suministros del enemigo mientras proteges el tuyo.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "Para [], es 10vs10. También debes atacar el depósito de suministros del enemigo mientras proteges el tuyo.";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("Maroll:KVM:Flavius:Tierra") == 4)
 							set .@correct, .@correct+10;
 mes "[Experto en campos de batalla]";
-mes "Para entrar en los campos de batalla, Â¿cuÃ¡l no es el reclutador que necesitas encontrar?";
+mes "Para entrar en los campos de batalla, ¿cuál no es el reclutador que necesitas encontrar?";
 						next;
 						if(select("Reclutador de mercenarios Maroll:Reclutador de mercenarios KVM:Reclutador de mercenarios Tierra:Reclutador de mercenarios Flavius") == 1)
 							set .@correct, .@correct+10;
 mes "[Experto en campos de batalla]";
 mes "Puedes obtener [] participando en los Campos de Batalla de Tierra.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
-						if(select("Insignia KVM:Insignia de Valor:Insignia de ValentÃ­a:Insignia de Honor") == 2)
+						if(select("Insignia KVM:Insignia de Valor:Insignia de Valentía:Insignia de Honor") == 2)
 							set .@correct, .@correct+10;
 						break;
 					case 3:
 mes "[Experto en campos de batalla]";
 mes "En todas las ciudades importantes, puedes encontrar [] para ingresar a los campos de batalla.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("Maroll Reclutador de campos de batalla:Tierra Reclutador de campos de batalla:Flavius Reclutador de campos de batalla:KVM Reclutador de campos de batalla") == 1)
 							set .@correct, .@correct+10;
 mes "[Experto en campos de batalla]";
-mes "Para [], vas en 5vs5 con la intenciÃ³n de intentar reducir el nÃºmero de enemigos en el lado opuesto.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "Para [], vas en 5vs5 con la intención de intentar reducir el número de enemigos en el lado opuesto.";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("Maroll:Flavius:KVM:Tierra") == 3)
 							set .@correct, .@correct+10;
 mes "[Experto en campos de batalla]";
 mes "Cuando completas una batalla, obtienes un premio. El premio de Flavio se llama [].";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
-						if(select("Insignia KVM:Insignia de Valor:Insignia de ValentÃ­a:Insignia de Honor") == 3)
+						if(select("Insignia KVM:Insignia de Valor:Insignia de Valentía:Insignia de Honor") == 3)
 							set .@correct, .@correct+10;
 						break;
 					}
 					if (.@correct == 30) {
 mes "[Experto en campos de batalla]";
-mes "Â¡Tienes los 3 correctos! Creo que tienes una cabeza bastante buena sobre tus hombros. Sabes un par de cosas sobre ^006400Campos de Batalla^000000s.";
+mes "¡Tienes los 3 correctos! Creo que tienes una cabeza bastante buena sobre tus hombros. Sabes un par de cosas sobre ^006400Campos de Batalla^000000s.";
 						next;
 mes "[Experto en campos de batalla]";
-mes "Si alguna vez quieres repasar algo sobre ^006400Campos de Batalla^000000s, Â¡no dudes en venir a hablar conmigo!";
+mes "Si alguna vez quieres repasar algo sobre ^006400Campos de Batalla^000000s, ¡no dudes en venir a hablar conmigo!";
 						next;
 mes "[Experto en campos de batalla]";
-mes "Â¡Ve y encuentra y habla con el 0000FFExperto en Mazmorras Memorial^000000!";
+mes "¡Ve y encuentra y habla con el 0000FFExperto en Mazmorras Memorial^000000!";
 						completequest 4163;
 						setquest 4164;
 						getexp 2000,1000;
 						close;
 					}
 mes "[Experto en campos de batalla]";
-mes "Â¡Solo hay 3 preguntas y no las acertaste todas! A este ritmo, suspenderÃ¡s todas las pruebas de los expertos.";
+mes "¡Solo hay 3 preguntas y no las acertaste todas! A este ritmo, suspenderás todas las pruebas de los expertos.";
 					next;
 mes "[Experto en campos de batalla]";
-mes "Pero si quieres retomarlo, deberÃ­as hacerlo.";
+mes "Pero si quieres retomarlo, deberías hacerlo.";
 					break;
 				case 2:
 					callsub L_Info;
 mes "[Experto en campos de batalla]";
-mes "Â¡No hay nada mejor que escucharlo directamente del experto! Ahora, Â¿quieres hacer mi cuestionario de 3 preguntas? Â¡Tienes que responder las 3 correctamente para aprobar!";
+mes "¡No hay nada mejor que escucharlo directamente del experto! Ahora, ¿quieres hacer mi cuestionario de 3 preguntas? ¡Tienes que responder las 3 correctamente para aprobar!";
 					break;
 				case 3:
 mes "[Experto en campos de batalla]";
-mes "No me decepciones rindiÃ©ndote. Si cambias de opiniÃ³n, ven a buscarme de nuevo.";
+mes "No me decepciones rindiéndote. Si cambias de opinión, ven a buscarme de nuevo.";
 					close;
 				}
 			}
 			close;
 		case 2:
 mes "[Experto en campos de batalla]";
-mes "Eres un cobarde si te rindes incluso antes de empezar. Si cambias de opiniÃ³n, ven a buscarme de nuevo.";
+mes "Eres un cobarde si te rindes incluso antes de empezar. Si cambias de opinión, ven a buscarme de nuevo.";
 			close;
 		}
 		close;
 	}
 mes "[Experto en campos de batalla]";
-mes "Si quieres aprender algo de mÃ­, ve a ser reconocido por el ^006400Party Recruiting Expert^000000 primero.";
+mes "Si quieres aprender algo de mí, ve a ser reconocido por el ^006400Party Recruiting Expert^000000 primero.";
 	close;
 
 L_Info:
 mes "[Experto en campos de batalla]";
-mes "Para explicar ^006400Campos de Batalla^000000 fÃ¡cilmente...";
-mes "Eliges el Campamento ^006400Guillaume^000000 o el Campamento ^006400Croix^000000 y luego luchan entre sÃ­.";
+mes "Para explicar ^006400Campos de Batalla^000000 fácilmente...";
+mes "Eliges el Campamento ^006400Guillaume^000000 o el Campamento ^006400Croix^000000 y luego luchan entre sí.";
 	next;
 mes "[Experto en campos de batalla]";
 mes "Hay 3 tipos de ^006400Campos de Batalla^000000s.";
-mes "El primero es ^006400KVM^000000. Es una batalla de 5 contra 5 con el objetivo de reducir el nÃºmero de personas en ambos bandos.";
+mes "El primero es ^006400KVM^000000. Es una batalla de 5 contra 5 con el objetivo de reducir el número de personas en ambos bandos.";
 	next;
 mes "[Experto en campos de batalla]";
-mes "El segundo es 10vs10. Atacas los depÃ³sitos de suministros de tus oponentes y, a su vez, proteges tus depÃ³sitos de suministros. A esto se le llama ^006400Tierra^000000.";
+mes "El segundo es 10vs10. Atacas los depósitos de suministros de tus oponentes y, a su vez, proteges tus depósitos de suministros. A esto se le llama ^006400Tierra^000000.";
 	next;
 mes "[Experto en campos de batalla]";
-mes "El tercero y Ãºltimo se llama ^006400Flavius^000000. Este tambiÃ©n es 10vs10. En este caso, atacas los cristales de tus oponentes mientras intentas proteger los tuyos.";
+mes "El tercero y último se llama ^006400Flavius^000000. Este también es 10vs10. En este caso, atacas los cristales de tus oponentes mientras intentas proteger los tuyos.";
 	next;
 mes "[Experto en campos de batalla]";
 mes "Para llegar a ^006400Campos de Batalla^000000s, encuentra a ^006400Maroll, el Reclutador^000000 que se puede encontrar en todas las ciudades principales.";
 	next;
 mes "[Experto en campos de batalla]";
-mes "DespuÃ©s de entrar, elija si desea ponerse del lado de Guillaume o Croix, luego, de su lado, elija cualquiera de los...";
+mes "Después de entrar, elija si desea ponerse del lado de Guillaume o Croix, luego, de su lado, elija cualquiera de los...";
 mes "^006400KVM Reclutador de mercenarios^000000,";
 mes "^006400Reclutador de Mercenarios de la Tierra^000000, Oro";
 mes "^006400Flavio Reclutador de Mercenarios^000000,";
 mes "entonces puedes unirte a los ^006400Campos de Batalla^000000s.";
 	next;
 mes "[Experto en campos de batalla]";
-mes "Dependiendo del resultado del ^006400Campos de Batalla^000000, tambiÃ©n puedes obtener un premio.";
+mes "Dependiendo del resultado del ^006400Campos de Batalla^000000, también puedes obtener un premio.";
 mes "Obtiene insignias KVM de ^006400KVM^000000,";
-mes "de ^006400Tierra^000000 obtienes Insignias de ValentÃ­a y";
+mes "de ^006400Tierra^000000 obtienes Insignias de Valentía y";
 mes "recibes Insignias de Valor ^006400Flavius^000000.";
 	next;
 mes "[Experto en campos de batalla]";
-mes "Con las recompensas de ^006400Campos de Batalla^000000s, puedes obtener artÃ­culos que normalmente no puedes obtener en otro lugar.";
-mes "Cada recompensa de ^006400Campos de Batalla^000000 que puedes obtener es diferente, por lo que tendrÃ¡s que comprobarlo.";
+mes "Con las recompensas de ^006400Campos de Batalla^000000s, puedes obtener artículos que normalmente no puedes obtener en otro lugar.";
+mes "Cada recompensa de ^006400Campos de Batalla^000000 que puedes obtener es diferente, por lo que tendrás que comprobarlo.";
 	next;
 	return;
 }
@@ -1206,100 +1206,100 @@ moc_para01,28,167,3	script	Experto en Mazmorras Conmemorativas	868,{
 	set .@checkquest, checkquest(4164);
 	if (.@checkquest == 2) {
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Ya que has venido aquÃ­, parece que quieres aprender sobre la ^006400Mazmorra Conmemorativa^000000.";
+mes "Ya que has venido aquí, parece que quieres aprender sobre la ^006400Mazmorra Conmemorativa^000000.";
 		next;
-		switch(select("Escuchar sobre las Mazmorras Conmemorativas.:Fin de la conversaciÃ³n.")) {
+		switch(select("Escuchar sobre las Mazmorras Conmemorativas.:Fin de la conversación.")) {
 		case 1:
 			callsub L_Info;
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Ahora que has hablado con un experto, es fÃ¡cil de entender, Â¿verdad? Si quieres volver a oÃ­r hablar de ello, ven a buscarme.";
+mes "Ahora que has hablado con un experto, es fácil de entender, ¿verdad? Si quieres volver a oír hablar de ello, ven a buscarme.";
 			close;
 		case 2:
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Si quieres volver a oÃ­r hablar de ello, ven a buscarme.";
+mes "Si quieres volver a oír hablar de ello, ven a buscarme.";
 			close;
 		}
 	} else if (.@checkquest == 0 || .@checkquest == 1) {
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Â¡Soy el ^006400Mazmorra Conmemorativa^000000 Experto! Â¡EstudiÃ© el ^006400Mazmorra Conmemorativa^000000 durante 16 aÃ±os!";
+mes "¡Soy el ^006400Mazmorra Conmemorativa^000000 Experto! ¡Estudié el ^006400Mazmorra Conmemorativa^000000 durante 16 años!";
 mes "Ya que me has buscado, supongo que has aprobado el cuestionario de ^006400Experto en Campos de Batalla^000000.";
 		next;
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Como ya sabes, si superas todo el cuestionario de expertos obtendrÃ¡s un premio.";
+mes "Como ya sabes, si superas todo el cuestionario de expertos obtendrás un premio.";
 		next;
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Como el 4Âº Experto, te explicarÃ© todo sobre ^006400Mazmorra Conmemorativa^000000.";
-mes "Â¿Quieres saber mÃ¡s de ^006400Mazmorra Conmemorativa^000000?";
+mes "Como el 4Âº Experto, te explicaré todo sobre ^006400Mazmorra Conmemorativa^000000.";
+mes "¿Quieres saber más de ^006400Mazmorra Conmemorativa^000000?";
 		next;
-		switch(select("Escuchar sobre las Mazmorras Conmemorativas.:Fin de la conversaciÃ³n.")) {
+		switch(select("Escuchar sobre las Mazmorras Conmemorativas.:Fin de la conversación.")) {
 		case 1:
 			callsub L_Info;
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Ahora que has hablado con un experto, es fÃ¡cil de entender, Â¿verdad? Si quieres volver a oÃ­r hablar de ello, ven a buscarme.";
-mes "Bien, ahora te voy a dar un cuestionario. Tienes que acertar todas las preguntas para aprobar. Â¿Listo?";
+mes "Ahora que has hablado con un experto, es fácil de entender, ¿verdad? Si quieres volver a oír hablar de ello, ven a buscarme.";
+mes "Bien, ahora te voy a dar un cuestionario. Tienes que acertar todas las preguntas para aprobar. ¿Listo?";
 			while(1) {
 				set .@correct,0;
 				next;
-				switch(select("Â¡Vamos al cuestionario!:Â¿ExplÃ­cate de nuevo, por favor?: Rendirse.")) {
+				switch(select("¡Vamos al cuestionario!:¿Explícate de nuevo, por favor?: Rendirse.")) {
 				case 1:
 					switch(rand(1,3)) {
 					case 1:
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "^006400Mazmorra Conmemorativa^000000 no es una mazmorra que estÃ© abierta a todos los usuarios. Solo estÃ¡ disponible para ti y tu [].";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "^006400Mazmorra Conmemorativa^000000 no es una mazmorra que esté abierta a todos los usuarios. Solo está disponible para ti y tu [].";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("Miembros del grupo:Miembros del gremio:Amigos:Familiares") == 1)
 							set .@correct, .@correct+10;
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Si vas a [] y encuentras [], te darÃ¡ informaciÃ³n sobre Endless Tower, que es una mazmorra enorme y alta.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "Si vas a [] y encuentras [], te dará información sobre Endless Tower, que es una mazmorra enorme y alta.";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("Prontera, Seiyablem:Alberta, Leyablem:Alberta, Captain Jansen:Prontera, Captin Jansen") == 3)
 							set .@correct, .@correct+10;
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Para entrar en Mazmorra Conmemorativa se debe aplicar el [] y luego estar en espera para entrar. IngresarÃ¡ en el orden en que se ingresÃ³ la solicitud.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "Para entrar en Mazmorra Conmemorativa se debe aplicar el [] y luego estar en espera para entrar. Ingresará en el orden en que se ingresó la solicitud.";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
-						if(select("Mimebro del gremio:LÃ­der del gremio:LÃ­der del grupo:Miembro del grupo") == 3)
+						if(select("Mimebro del gremio:Líder del gremio:Líder del grupo:Miembro del grupo") == 3)
 							set .@correct, .@correct+10;
 						break;
 					case 2:
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Cuando termines con el [], no puedes volver a entrar en la misma mazmorra durante un cierto perÃ­odo de tiempo.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "Cuando termines con el [], no puedes volver a entrar en la misma mazmorra durante un cierto período de tiempo.";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
-						if(select("Buff:Ritual:ExploraciÃ³n:InspecciÃ³n") == 3)
+						if(select("Buff:Ritual:Exploración:Inspección") == 3)
 							set .@correct, .@correct+10;
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Si vas al Mapa de Orcos donde viven todos los orcos, podrÃ¡s encontrar []. Probablemente podrÃ¡ darte informaciÃ³n sobre la mazmorra de la Memoria del Orco.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "Si vas al Mapa de Orcos donde viven todos los orcos, podrás encontrar []. Probablemente podrá darte información sobre la mazmorra de la Memoria del Orco.";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("Insane Scientist:Crazy Scientist:Insane Alchemist:Crazy Alchemist") == 1)
 							set .@correct, .@correct+10;
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Para ingresar a Mazmorra Conmemorativa, se debe aplicar el [], luego podrÃ¡ ingresar en el orden en que se entregÃ³ su solicitud.";
+mes "Para ingresar a Mazmorra Conmemorativa, se debe aplicar el [], luego podrá ingresar en el orden en que se entregó su solicitud.";
 mes "Tienes que estar a la espera de esto.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
-						if(select("LÃ­der del gremio:Miembro del gremio:Miembro del grupo:LÃ­der del grupo") == 4)
+						if(select("Líder del gremio:Miembro del gremio:Miembro del grupo:Líder del grupo") == 4)
 							set .@correct, .@correct+10;
 						break;
 					case 3:
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Si vas al lugar donde puedes convertirte en monje, el Monasterio Capitolino, puedes encontrarte con []. Ã‰l te hablarÃ¡ de la mazmorra con el Baphomet Sellado.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "Si vas al lugar donde puedes convertirte en monje, el Monasterio Capitolino, puedes encontrarte con []. Ã‰l te hablará de la mazmorra con el Baphomet Sellado.";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("Agent Patrick:Patrolman Patrick:Drunken Patrick:Detective Patrick") == 4)
 							set .@correct, .@correct+10;
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Cuando termines con el [], no puedes volver a entrar en la misma mazmorra durante un cierto perÃ­odo de tiempo.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "Cuando termines con el [], no puedes volver a entrar en la misma mazmorra durante un cierto período de tiempo.";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
-						if(select("ExploraciÃ³n:InspecciÃ³n:Buff:Ritual") == 1)
+						if(select("Exploración:Inspección:Buff:Ritual") == 1)
 							set .@correct, .@correct+10;
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "^006400Mazmorra Conmemorativa^000000 no solo estÃ¡ abierto a todos los usuarios. EstÃ¡ abierto, disponible para usted y su [].";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "^006400Mazmorra Conmemorativa^000000 no solo está abierto a todos los usuarios. Está abierto, disponible para usted y su [].";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("Amigos:Familiares:Miembros del grupo:Miembros de gremio") == 3)
 							set .@correct, .@correct+10;
@@ -1307,75 +1307,75 @@ mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
 					}
 					if (.@correct == 30) {
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Eres bastante brillante ~ viendo que tienes los 3 correctos. Â¿Ahora entiendes sobre ^006400Mazmorra Conmemorativa^000000?";
+mes "Eres bastante brillante ~ viendo que tienes los 3 correctos. ¿Ahora entiendes sobre ^006400Mazmorra Conmemorativa^000000?";
 						next;
 mes "[Experto en Mazmorras Conmemorativas]";
 mes "Si alguna vez quieres repasar cosas sobre ^006400Mazmorra Conmemorativa^000000, ven a hablar conmigo en cualquier momento.";
 						next;
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Ahora, Â¡ve al ^0000FFMap Expert^000000!";
+mes "Ahora, ¡ve al ^0000FFMap Expert^000000!";
 						completequest 4164;
 						setquest 4165;
 						getexp 2000,1000;
 						close;
 					}
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "El cuestionario no fue tan difÃ­cil...";
+mes "El cuestionario no fue tan difícil...";
 					next;
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Parece que tienes potencial... DeberÃ­as intentarlo de nuevo.";
+mes "Parece que tienes potencial... Deberías intentarlo de nuevo.";
 					break;
 				case 2:
 					callsub L_Info;
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Es fÃ¡cil de entender ya que proviene de un experto como yo. Ahora es la hora de los cuestionarios. Tienes que acertar todas las respuestas para aprobar. Â¿EstÃ¡s listo?";
+mes "Es fácil de entender ya que proviene de un experto como yo. Ahora es la hora de los cuestionarios. Tienes que acertar todas las respuestas para aprobar. ¿Estás listo?";
 					break;
 				case 3:
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Rendirse es una tonterÃ­a. Si cambias de opiniÃ³n, ven a hablar conmigo.";
+mes "Rendirse es una tontería. Si cambias de opinión, ven a hablar conmigo.";
 					close;
 				}
 			}
 			close;
 		case 2:
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Rendirse sin siquiera intentarlo es una tonterÃ­a. Si cambias de opiniÃ³n, ven a hablar conmigo.";
+mes "Rendirse sin siquiera intentarlo es una tontería. Si cambias de opinión, ven a hablar conmigo.";
 			close;
 		}
 		close;
 	}
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Si quieres aprender algo de mÃ­, habla primero con el ^006400Maestro en Campos de Batalla^000000 y sÃ© reconocido por Ã©l.";
+mes "Si quieres aprender algo de mí, habla primero con el ^006400Maestro en Campos de Batalla^000000 y sé reconocido por él.";
 	close;
 
 L_Info:
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "La ^006400Mazmorra Conmemorativa^000000 no es una mazmorra que estÃ© abierta a todos. Solo se abre para ^0000FFYou y los miembros de su grupo^000000.";
+mes "La ^006400Mazmorra Conmemorativa^000000 no es una mazmorra que esté abierta a todos. Solo se abre para ^0000FFYou y los miembros de su grupo^000000.";
 	next;
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Por lo tanto, para ingresar a ^006400Mazmorra Conmemorativa^000000, el LÃ­der del Grupo debe solicitar ingreso. Dado que ingresa en el orden en que solicita, debe estar en espera para ingresar.";
+mes "Por lo tanto, para ingresar a ^006400Mazmorra Conmemorativa^000000, el Líder del Grupo debe solicitar ingreso. Dado que ingresa en el orden en que solicita, debe estar en espera para ingresar.";
 	next;
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "AdemÃ¡s, despuÃ©s de explorar Mazmorra Conmemorativa, no puedes volver a entrar en la misma ^006400Mazmorra Conmemorativa^000000 durante un cierto perÃ­odo de tiempo.";
+mes "Además, después de explorar Mazmorra Conmemorativa, no puedes volver a entrar en la misma ^006400Mazmorra Conmemorativa^000000 durante un cierto período de tiempo.";
 	next;
 mes "[Experto en Mazmorras Conmemorativas]";
 mes "Existen muchos ^006400Mazmorra Conmemorativa^000000, pero te daremos pistas para ayudarte a encontrar Mazmorra Conmemorativa en el mundo de Midgard.";
 	next;
 mes "[Experto en Mazmorras Conmemorativas]";
 mes "Primero, vaya a ^8B4513Alberta^000000 y busque ^006400Captain Jansen^000000.";
-mes "Ã‰l te darÃ¡ informaciÃ³n sobre la mazmorra realmente enorme y alta conocida como ^006400Endless Tower^000000.";
+mes "Ã‰l te dará información sobre la mazmorra realmente enorme y alta conocida como ^006400Endless Tower^000000.";
 	next;
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "En segundo lugar, ve al ^8B4513Mapa de orcos^000000 donde viven todos los orcos y encuentra al ^006400CientÃ­fico demente^000000.";
-mes "Es posible que puedas obtener informaciÃ³n sobre una mazmorra que tenga que ver con ^006400Orc's Memory^000000.";
+mes "En segundo lugar, ve al ^8B4513Mapa de orcos^000000 donde viven todos los orcos y encuentra al ^006400Científico demente^000000.";
+mes "Es posible que puedas obtener información sobre una mazmorra que tenga que ver con ^006400Orc's Memory^000000.";
 	next;
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Tercero y Ãºltimo, busca el lugar donde puedes convertirte en monje, que es el ^8B4513Monasterio Capitolino^0000000 y busca ^006400Detective Patrick^000000.";
-mes "Ã‰l podrÃ¡ darte informaciÃ³n sobre la mazmorra con el ^006400Sealed Baphomet^000000+.";
+mes "Tercero y último, busca el lugar donde puedes convertirte en monje, que es el ^8B4513Monasterio Capitolino^0000000 y busca ^006400Detective Patrick^000000.";
+mes "Ã‰l podrá darte información sobre la mazmorra con el ^006400Sealed Baphomet^000000+.";
 	next;
 mes "[Experto en Mazmorras Conmemorativas]";
-mes "Por supuesto, hay otras ubicaciones para Mazmorra Conmemorativa, pero es mejor comenzar donde puedas encontrarlo fÃ¡cilmente.";
-mes "A medida que continÃºes en tus aventuras, podrÃ¡s encontrarlos mÃ¡s fÃ¡cilmente.";
+mes "Por supuesto, hay otras ubicaciones para Mazmorra Conmemorativa, pero es mejor comenzar donde puedas encontrarlo fácilmente.";
+mes "A medida que continúes en tus aventuras, podrás encontrarlos más fácilmente.";
 	next;
 	return;
 }
@@ -1384,102 +1384,102 @@ moc_para01,14,168,6	script	Experto en mapas	743,{
 	set .@checkquest, checkquest(4165);
 	if (.@checkquest == 2) {
 mes "[Experto en mapas]";
-mes "Al ver que viniste a mÃ­, supongo que tienes algunas preguntas sobre ^006400MAP^000000s?";
+mes "Al ver que viniste a mí, supongo que tienes algunas preguntas sobre ^006400MAP^000000s?";
 		next;
-		switch(select("Escuchar sobre los mapas.:Finalizar conversaciÃ³n.")) {
+		switch(select("Escuchar sobre los mapas.:Finalizar conversación.")) {
 		case 1:
 			callsub L_Info;
 mes "[Experto en mapas]";
-mes "Si terminas en esas Ã¡reas mientras te aventuras, Â¡asegÃºrate de contÃ¡rmelo todo!";
-mes "Y ahora, ya que has aprobado todos los cuestionarios del Experto, continÃºa y habla con ^006400Objetivos del Tutorial^000000.";
+mes "Si terminas en esas áreas mientras te aventuras, ¡asegúrate de contármelo todo!";
+mes "Y ahora, ya que has aprobado todos los cuestionarios del Experto, continúa y habla con ^006400Objetivos del Tutorial^000000.";
 			close;
 		case 2:
 mes "[Experto en mapas]";
-mes "Si tienes mÃ¡s preguntas, ven a buscarme.";
+mes "Si tienes más preguntas, ven a buscarme.";
 			close;
 		}
 	} else if (.@checkquest == 0 || .@checkquest == 1) {
 mes "[Experto en mapas]";
-mes "Â¡He estado investigando y estudiando ^006400MAP^000000s durante 16 aÃ±os y ahora soy el ^006400MAPA^000000 Experto!";
+mes "¡He estado investigando y estudiando ^006400MAP^000000s durante 16 años y ahora soy el ^006400MAPA^000000 Experto!";
 mes "Ya que me has buscado, parece que has pasado el cuestionario de ^006400Experto en Mazmorras Memorial^000000.";
 		next;
 mes "[Experto en mapas]";
-mes "Como ya sabes, si superas todo el cuestionario de expertos obtendrÃ¡s un premio.";
+mes "Como ya sabes, si superas todo el cuestionario de expertos obtendrás un premio.";
 		next;
 mes "[Experto en mapas]";
-mes "Como Ãºltimo experto, intentarÃ© explicar todo sobre ^006400MAP^000000s para que te resulte fÃ¡cil. Â¿Listo para empezar?";
+mes "Como último experto, intentaré explicar todo sobre ^006400MAP^000000s para que te resulte fácil. ¿Listo para empezar?";
 		next;
-		switch(select("Escuchar sobre los mapas.:Finalizar conversaciÃ³n.")) {
+		switch(select("Escuchar sobre los mapas.:Finalizar conversación.")) {
 		case 1:
 			callsub L_Info;
 mes "[Experto en mapas]";
-mes "Â¿CÃ³mo fue mi explicaciÃ³n? Â¡Ahora te voy a dar un cuestionario rÃ¡pido! Tienes que acertar todas las respuestas para poder aprobar. Â¿Listo?";
+mes "¿Cómo fue mi explicación? ¡Ahora te voy a dar un cuestionario rápido! Tienes que acertar todas las respuestas para poder aprobar. ¿Listo?";
 			while(1) {
 				set .@correct,0;
 				next;
-				switch(select("Â¡Vamos al cuestionario!:Â¿ExplÃ­cate de nuevo, por favor?:Rendirse.")) {
+				switch(select("¡Vamos al cuestionario!:¿Explícate de nuevo, por favor?:Rendirse.")) {
 				case 1:
 					switch(rand(1,3)) {
 					case 1:
 mes "[Experto en mapas]";
-mes "Puede ver el mapa haciendo clic en el botÃ³n [] que se encuentra en la parte superior izquierda.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "Puede ver el mapa haciendo clic en el botón [] que se encuentra en la parte superior izquierda.";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("HABILIDAD:GREMIO:MAPA:RECLUTAMIENTO") == 3)
 							set .@correct, .@correct+10;
 mes "[Experto en mapas]";
-mes "Al mirar el mapa, cada Ã¡rea ofrece la informaciÃ³n [] y [] sobre los monstruos. Eso eliminarÃ¡ todas las conjeturas sobre dÃ³nde debe cazar.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "Al mirar el mapa, cada área ofrece la información [] y [] sobre los monstruos. Eso eliminará todas las conjeturas sobre dónde debe cazar.";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("Nombre, Edad:Atributos, Nivel:Atributos, Tribu:Nombre, Nivel") == 4)
 							set .@correct, .@correct+10;
 mes "[Experto en mapas]";
-mes "Si desea dejar de mirar el mapa, simplemente presione la tecla de acceso directo de [] o ESC y se cerrarÃ¡ el mapa por usted.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "Si desea dejar de mirar el mapa, simplemente presione la tecla de acceso directo de [] o ESC y se cerrará el mapa por usted.";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("ALT + F4:CTRL + %:CTRL + M:ALT + ESC") == 2)
 							set .@correct, .@correct+10;
 						break;
 					case 2:
 mes "[Experto en mapas]";
-mes "DespuÃ©s de abrir el mapa y";
-mes "Pase el mouse sobre Ã¡reas especÃ­ficas";
-mes "Puede ver los valores [] y [] de la regiÃ³n.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "Después de abrir el mapa y";
+mes "Pase el mouse sobre áreas específicas";
+mes "Puede ver los valores [] y [] de la región.";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
-						if(select("Nombre, Detalles del Ã¡rea:Nombre, Atributos del monstruo:Especialidades, Detalles del Ã¡rea:Especialidades, Nombre") == 1)
+						if(select("Nombre, Detalles del área:Nombre, Atributos del monstruo:Especialidades, Detalles del área:Especialidades, Nombre") == 1)
 							set .@correct, .@correct+10;
 mes "[Experto en mapas]";
-mes "Si miras en la parte inferior derecha del mapa, verÃ¡s un dibujo de []. Haga clic en eso o presione la tecla de acceso directo TAB y podrÃ¡ encontrar informaciÃ³n diversa.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "Si miras en la parte inferior derecha del mapa, verás un dibujo de []. Haga clic en eso o presione la tecla de acceso directo TAB y podrá encontrar información diversa.";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("Lobo del desierto:Mimic:Siroma:Poring") == 4)
 							set .@correct, .@correct+10;
 mes "[Experto en mapas]";
-mes "Mientras miras el mapa, cuando presionas la tecla de acceso directo TAB, podrÃ¡s encontrar y ubicar varias mazmorras y sus ubicaciones de entrada.";
-mes "TambiÃ©n puedes encontrar el [] de los monstruos en esa Ã¡rea.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "Mientras miras el mapa, cuando presionas la tecla de acceso directo TAB, podrás encontrar y ubicar varias mazmorras y sus ubicaciones de entrada.";
+mes "También puedes encontrar el [] de los monstruos en esa área.";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
-						if(select("Nombre:Nivel:Atributo:TamaÃ±o") == 2)
+						if(select("Nombre:Nivel:Atributo:Tamaño") == 2)
 							set .@correct, .@correct+10;
 						break;
 					case 3:
 mes "[Experto en mapas]";
-mes "Si quieres dejar de mirar el mapa, todo lo que tienes que hacer es pulsar el botÃ³n [] para volver a tu pantalla normal.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "Si quieres dejar de mirar el mapa, todo lo que tienes que hacer es pulsar el botón [] para volver a tu pantalla normal.";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("O:X:SALIR:ALT") == 2)
 							set .@correct, .@correct+10;
 mes "[Experto en mapas]";
-mes "Mientras miras el mapa, cuando presionas la tecla de acceso directo TAB, podrÃ¡s encontrar y ubicar varias mazmorras y sus ubicaciones de entrada.";
-mes "TambiÃ©n puedes encontrar el [] de los monstruos en esa Ã¡rea.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "Mientras miras el mapa, cuando presionas la tecla de acceso directo TAB, podrás encontrar y ubicar varias mazmorras y sus ubicaciones de entrada.";
+mes "También puedes encontrar el [] de los monstruos en esa área.";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
-						if(select("Nivel:Nombre:TamaÃ±o:Atributo") == 1)
+						if(select("Nivel:Nombre:Tamaño:Atributo") == 1)
 							set .@correct, .@correct+10;
 mes "[Experto en mapas]";
-mes "Puede ver el mapa haciendo clic en el botÃ³n [] que se encuentra en la parte superior izquierda.";
-mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
+mes "Puede ver el mapa haciendo clic en el botón [] que se encuentra en la parte superior izquierda.";
+mes "¿Qué palabras van en los espacios vacíos de []?";
 						next;
 						if(select("GREMIO:HABILIDAD:RECLUTAMIENTO:MAPA") == 4)
 							set .@correct, .@correct+10;
@@ -1487,80 +1487,80 @@ mes "Â¿QuÃ© palabras van en los espacios vacÃ­os de []?";
 					}
 					if (.@correct == 30) {
 mes "[Experto en mapas]";
-mes "Â¡Bingo! Â¡Has acertado las 3 respuestas! Ahora, Â¿sientes que entiendes cosas sobre ^006400MAP^000000s mÃ¡s?";
+mes "¡Bingo! ¡Has acertado las 3 respuestas! Ahora, ¿sientes que entiendes cosas sobre ^006400MAP^000000s más?";
 						next;
 mes "[Experto en mapas]";
-mes "Si alguna vez sientes que quieres aprender mÃ¡s sobre ^006400MAP^000000s, ven a hablar conmigo en cualquier momento.";
+mes "Si alguna vez sientes que quieres aprender más sobre ^006400MAP^000000s, ven a hablar conmigo en cualquier momento.";
 						next;
 mes "[Experto en mapas]";
-mes "Â¡Felicidades por aprobar todos los cuestionarios de los expertos! Ahora, ve a buscar y habla con el ^006400Objetivos del Tutorial^000000!";
+mes "¡Felicidades por aprobar todos los cuestionarios de los expertos! Ahora, ve a buscar y habla con el ^006400Objetivos del Tutorial^000000!";
 						completequest 4165;
 						setquest 4166;
 						getexp 2000,1000;
 						close;
 					}
 mes "[Experto en mapas]";
-mes "Las 3 preguntas no deberÃ­an haber sido tan difÃ­ciles...";
+mes "Las 3 preguntas no deberían haber sido tan difíciles...";
 					next;
 mes "[Experto en mapas]";
-mes "Bueno, pareces ser bastante inteligente, asÃ­ que Â¿por quÃ© no volver a intentar el cuestionario?";
+mes "Bueno, pareces ser bastante inteligente, así que ¿por qué no volver a intentar el cuestionario?";
 					break;
 				case 2:
 					callsub L_Info;
 mes "[Experto en mapas]";
-mes "Â¿CÃ³mo es la explicaciÃ³n de este experto? Ahora te voy a dar un cuestionario rÃ¡pido. Tienes que acertar todas las respuestas para aprobar. Â¿Quieres probarlo?";
+mes "¿Cómo es la explicación de este experto? Ahora te voy a dar un cuestionario rápido. Tienes que acertar todas las respuestas para aprobar. ¿Quieres probarlo?";
 					break;
 				case 3:
 mes "[Experto en mapas]";
-mes "Â¡Soy el Ãºltimo experto! Â¡No te rindas! Â¡Ven a buscarme de nuevo cuando estÃ©s listo!";
+mes "¡Soy el último experto! ¡No te rindas! ¡Ven a buscarme de nuevo cuando estés listo!";
 					close;
 				}
 			}
 			close;
 		case 2:
 mes "[Experto en mapas]";
-mes "Â¿Te vas a rendir sin siquiera intentarlo? Â¡Pero yo soy el Ãºltimo experto! Â¡No te rindas! Â¡Ven a buscarme de nuevo cuando estÃ©s listo!";
+mes "¿Te vas a rendir sin siquiera intentarlo? ¡Pero yo soy el último experto! ¡No te rindas! ¡Ven a buscarme de nuevo cuando estés listo!";
 			close;
 		}
 		close;
 	}
 mes "[Experto en mapas]";
-mes "Si quieres aprender de mÃ­, ve a ser reconocido por el ^006400Experto en Mazmorras Conmemorativas^000000 primero.";
+mes "Si quieres aprender de mí, ve a ser reconocido por el ^006400Experto en Mazmorras Conmemorativas^000000 primero.";
 	close;
 
 L_Info:
 mes "[Experto en mapas]";
-mes "Un ^006400MAPA^000000 le muestra cosas que son muy necesarias para viajar por el mundo, como la disposiciÃ³n del terreno, las principales ciudades y campos, etc. Â¡Es una herramienta muy importante!";
+mes "Un ^006400MAPA^000000 le muestra cosas que son muy necesarias para viajar por el mundo, como la disposición del terreno, las principales ciudades y campos, etc. ¡Es una herramienta muy importante!";
 	next;
 mes "[Experto en mapas]";
-mes "Debido a esto, es mÃ¡s importante que todo lo demÃ¡s que sepas sobre ^006400MAP^000000s.";
+mes "Debido a esto, es más importante que todo lo demás que sepas sobre ^006400MAP^000000s.";
 	next;
 mes "[Experto en mapas]";
-mes "Se puede acceder al mapa haciendo clic en el botÃ³n que dice ^006400MAPA^000000 en la parte superior izquierda de la pantalla.";
+mes "Se puede acceder al mapa haciendo clic en el botón que dice ^006400MAPA^000000 en la parte superior izquierda de la pantalla.";
 	next;
 mes "[Experto en mapas]";
-mes "Al hacer clic en el botÃ³n ^006400MAPA^000000, un mapa de tamaÃ±o completo de Midgard ocuparÃ¡ su pantalla.";
-mes "Cuando ^0000FFHsobre el mouse sobre Ã¡reas especÃ­ficas^000000, puede encontrar mÃ¡s cosas como ^006400NAME^000000 y Detalles del Ã¡rea.";
+mes "Al hacer clic en el botón ^006400MAPA^000000, un mapa de tamaño completo de Midgard ocupará su pantalla.";
+mes "Cuando ^0000FFHsobre el mouse sobre áreas específicas^000000, puede encontrar más cosas como ^006400NAME^000000 y Detalles del área.";
 	next;
 mes "[Experto en mapas]";
 mes "Si miras en la parte inferior derecha de tu mapa, hay un dibujo ^006400Poring^000000.";
-mes "Si hace clic en Ã©l o presiona la tecla de acceso directo ^006400TAB^000000, podrÃ¡ obtener informaciÃ³n diversa.";
+mes "Si hace clic en él o presiona la tecla de acceso directo ^006400TAB^000000, podrá obtener información diversa.";
 	next;
 mes "[Experto en mapas]";
-mes "En primer lugar, puedes averiguar el ^006400NAME^000000 y ^006400LEVEL^000000 de los monstruos en cada Ã¡rea. Eso eliminarÃ¡ muchas de las conjeturas sobre dÃ³nde quieres ir a cazar.";
+mes "En primer lugar, puedes averiguar el ^006400NAME^000000 y ^006400LEVEL^000000 de los monstruos en cada área. Eso eliminará muchas de las conjeturas sobre dónde quieres ir a cazar.";
 	next;
 mes "[Experto en mapas]";
 mes "En segundo lugar, puede localizar varios ^006400DUNGEON^000000s y sus";
-mes "^006400UbicaciÃ³n de la entrada^000000. AdemÃ¡s, tambiÃ©n te dirÃ¡ los monstruos que residen en esa zona";
-mes "junto con su ^006400LEVEL^000000. Se muestra en rojo, por lo que es fÃ¡cil de encontrar.";
+mes "^006400Ubicación de la entrada^000000. Además, también te dirá los monstruos que residen en esa zona";
+mes "junto con su ^006400LEVEL^000000. Se muestra en rojo, por lo que es fácil de encontrar.";
 	next;
 mes "[Experto en mapas]";
 mes "Si quieres dejar de mirar el mapa, hay 2 formas de hacerlo.";
 mes "Puede presionar las teclas de acceso directo que son ^006400CTRL + %^000000 o ^006400ESC^000000";
-mes "O en la parte superior derecha del mapa, hay un botÃ³n ^006400X^000000. Haz clic en Ã©l y volverÃ¡s a tu pantalla de juego normal.";
+mes "O en la parte superior derecha del mapa, hay un botón ^006400X^000000. Haz clic en él y volverás a tu pantalla de juego normal.";
 	next;
 mes "[Experto en mapas]";
-mes "Actualmente, no podemos ver lugares que estÃ©n mÃ¡s allÃ¡ de Midgard, pero se ha dicho que hay una gran cantidad de mundos desconocidos que existen en el mÃ¡s allÃ¡.";
+mes "Actualmente, no podemos ver lugares que estén más allá de Midgard, pero se ha dicho que hay una gran cantidad de mundos desconocidos que existen en el más allá.";
 	next;
 	return;
 }

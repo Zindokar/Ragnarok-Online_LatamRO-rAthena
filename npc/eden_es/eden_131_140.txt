@@ -17,37 +17,37 @@
 
 moc_para01,41,76,3	script	Ragi#1	4_M_RAGI,{
 	cutin "ragi01",0;
-mes "ï»¿[Ragi]";
+mes "[Ragi]";
 	if (!callfunc("F_HasEdenGroupMark")) {
-mes "Solo los aventureros de Eden Group son bienvenidos aquÃ­.";
+mes "Solo los aventureros de Eden Group son bienvenidos aquí.";
 mes "Estoy dando solicitudes a los aventureros de nivel base ^FF0000130-140^000000 solamente.";
 	}
 	else if (para_130lv01 == 0) {
-mes "Hola. Soy el nuevo miembro de la banda de Dandelion Ragi. Estoy haciendo canciones en nombre de Aigu. Â¿Te interesa una historia?";
+mes "Hola. Soy el nuevo miembro de la banda de Dandelion Ragi. Estoy haciendo canciones en nombre de Aigu. ¿Te interesa una historia?";
 		next;
 mes "[Ragi]";
 mes "Jaja. Lamento solicitarlo a los aventureros a pesar de que soy nuevo.";
 		next;
 mes "[Ragi]";
-mes "Basta con echar un vistazo a la lista. Â¿Puedes ayudarme si te parece bien?";
+mes "Basta con echar un vistazo a la lista. ¿Puedes ayudarme si te parece bien?";
 		para_130lv01 = 1;
 	}
 	else {
-mes "Estoy recopilando historias para hacer una canciÃ³n en nombre de Aigu.";
+mes "Estoy recopilando historias para hacer una canción en nombre de Aigu.";
 		next;
 		if (select( "Request to collect stories", "Conversation" ) == 1) {
 mes "[Ragi]";
 			if (BaseLevel < 131) {
 				cutin "ragi02",0;
-mes "Esta es la peticiÃ³n de Aigu, pero es peligrosa. DeberÃ­as crecer mÃ¡s.";
+mes "Esta es la petición de Aigu, pero es peligrosa. Deberías crecer más.";
 			}
 			else if (BaseLevel < 141) {
-mes "Esta canciÃ³n e historia trata sobre monstruos. ^FF0000CuÃ©ntame la historia de cÃ³mo te sentiste mientras peleabas con ellos.^000000";
+mes "Esta canción e historia trata sobre monstruos. ^FF0000Cuéntame la historia de cómo te sentiste mientras peleabas con ellos.^000000";
 				next;
 				switch( select( "The story of the lost", "Story of devil", "Story from far away distance" ) ) {
 mes "[Ragi]";
 				case 1:
-mes "Lighthalzen tiene muchas historias que estoy seguro que son tristes y perdidas. Sus historias no deben ser olvidadas, asÃ­ que por favor dime lo que puedas.";
+mes "Lighthalzen tiene muchas historias que estoy seguro que son tristes y perdidas. Sus historias no deben ser olvidadas, así que por favor dime lo que puedas.";
 					next;
 					switch( select( "Egnigem Cenia (Swordman Monster)",
 									"Armeyer Dinze (Merchant Monster)",
@@ -58,90 +58,90 @@ mes "Lighthalzen tiene muchas historias que estoy seguro que son tristes y perdi
 mes "[Ragi]";
 					case 1:
 						if (checkquest(13144,PLAYTIME) == 0)
-mes "Algunos aventureros me cuentan un poco de historias, pero no son suficientes para hacer una canciÃ³n.";
+mes "Algunos aventureros me cuentan un poco de historias, pero no son suficientes para hacer una canción.";
 						else if (checkquest(13143,HUNTING) == 1) {
-mes "Es una espadachÃ­n triste en un lugar tan lejano. Â¿QuÃ© crees que te ha traÃ­do hasta aquÃ­?";
+mes "Es una espadachín triste en un lugar tan lejano. ¿Qué crees que te ha traído hasta aquí?";
 							next;
 mes "[Ragi]";
-mes "Estas son historias muy importantes para alguien. Quiero hacer una canciÃ³n con estas historias. Por favor, ayÃºdame.";
+mes "Estas son historias muy importantes para alguien. Quiero hacer una canción con estas historias. Por favor, ayúdame.";
 							cutin "ragi01",0;
 						}
 						else if (checkquest(13143,HUNTING) == 2) {
-mes "Â¿Has escuchado alguna historia nueva? Por favor, cuÃ©ntame historias si tienes alguna de tu viaje.";
+mes "¿Has escuchado alguna historia nueva? Por favor, cuéntame historias si tienes alguna de tu viaje.";
 							callsub S_Quest,13143,13144,1100000,300000;
 						}
 						else {
-mes "Una mujer espada que es mÃ¡s fuerte que cualquier espadachÃ­n. Egnigem Cenia. Ese es su nombre. No estoy seguro de si es ella o alguien mÃ¡s.";
+mes "Una mujer espada que es más fuerte que cualquier espadachín. Egnigem Cenia. Ese es su nombre. No estoy seguro de si es ella o alguien más.";
 							next;
 mes "[Ragi]";
-mes "No puedo perderme su historia. Realmente deseo que pases por aquÃ­.";
+mes "No puedo perderme su historia. Realmente deseo que pases por aquí.";
 							next;
 							cutin "ragi01",0;
 							if (select( "Take the request", "Quit." ) == 1) {
 mes "[Ragi]";
-mes "SerÃ¡ mÃ¡s peligroso de lo que crees. Pero la historia debe ser transmitida para todos.";
+mes "Será más peligroso de lo que crees. Pero la historia debe ser transmitida para todos.";
 								callsub S_Quest,13144,13143;
 							}
 						}
 						break;
 					case 2:
 						if (checkquest(13146,PLAYTIME) == 0)
-mes "Algunos aventureros me cuentan un poco de historias, pero no son suficientes para hacer una canciÃ³n.";
+mes "Algunos aventureros me cuentan un poco de historias, pero no son suficientes para hacer una canción.";
 						else if (checkquest(13145,HUNTING) == 1) {
-mes "Â¿Hasta dÃ³nde podrÃ­a haber continuado su viaje? Supongo que no podrÃ­a hacerlo sola.";
+mes "¿Hasta dónde podría haber continuado su viaje? Supongo que no podría hacerlo sola.";
 							next;
 mes "[Ragi]";
-mes "Â¿No te preguntas por quÃ© ese viaje deberÃ­a haberse detenido?";
+mes "¿No te preguntas por qué ese viaje debería haberse detenido?";
 							next;
 mes "[Ragi]";
-mes "Quiero hacer una canciÃ³n con estas historias. Por favor, ayÃºdame.";
+mes "Quiero hacer una canción con estas historias. Por favor, ayúdame.";
 							cutin "ragi01",0;
 						}
 						else if (checkquest(13145,HUNTING) == 2) {
-mes "Â¿Has escuchado alguna historia nueva? Por favor, cuÃ©ntame historias si tienes alguna de tu viaje.";
+mes "¿Has escuchado alguna historia nueva? Por favor, cuéntame historias si tienes alguna de tu viaje.";
 							callsub S_Quest,13145,13146,1100000,300000;
 						}
 						else {
 mes "Hija de un comerciante. Armeyer Dinze, parece una mujer rica. Pero se la ve insegura.";
 							next;
 mes "[Ragi]";
-mes "Â¿QuÃ© la hizo desaparecer? Â¿O para quÃ©? Por favor, escuchen su historia.";
+mes "¿Qué la hizo desaparecer? ¿O para qué? Por favor, escuchen su historia.";
 							next;
 							cutin "ragi01",0;
 							if (select( "Take the request", "Quit." ) == 1) {
 mes "[Ragi]";
-mes "SerÃ¡ mÃ¡s peligroso de lo que crees. Pero la historia hay que transmitirla.";
+mes "Será más peligroso de lo que crees. Pero la historia hay que transmitirla.";
 								callsub S_Quest,13146,13145;
 							}
 						}
 						break;
 					case 3:
 						if (checkquest(13148,PLAYTIME) == 0)
-mes "Algunos aventureros me cuentan un poco de historias, pero no son suficientes para hacer una canciÃ³n.";
+mes "Algunos aventureros me cuentan un poco de historias, pero no son suficientes para hacer una canción.";
 						else if (checkquest(13147,HUNTING) == 1) {
-mes "Â¿QuÃ© pudo haber movido su mente? Solo le importaba el dinero.";
+mes "¿Qué pudo haber movido su mente? Solo le importaba el dinero.";
 							next;
 mes "[Ragi]";
-mes "Me pregunto hasta dÃ³nde ha llegado su corazÃ³n. Por favor, escuchen su historia. Por favor, dÃ­game.";
+mes "Me pregunto hasta dónde ha llegado su corazón. Por favor, escuchen su historia. Por favor, dígame.";
 							next;
 mes "[Ragi]";
-mes "Por favor, haz una canciÃ³n para nosotros.";
+mes "Por favor, haz una canción para nosotros.";
 							cutin "ragi01",0;
 						}
 						else if (checkquest(13147,HUNTING) == 2) {
-mes "Â¿Has escuchado alguna historia nueva? Por favor, cuÃ©ntame historias si tienes alguna de tu viaje.";
+mes "¿Has escuchado alguna historia nueva? Por favor, cuéntame historias si tienes alguna de tu viaje.";
 							callsub S_Quest,13147,13148,1100000,300000;
 						}
 						else {
-mes "Nadie sabe cÃ³mo ha empezado. Wickebine Tres es el nombre que podrÃ­a haber encontrado un verdadero compaÃ±ero.";
+mes "Nadie sabe cómo ha empezado. Wickebine Tres es el nombre que podría haber encontrado un verdadero compañero.";
 							next;
 mes "[Ragi]";
-mes "Ella era la que solo se preocupaba por el dinero. Â¿Hasta dÃ³nde ha llegado su viaje? Por favor, escuchen su historia en Lighthalzen.";
+mes "Ella era la que solo se preocupaba por el dinero. ¿Hasta dónde ha llegado su viaje? Por favor, escuchen su historia en Lighthalzen.";
 							next;
 							cutin "ragi01",0;
 							if (select( "Take the request", "Quit." ) == 1) {
 mes "[Ragi]";
-mes "SerÃ¡ mÃ¡s peligroso de lo que crees. Pero la historia hay que transmitirla.";
+mes "Será más peligroso de lo que crees. Pero la historia hay que transmitirla.";
 								emotion ET_BEST;
 								callsub S_Quest,13148,13147;
 							}
@@ -149,57 +149,57 @@ mes "SerÃ¡ mÃ¡s peligroso de lo que crees. Pero la historia hay que transmitirla
 						break;
 					case 4:
 						if (checkquest(13150,PLAYTIME) == 0)
-mes "Algunos aventureros me cuentan un poco de historias, pero no son suficientes para hacer una canciÃ³n.";
+mes "Algunos aventureros me cuentan un poco de historias, pero no son suficientes para hacer una canción.";
 						else if (checkquest(13149,HUNTING) == 1) {
-mes "SÃ­. Parece que he escuchado el mismo nombre de Payon. No estoy seguro de que signifique lo mismo.";
+mes "Sí. Parece que he escuchado el mismo nombre de Payon. No estoy seguro de que signifique lo mismo.";
 							next;
 mes "[Ragi]";
-mes "Por favor, intenta encontrarlo a Ã©l o a un arco en Lighthalzen.";
+mes "Por favor, intenta encontrarlo a él o a un arco en Lighthalzen.";
 							next;
 mes "[Ragi]";
 mes "Por favor, no olvides contarme cualquier historia que escuches.";
 							cutin "ragi01",0;
 						}
 						else if (checkquest(13149,HUNTING) == 2) {
-mes "Â¿Has escuchado alguna historia nueva? Por favor, cuÃ©ntame historias si tienes alguna de tu viaje.";
+mes "¿Has escuchado alguna historia nueva? Por favor, cuéntame historias si tienes alguna de tu viaje.";
 							callsub S_Quest,13149,13150,1100000,300000;
 						}
 						else {
-mes "Kavach Icarus es el nombre cuyas manos son mÃ¡s rÃ¡pidas que los ojos y dispara flechas rÃ¡pidamente.";
+mes "Kavach Icarus es el nombre cuyas manos son más rápidas que los ojos y dispara flechas rápidamente.";
 							next;
 mes "[Ragi]";
-mes "EscuchÃ© que su sombra y su flecha vagan por alguna parte. Por favor, ve a Lighthalzen y cuÃ©ntame su historia.";
+mes "Escuché que su sombra y su flecha vagan por alguna parte. Por favor, ve a Lighthalzen y cuéntame su historia.";
 							next;
 							cutin "ragi01",0;
 							if (select( "Take the request", "Quit." ) == 1) {
 mes "[Ragi]";
-mes "Por favor, ten cuidado con sus flechas. Es posible que te hayas acostado en el suelo frÃ­o antes de que termine esta historia.";
+mes "Por favor, ten cuidado con sus flechas. Es posible que te hayas acostado en el suelo frío antes de que termine esta historia.";
 								callsub S_Quest,13150,13149;
 							}
 						}
 						break;
 					case 5:
 						if (checkquest(13152,PLAYTIME) == 0)
-mes "Algunos aventureros me cuentan un poco de historias, pero no son suficientes para hacer una canciÃ³n.";
+mes "Algunos aventureros me cuentan un poco de historias, pero no son suficientes para hacer una canción.";
 						else if (checkquest(13151,HUNTING) == 1) {
-mes "No importa si era por amistad o por una misiÃ³n. Si ese viaje fuera para alguien, no serÃ­a fÃ¡cil detener el viaje.";
+mes "No importa si era por amistad o por una misión. Si ese viaje fuera para alguien, no sería fácil detener el viaje.";
 							next;
 mes "[Ragi]";
-mes "Â¿QuÃ© hizo que su viaje se detuviera? Â¿QuÃ© tipo de historia contiene?";
+mes "¿Qué hizo que su viaje se detuviera? ¿Qué tipo de historia contiene?";
 							next;
 mes "[Ragi]";
 mes "Por favor, revisa esa historia en Lighthalzen.";
 							cutin "ragi01",0;
 						}
 						else if (checkquest(13151,HUNTING) == 2) {
-mes "Â¿Has escuchado alguna historia nueva? Por favor, cuÃ©ntame historias si tienes alguna de tu viaje.";
+mes "¿Has escuchado alguna historia nueva? Por favor, cuéntame historias si tienes alguna de tu viaje.";
 							callsub S_Quest,13151,13152,1100000,300000;
 						}
 						else {
-mes "Errende Ebecee es la que iniciÃ³ un viaje para buscar a alguien.";
+mes "Errende Ebecee es la que inició un viaje para buscar a alguien.";
 							next;
 mes "[Ragi]";
-mes "Pero supongo... Su viaje tambiÃ©n podrÃ­a haberse detenido en algÃºn lugar de Lighthalzen. Por favor, escuchen su historia.";
+mes "Pero supongo... Su viaje también podría haberse detenido en algún lugar de Lighthalzen. Por favor, escuchen su historia.";
 							next;
 							cutin "ragi01",0;
 							if (select( "Take the request", "Quit." ) == 1) {
@@ -211,70 +211,70 @@ mes "Por favor, ten cuidado de no perderte como estas ^FF0000pobres almas^000000
 						break;
 					case 6:
 						if (checkquest(13154,PLAYTIME) == 0)
-mes "Algunos aventureros me cuentan un poco de historias, pero no son suficientes para hacer una canciÃ³n.";
+mes "Algunos aventureros me cuentan un poco de historias, pero no son suficientes para hacer una canción.";
 						else if (checkquest(13153,HUNTING) == 1) {
-mes "A propÃ³sito. He leÃ­do un libro llamado ^FF0000CÃ³mo ser un mago^000000...";
+mes "A propósito. He leído un libro llamado ^FF0000Cómo ser un mago^000000...";
 							next;
 mes "[Ragi]";
-mes "SegÃºn ese libro, algo de magia a los 25 aÃ±os puede ser mÃ¡s fuerte que la de los magos mayores.";
+mes "Según ese libro, algo de magia a los 25 años puede ser más fuerte que la de los magos mayores.";
 							next;
 mes "[Ragi]";
-mes "Â¿QuÃ© estÃ¡s escuchando en serio? Â¡Terminemos la solicitud sobre la historia de Laurell Weinders!";
+mes "¿Qué estás escuchando en serio? ¡Terminemos la solicitud sobre la historia de Laurell Weinders!";
 							cutin "ragi01",0;
 						}
 						else if (checkquest(13153,HUNTING) == 2) {
-mes "Â¿Has escuchado alguna historia nueva? Por favor, cuÃ©ntame historias si tienes alguna de tu viaje.";
+mes "¿Has escuchado alguna historia nueva? Por favor, cuéntame historias si tienes alguna de tu viaje.";
 							callsub S_Quest,13153,13154,1100000,300000;
 						}
 						else {
-mes "Laurell Weinder, que decidiÃ³ tener un viaje difÃ­cil para retribuir la gratitud por la hazaÃ±a de unos magos.";
+mes "Laurell Weinder, que decidió tener un viaje difícil para retribuir la gratitud por la hazaña de unos magos.";
 							next;
 mes "[Ragi]";
-mes "Pero... Â¿Estos talentosos magos no podÃ­an regresar? Â¿QuiÃ©n los hizo? Encuentra una pista en Lighthalzen.";
+mes "Pero... ¿Estos talentosos magos no podían regresar? ¿Quién los hizo? Encuentra una pista en Lighthalzen.";
 							next;
 							cutin "ragi01",0;
 							if (select( "Take the request", "Quit." ) == 1) {
 mes "[Ragi]";
-mes "Me gusta esta historia, pero ten cuidado si no quieres terminar una historia tÃº mismo.";
+mes "Me gusta esta historia, pero ten cuidado si no quieres terminar una historia tú mismo.";
 								callsub S_Quest,13154,13153;
 							}
 						}
 					}
 					break;
 				case 2:
-mes "Â¿Conoces la historia de SatanÃ¡s Marruecos? Quiero cantar una canciÃ³n de su historia incluso cuando pase el tiempo.";
+mes "¿Conoces la historia de Satanás Marruecos? Quiero cantar una canción de su historia incluso cuando pase el tiempo.";
 					next;
 					switch( select( "Angel Incarnation", "Black Nightmare Incarnation", "Ghost Incarnation" ) ) {
 mes "[Ragi]";
 					case 1:
 						if (checkquest(13156,PLAYTIME) == 0) {
-mes "Un monstruo de Morocc tiene alas como las de un Ã¡ngel. Â¿QuizÃ¡s, SatanÃ¡s Morocc quiere ser un Ã¡ngel?";
+mes "Un monstruo de Morocc tiene alas como las de un ángel. ¿Quizás, Satanás Morocc quiere ser un ángel?";
 							next;
 mes "[Ragi]";
-mes "Jaja, por favor, no te preocupes. Es solo una broma de un contador de historias. Por favor, dame otra historia la prÃ³xima vez.";
+mes "Jaja, por favor, no te preocupes. Es solo una broma de un contador de historias. Por favor, dame otra historia la próxima vez.";
 						}
 						else if (checkquest(13155,HUNTING) == 1) {
-mes "La apariencia se ve bien pero por dentro. Â¡Estoy seguro de que son de carne y hueso!";
+mes "La apariencia se ve bien pero por dentro. ¡Estoy seguro de que son de carne y hueso!";
 							next;
 mes "[Ragi]";
-mes "Por supuesto, no lo comprobÃ© por mÃ­ mismo. Pero solo soy un contador de historias, como ves.";
+mes "Por supuesto, no lo comprobé por mí mismo. Pero solo soy un contador de historias, como ves.";
 							next;
 mes "[Ragi]";
-mes "Pero no es seguro. Â¡AsÃ­ que ten cuidado! Â¡Por favor, dame mÃ¡s historias! Â¿Tal vez pueda encontrarme con SatanÃ¡s Morocc en algÃºn lugar por aquÃ­?";
+mes "Pero no es seguro. ¡Así que ten cuidado! ¡Por favor, dame más historias! ¿Tal vez pueda encontrarme con Satanás Morocc en algún lugar por aquí?";
 						}
 						else if (checkquest(13155,HUNTING) == 2) {
-mes "Uau. Â¡Son tantas las historias que me llegan! Â¡Gracias a ti!";
+mes "Uau. ¡Son tantas las historias que me llegan! ¡Gracias a ti!";
 							callsub S_Quest,13155,13156,1100000,200000;
 						}
 						else {
-mes "Pozo... Esta canciÃ³n no es sobre el prÃ­ncipe de las tinieblas, pero estÃ¡ tomada de personas que afirman haberlo visto.";
+mes "Pozo... Esta canción no es sobre el príncipe de las tinieblas, pero está tomada de personas que afirman haberlo visto.";
 							next;
 mes "[Ragi]";
-mes "Por favor, ayÃºdame a hacer una historia buscando las Encarnaciones voladoras de Marruecos.";
+mes "Por favor, ayúdame a hacer una historia buscando las Encarnaciones voladoras de Marruecos.";
 							next;
 							if (select( "Take the request", "Quit." ) == 1) {
 mes "[Ragi]";
-mes "AsegÃºrate de conseguir al menos 30 Encarnaciones de Marruecos con aspecto de Ã¡ngel.";
+mes "Asegúrate de conseguir al menos 30 Encarnaciones de Marruecos con aspecto de ángel.";
 								emotion ET_KEK;
 								callsub S_Quest,13156,13155;
 							}
@@ -282,24 +282,24 @@ mes "AsegÃºrate de conseguir al menos 30 Encarnaciones de Marruecos con aspecto 
 						break;
 					case 2:
 						if (checkquest(13158,PLAYTIME) == 0) {
-mes "La historia aÃºn no estÃ¡ hecha, Â¡asÃ­ que preguntarÃ© la prÃ³xima vez!";
+mes "La historia aún no está hecha, ¡así que preguntaré la próxima vez!";
 							cutin "ragi02",0;
 						}
 						else if (checkquest(13157,HUNTING) == 1) {
-mes "La forma no estÃ¡ completa pero tiene un diente muy afilado.";
+mes "La forma no está completa pero tiene un diente muy afilado.";
 							next;
 mes "[Ragi]";
-mes "Â¿No crees que va a ser una anÃ©cdota muy divertida?";
+mes "¿No crees que va a ser una anécdota muy divertida?";
 						}
 						else if (checkquest(13157,HUNTING) == 2) {
-mes "Uau. Â¡Son tantas las historias que me llegan! Â¡Gracias a ti!";
+mes "Uau. ¡Son tantas las historias que me llegan! ¡Gracias a ti!";
 							callsub S_Quest,13157,13158,1100000,200000;
 						}
 						else {
-mes "No sÃ© si todo saliÃ³ del mismo SatanÃ¡s Morocc, pero cosas como esta se ven horribles.";
+mes "No sé si todo salió del mismo Satanás Morocc, pero cosas como esta se ven horribles.";
 							next;
 mes "[Ragi]";
-mes "Pero creo que tambiÃ©n habrÃ¡ una historia en Ã©l. Es por eso que esas criaturas estÃ¡n hechas. Por favor, busque algo negro y parecido al alquitrÃ¡n.";
+mes "Pero creo que también habrá una historia en él. Es por eso que esas criaturas están hechas. Por favor, busque algo negro y parecido al alquitrán.";
 							next;
 							if (select( "Take the request", "Quit." ) == 1) {
 mes "[Ragi]";
@@ -310,142 +310,142 @@ mes "Encuentra y deshazte de 30 Dark Incarnation of Morocc.";
 						break;
 					case 3:
 						if (checkquest(13160,PLAYTIME) == 0)
-mes "La criatura sin ropa tiene una forma muy extraÃ±a. Jaja no te lo tomes en serio. Solo soy un contador de historias.";
+mes "La criatura sin ropa tiene una forma muy extraña. Jaja no te lo tomes en serio. Solo soy un contador de historias.";
 						else if (checkquest(13159,HUNTING) == 1) {
-mes "Â¡Esta historia deberÃ­a extenderse para aventureros dÃ©biles como yo! Porque no todo el mundo puede ser aventurero.";
+mes "¡Esta historia debería extenderse para aventureros débiles como yo! Porque no todo el mundo puede ser aventurero.";
 							next;
 mes "[Ragi]";
-mes "Tal vez, los aventureros tengan un buen mÃ©rito de conocer este tipo de historias. Entonces, Â¿puedes buscar estas criaturas cerca de Marruecos?";
+mes "Tal vez, los aventureros tengan un buen mérito de conocer este tipo de historias. Entonces, ¿puedes buscar estas criaturas cerca de Marruecos?";
 						}
 						else if (checkquest(13159,HUNTING) == 2) {
-mes "Uau. Â¡Son tantas las historias que me llegan! Â¡Gracias a ti!";
+mes "Uau. ¡Son tantas las historias que me llegan! ¡Gracias a ti!";
 							callsub S_Quest,13159,13160,1100000,200000;
 						}
 						else {
-mes "Este es raro. Pero tambiÃ©n es una encarnaciÃ³n de Marruecos.";
+mes "Este es raro. Pero también es una encarnación de Marruecos.";
 							next;
 mes "[Ragi]";
 mes "Pero tengo curiosidad porque parece un fantasma y los ataques no funcionan.";
 							next;
 							if (select( "Take the request", "Quit." ) == 1) {
 mes "[Ragi]";
-mes "Â¡Por favor, haz una historia despuÃ©s de cazar al menos 30 encarnaciones fantasma de Marruecos!";
+mes "¡Por favor, haz una historia después de cazar al menos 30 encarnaciones fantasma de Marruecos!";
 								callsub S_Quest,13160,13159;
 							}
 						}
 					}
 					break;
 				case 3:
-mes "Nunca he estado en Ash Vacuum, pero he oÃ­do que hay muchas criaturas interesantes en el SalÃ³n Scaraba.";
+mes "Nunca he estado en Ash Vacuum, pero he oído que hay muchas criaturas interesantes en el Salón Scaraba.";
 					next;
 					switch( select( "Uni-Horn Scaraba Story", "Horn Scaraba Story", "Antler Scaraba Story", "Rake Horn Scaraba Story" ) ) {
 mes "[Ragi]";
 					case 1:
 						if (checkquest(13162,PLAYTIME) == 0)
-mes "Estoy haciendo una historia sobre Uni-Horn Scaraba. Â¡Uno significa menos que dos!~ EmpecÃ©, pero es difÃ­cil terminar. Â¿Me puedes ayudar?";
+mes "Estoy haciendo una historia sobre Uni-Horn Scaraba. ¡Uno significa menos que dos!~ Empecé, pero es difícil terminar. ¿Me puedes ayudar?";
 						else if (checkquest(13161,HUNTING) == 1) {
-mes "TambiÃ©n tienen algunas historias, Â¿verdad? Primero, me pregunto sobre la forma del que tiene un cuerno.";
+mes "También tienen algunas historias, ¿verdad? Primero, me pregunto sobre la forma del que tiene un cuerno.";
 							next;
 							cutin "ragi01",0;
 						}
 						else if (checkquest(13161,HUNTING) == 2) {
-mes "Me pregunto quÃ© pensarÃ¡n los Scarabas de Uni-Horn. Quiero hacer una canciÃ³n. Â¡Gracias por tu ayuda!";
+mes "Me pregunto qué pensarán los Scarabas de Uni-Horn. Quiero hacer una canción. ¡Gracias por tu ayuda!";
 							callsub S_Quest,13161,13162,1100000,200000;
 						}
 						else {
-mes "El nuevo mundo estÃ¡ lleno de monstruos increÃ­bles. Se convertirÃ¡n en un sueÃ±o para los niÃ±os que quieran ser aventureros.";
+mes "El nuevo mundo está lleno de monstruos increíbles. Se convertirán en un sueño para los niños que quieran ser aventureros.";
 							next;
 mes "[Ragi]";
-mes "Quiero hacer una canciÃ³n sobre el ^FF0000Uni-Horn Scaraba^000000!? A los niÃ±os les gustarÃ¡ mucho.";
+mes "Quiero hacer una canción sobre el ^FF0000Uni-Horn Scaraba^000000!? A los niños les gustará mucho.";
 							next;
 							cutin "ragi01",0;
 							if (select( "Take the request", "Quit." ) == 1) {
 mes "[Ragi]";
-mes "Puedes encontrarlos cerca en algÃºn lugar del este, en Scaraba Hall.";
+mes "Puedes encontrarlos cerca en algún lugar del este, en Scaraba Hall.";
 								callsub S_Quest,13162,13161;
 							}
 						}
 						break;
 					case 2:
 						if (checkquest(13164,PLAYTIME) == 0)
-mes "Estoy haciendo una historia... Dos significa menos de tres ~ ComencÃ© a hacer una historia pero no puedo terminarla. Â¿Me ayudas?";
+mes "Estoy haciendo una historia... Dos significa menos de tres ~ Comencé a hacer una historia pero no puedo terminarla. ¿Me ayudas?";
 						else if (checkquest(13163,HUNTING) == 1) {
-mes "Eso de la bocina me molesta un poco. Â¿CuÃ¡l es la diferencia entre uno y dos cuernos? Â¿Solo apariencia?";
+mes "Eso de la bocina me molesta un poco. ¿Cuál es la diferencia entre uno y dos cuernos? ¿Solo apariencia?";
 							next;
 mes "[Ragi]";
 mes "Tal vez sea innecesario. Pero la curiosidad es importante para los narradores de historias. Jajaja.";
 							cutin "ragi01",0;
 						}
 						else if (checkquest(13163,HUNTING) == 2) {
-mes "Â¡Regresaste sano y salvo! Â¿CÃ³mo es? Horn Scaraba parecÃ­a ser una historia divertida. Realmente hiciste un buen trabajo.";
+mes "¡Regresaste sano y salvo! ¿Cómo es? Horn Scaraba parecía ser una historia divertida. Realmente hiciste un buen trabajo.";
 							callsub S_Quest,13163,13164,1100000,200000;
 						}
 						else {
-mes "Â¿Hablamos de Horn Scaraba? Hay uno mÃ¡s que debemos mencionar. Â¡Eso es Horn Scaraba!";
+mes "¿Hablamos de Horn Scaraba? Hay uno más que debemos mencionar. ¡Eso es Horn Scaraba!";
 							next;
 mes "[Ragi]";
-mes "No sÃ© por quÃ©. Acabo de escuchar de la gente. Necesito hacer una canciÃ³n, Â¡asÃ­ que por favor echa un vistazo a su mundo!";
+mes "No sé por qué. Acabo de escuchar de la gente. Necesito hacer una canción, ¡así que por favor echa un vistazo a su mundo!";
 							next;
 							cutin "ragi01",0;
 							if (select( "Take the request", "Quit." ) == 1) {
 mes "[Ragi]";
-mes "Puedes encontrarlos cerca en algÃºn lugar del este, en Scaraba Hall.";
+mes "Puedes encontrarlos cerca en algún lugar del este, en Scaraba Hall.";
 								callsub S_Quest,13164,13163;
 							}
 						}
 						break;
 					case 3:
 						if (checkquest(13166,PLAYTIME) == 0)
-mes "Â¡Parece que hay mÃ¡s historia sobre Antler Scaraba! Por favor, ayÃºdame si tienes tiempo.";
+mes "¡Parece que hay más historia sobre Antler Scaraba! Por favor, ayúdame si tienes tiempo.";
 						else if (checkquest(13165,HUNTING) == 1) {
-mes "ParecÃ­a haber mÃ¡s Scarabas especiales segÃºn los rumores. Los mÃ¡s fuertes y los mÃ¡s aterradores.";
+mes "Parecía haber más Scarabas especiales según los rumores. Los más fuertes y los más aterradores.";
 							next;
 mes "[Ragi]";
-mes "Â¿Crees que Antler Scaraba podrÃ­a ser uno de ellos?";
+mes "¿Crees que Antler Scaraba podría ser uno de ellos?";
 							cutin "ragi01",0;
 						}
 						else if (checkquest(13165,HUNTING) == 2) {
-mes "Â¡Debe ser agotador viajar largas distancias! Â¡Por favor, dime si hay mÃ¡s historias interesantes!";
+mes "¡Debe ser agotador viajar largas distancias! ¡Por favor, dime si hay más historias interesantes!";
 							callsub S_Quest,13165,13166,1100000,200000;
 						}
 						else {
-mes "Â¡Este es muy Ãºnico! Los cuernos se parecen a los de un ciervo, por lo que se le llama escarabajo de astas.";
+mes "¡Este es muy único! Los cuernos se parecen a los de un ciervo, por lo que se le llama escarabajo de astas.";
 							next;
 mes "[Ragi]";
-mes "Â¿No tienes curiosidad por saber por quÃ© tiene ese cuerno? Creo que tiene una historia interesante que a la gente le gustarÃ­a. Â¿Te pregunto, aventurero?";
+mes "¿No tienes curiosidad por saber por qué tiene ese cuerno? Creo que tiene una historia interesante que a la gente le gustaría. ¿Te pregunto, aventurero?";
 							next;
 							cutin "ragi01",0;
 							if (select( "Take the request", "Quit." ) == 1) {
 mes "[Ragi]";
-mes "Â¿Puedes encontrar una historia sobre Antler Scaraba? Â¡Experimentarte a ti mismo es lo mejor, supongo!";
+mes "¿Puedes encontrar una historia sobre Antler Scaraba? ¡Experimentarte a ti mismo es lo mejor, supongo!";
 								callsub S_Quest,13166,13165;
 							}
 						}
 						break;
 					case 4:
 						if (checkquest(13168,PLAYTIME) == 0)
-mes "Siento que Rake Horn Scaraba tiene mÃ¡s historia. Por favor, ayÃºdame si tienes tiempo.";
+mes "Siento que Rake Horn Scaraba tiene más historia. Por favor, ayúdame si tienes tiempo.";
 						else if (checkquest(13167,HUNTING) == 1) {
-mes "AquÃ­ estÃ¡ mi plan. Estoy haciendo 4 pasajes para cada Scaraba.";
+mes "Aquí está mi plan. Estoy haciendo 4 pasajes para cada Scaraba.";
 							next;
 mes "[Ragi]";
-mes "Quien escuche o cante se confundirÃ¡ con cantar un troll. Suena divertido, Â¿verdad?";
+mes "Quien escuche o cante se confundirá con cantar un troll. Suena divertido, ¿verdad?";
 							cutin "ragi01",0;
 						}
 						else if (checkquest(13167,HUNTING) == 2) {
-mes "Â¡Gracias! Estoy seguro de que puedo hacer una gran canciÃ³n.";
+mes "¡Gracias! Estoy seguro de que puedo hacer una gran canción.";
 							callsub S_Quest,13167,13168,1100000,200000;
 						}
 						else {
-mes "Empiezo a confundirme. Voy a hacer una canciÃ³n de la historia de Rake Horn Scarabas.";
+mes "Empiezo a confundirme. Voy a hacer una canción de la historia de Rake Horn Scarabas.";
 							next;
 mes "[Ragi]";
-mes "Una canciÃ³n comienza con Uni-horn Scaraba y luego se canta junto con Rake Horn Scaraba. Â¿Me ayudas?";
+mes "Una canción comienza con Uni-horn Scaraba y luego se canta junto con Rake Horn Scaraba. ¿Me ayudas?";
 							next;
 							cutin "ragi01",0;
 							if (select( "Take the request", "Quit." ) == 1) {
 mes "[Ragi]";
-mes "Por favor, encuentre una historia sobre Rake Horn Scaraba de Scaraba Hall. Las historias de batallas o experiencias estÃ¡n bien.";
+mes "Por favor, encuentre una historia sobre Rake Horn Scaraba de Scaraba Hall. Las historias de batallas o experiencias están bien.";
 								callsub S_Quest,13168,13167;
 							}
 						}
@@ -454,7 +454,7 @@ mes "Por favor, encuentre una historia sobre Rake Horn Scaraba de Scaraba Hall. 
 				}
 			}
 			else {
-mes "SeguirÃ© haciendo una historia o canciones. Pero los aventureros deben adentrarse en una nueva aventura.";
+mes "Seguiré haciendo una historia o canciones. Pero los aventureros deben adentrarse en una nueva aventura.";
 				next;
 				callsub S_Erasequest,
 					13143,1,"Egnigem Cenia",
@@ -476,18 +476,18 @@ mes "Espero volver a verte en nuestra despedida con una sonrisa.";
 		}
 		else {
 mes "[Ragi]";
-mes "Bueno, estoy un poco ocupado haciendo un recado para Sir Aigu. Â¿Tienes alguna duda?";
+mes "Bueno, estoy un poco ocupado haciendo un recado para Sir Aigu. ¿Tienes alguna duda?";
 			next;
 			switch( select( "Where did you get your hair-do?", "Please sing a song for me.", "Do you have a girl friend?", "About Aigu" ) ) {
 mes "[Ragi]";
 			case 1:
-mes "Hay un artista de cabello fino en Alberta. Me cortÃ³ el pelo con unas tijeras de cocina. Parece ilegal.";
+mes "Hay un artista de cabello fino en Alberta. Me cortó el pelo con unas tijeras de cocina. Parece ilegal.";
 				next;
 mes "[Ragi]";
-mes "Someti, peinados o colores son extraÃ±os... pero tuve suerte de no morir.";
+mes "Someti, peinados o colores son extraños... pero tuve suerte de no morir.";
 				break;
 			case 2:
-mes "TodavÃ­a no hice una canciÃ³n como miembro de la banda. Â¡AlgÃºn dÃ­a harÃ© una gran canciÃ³n para ti!";
+mes "Todavía no hice una canción como miembro de la banda. ¡Algún día haré una gran canción para ti!";
 				break;
 			case 3:
 				cutin "ragi03",0;
@@ -495,16 +495,16 @@ mes "......";
 				next;
 				cutin "ragi02",0;
 mes "[Ragi]";
-mes "Aigu solo estÃ¡ en mi mente. No se me ocurre otra cosa. Estoy bien aunque sea un amor unilateral...";
+mes "Aigu solo está en mi mente. No se me ocurre otra cosa. Estoy bien aunque sea un amor unilateral...";
 				break;
 			case 4:
-mes "Nunca olvidarÃ© el primer dÃ­a que la conocÃ­. Me mirÃ³ fijamente a travÃ©s de toda la gente en el puerto de Izlude. Ahora la ayudo haciendo pequeÃ±os recados.";
+mes "Nunca olvidaré el primer día que la conocí. Me miró fijamente a través de toda la gente en el puerto de Izlude. Ahora la ayudo haciendo pequeños recados.";
 				next;
 mes "[Ragi]";
 mes "Pero, por desgracia, creo que a Aigu le gusta otra persona. ^FF0000Nunca nos hemos conocido... Pero lo odio.^000000";
 				next;
 mes "[Ragi]";
-mes "Pero me odio mÃ¡s a mÃ­ mismo porque quiero estar cerca de ella aunque nunca me vea. Jaja, Â¿hablaba demasiado en serio?";
+mes "Pero me odio más a mí mismo porque quiero estar cerca de ella aunque nunca me vea. Jaja, ¿hablaba demasiado en serio?";
 				next;
 mes "[Ragi]";
 mes "Solo soy un contador de historias. Cualquier historia puede ser inventada. La mayor parte del ti contiene la verdad.";
@@ -535,11 +535,11 @@ S_Erasequest:
 mes "[Ragi]";
 			switch( getarg(.@i+1) ) {
 			case 1:
-mes "El resto de la historia de "+ getarg(.@i+2) +" es EstÃ¡ bien, le preguntarÃ© a alguien mÃ¡s.";
+mes "El resto de la historia de "+ getarg(.@i+2) +" es Está bien, le preguntaré a alguien más.";
 				break;
 			case 2:
 			case 3:
-mes "PreguntarÃ© a otros aventureros sobre la historia de "+ getarg(.@i+2) +".";
+mes "Preguntaré a otros aventureros sobre la historia de "+ getarg(.@i+2) +".";
 				break;
 			}
 			break;
@@ -547,15 +547,15 @@ mes "PreguntarÃ© a otros aventureros sobre la historia de "+ getarg(.@i+2) +".";
 mes "[Ragi]";
 			switch( getarg(.@i+1) ) {
 			case 1:
-mes "Â¿Escuchaste la historia de "+ getarg(.@i+2) +"? Gracias. Prometo hacer una buena canciÃ³n.";
+mes "¿Escuchaste la historia de "+ getarg(.@i+2) +"? Gracias. Prometo hacer una buena canción.";
 				getexp 1100000,300000;
 				break;
 			case 2:
-mes "Â¿Es la historia de Marruecos lo suficientemente buena para las canciones? Hiciste un buen trabajo.";
+mes "¿Es la historia de Marruecos lo suficientemente buena para las canciones? Hiciste un buen trabajo.";
 				getexp 1100000,200000;
 				break;
 			case 3:
-mes "Â¿CÃ³mo fue tu aventura? Â¿Fue divertido? Por favor, dÃ©jame escuchar tu historia de aventuras algÃºn dÃ­a.";
+mes "¿Cómo fue tu aventura? ¿Fue divertido? Por favor, déjame escuchar tu historia de aventuras algún día.";
 				getexp 1100000,200000;
 				break;
 			}

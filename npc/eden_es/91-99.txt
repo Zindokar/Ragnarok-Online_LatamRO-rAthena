@@ -19,24 +19,24 @@
 
 moc_para01,48,177,3	script	91-99 Mission Board	857,{
 	if (!callfunc("F_HasEdenGroupMark")) {
-mes "﻿¡Espera un momento!";
+mes "�Espera un momento!";
 mes "-Necesitas tener un-";
 mes "-^4d4dff'Eden Group Mark'^000000-";
 mes "-para recibir estas misiones.-";
 		next;
-		switch(select("Seguir caminando.:¿Misiones del ^0000FFGrupo Edén^000000?:¿Cómo puedo ser miembro del ^0000FFGrupo Edén^000000?")) {
+		switch(select("Seguir caminando.:�Misiones del ^0000FFGrupo Ed�n^000000?:�C�mo puedo ser miembro del ^0000FFGrupo Ed�n^000000?")) {
 		case 1:
 			close;
 		case 2:
-mes "::Las Misiones del Grupo Edén";
-mes "::son básicamente misiones";
+mes "::Las Misiones del Grupo Ed�n";
+mes "::son b�sicamente misiones";
 mes "::solicitado por";
 mes "::p gente de todo el reino.";
 mes "::Simplemente los categorizamos.";
 			next;
-mes "::En el Grupo del Edén,";
+mes "::En el Grupo del Ed�n,";
 mes "::Ordenamos las misiones";
-mes "::según el nivel de dificultad.";
+mes "::seg�n el nivel de dificultad.";
 mes "::De acuerdo con este nivel,";
 mes "::puedes encontrar";
 mes "::misiones que";
@@ -46,21 +46,21 @@ mes "::Cuando hayas terminado,";
 mes "::puedes volver";
 mes "::a la junta de misiones.";
 			next;
-mes "::Entonces serás";
-mes "::¡¡Recompensado!!";
-mes "::Sencillo, ¿verdad?";
-mes "::¡No se requiere comisión!!";
+mes "::Entonces ser�s";
+mes "::��Recompensado!!";
+mes "::Sencillo, �verdad?";
+mes "::�No se requiere comisi�n!!";
 			close;
 		case 3:
 mes "::Puedes convertirte en miembro";
-mes "::del Grupo Edén";
+mes "::del Grupo Ed�n";
 mes "::to ^0000FFLaime Evenor^000000,";
-mes "::que está esperando en el 1er piso.";
+mes "::que est� esperando en el 1er piso.";
 			next;
 mes "::Si te conviertes en miembro,";
-mes "::Obtendrás un";
+mes "::Obtendr�s un";
 mes "::\^006400Eden Group Mark^000000\.";
-mes "::Entonces podrás";
+mes "::Entonces podr�s";
 mes "::para ver el tablero de misiones.";
 			close;
 		}
@@ -87,14 +87,14 @@ mes "Debes estar dentro del nivel 91-99 para aceptar estas misiones.";
 				next;
 mes ":: No se puede proceder en";
 mes ":: ^0000FF"+.@na$[.@quest-4181]+" Caza^000000.";
-mes ":: La inscripción a la misión";
+mes ":: La inscripci�n a la misi�n";
 mes ":: se cancela.";
 				erasequest .@quest;
 				close;
 			} else if (.@hunting == 2) {
 				next;
-mes ":: Has añadido información";
-mes ":: Sobre la misión";
+mes ":: Has a�adido informaci�n";
+mes ":: Sobre la misi�n";
 mes ":: ^0000FF"+.@na$[.@quest-4181]+" Caza^000000";
 mes ":: en el tablero de misiones.";
 mes ":: Tienes un";
@@ -112,34 +112,34 @@ mes "Hay varias solicitudes en este foro.";
 	switch(select("^8B4513Turtle Island^000000:^8B4513Glast Heim^000000:^8B4513Rachel / Veins^000000:^8B4513Expansion Cities^000000:^8B4513Other regions^000000")) {
 	case 1:
 mes "^8B4513Isla de la Tortuga^000000.";
-mes "¿Qué monstruo vas a cazar o ya has terminado de cazar?";
+mes "�Qu� monstruo vas a cazar o ya has terminado de cazar?";
 		next;
 		switch(select("^0000FFSolider^000000:^0000FFFreezer^000000:^0000FFHeater^000000")) {
-			case 1: callsub L_Quest,4181,"Solider",90000,"솔리더카드","There is a monster that only can be found on ^8B4513Turtle Island^000000.";
+			case 1: callsub L_Quest,4181,"Solider",90000,"솔리�카드","There is a monster that only can be found on ^8B4513Turtle Island^000000.";
 			case 2: callsub L_Quest,4182,"Freezer",94000,"프리저카드","There is a monster that only can be found on ^8B4513Turtle Island^000000.";
 			case 3: callsub L_Quest,4183,"Heater",114000,"히터카드","There is a monster that only can be found on ^8B4513Turtle Island^000000.";
 		}
 	case 2:
 mes "^8B4513Glast Home^000000.";
-mes "¿Qué monstruo vas a cazar o ya has terminado de cazar?";
+mes "�Qu� monstruo vas a cazar o ya has terminado de cazar?";
 		next;
 		switch(select("^0000FFInjustice^000000:^0000FFRybio^000000:^0000FFDark Priest^000000")) {
-			case 1: callsub L_Quest,4184,"Injustice",96000,"인저스티스카드","There is a monster only found in ^8B4513Glast Heim prison^000000.";
+			case 1: callsub L_Quest,4184,"Injustice",96000,"�저스티스카드","There is a monster only found in ^8B4513Glast Heim prison^000000.";
 			case 2: callsub L_Quest,4185,"Rybio",96000,"리비오카드","There is a monster only found in ^8B4513Glast Heim prison^000000.";
-			case 3: callsub L_Quest,4186,"Dark Priest",146000,"다크프리스트카드","There is a monster only found in ^8B4513Glast Heim prison^000000.";
+			case 3: callsub L_Quest,4186,"Dark Priest",146000,"다��프리스트카드","There is a monster only found in ^8B4513Glast Heim prison^000000.";
 		}
 	case 3:
 mes "^8B4513Rachel / Venas^000000.";
-mes "¿Qué monstruo vas a cazar o ya has terminado de cazar?";
+mes "�Qu� monstruo vas a cazar o ya has terminado de cazar?";
 		next;
 		switch(select("^0000FFStapo^000000:^0000FFRoween^000000:^0000FFSiroma^000000")) {
-			case 1: callsub L_Quest,4187,"Stapo",96000,"스태포카드","There is a monster only found in ^8B4513Veins^000000.";
+			case 1: callsub L_Quest,4187,"Stapo",96000,"스태��카드","There is a monster only found in ^8B4513Veins^000000.";
 			case 2: callsub L_Quest,4188,"Roween",102000,"로우윈카드","There is a monster only found in ^8B4513Rachel^000000.";
 			case 3: callsub L_Quest,4189,"Siroma",110000,"시로마카드","There is a monster only found in ^8B4513Ice Dungeon^000000.";
 		}
 	case 4:
-mes "^8B4513Ciudades de expansión^000000.";
-mes "¿Qué monstruo vas a cazar o ya has terminado de cazar?";
+mes "^8B4513Ciudades de expansi�n^000000.";
+mes "�Qu� monstruo vas a cazar o ya has terminado de cazar?";
 		next;
 		switch(select("^0000FFShinobi^000000:^0000FFEvil Nymph^000000")) {
 			case 1: callsub L_Quest,4190,"Shinobi",102000,"시노비카드","There is a monster only found in ^8B4513Amatsu Dungeon^000000.";
@@ -147,14 +147,14 @@ mes "¿Qué monstruo vas a cazar o ya has terminado de cazar?";
 		}
 	case 5:
 mes "Otras regiones.";
-mes "¿Qué monstruo vas a cazar o ya has terminado de cazar?";
+mes "�Qu� monstruo vas a cazar o ya has terminado de cazar?";
 		next;
 		switch(select("^0000FFDeviruchi^000000:^0000FFMineral^000000:^0000FFKaho^000000:^0000FFNeraid^000000:^0000FFDisguise^000000")) {
-			case 1: callsub L_Quest,4192,"Deviruchi",110000,"데비루치카드","There is a monster only found in ^8B4513Geffen Dungeon^000000.";
+			case 1: callsub L_Quest,4192,"Deviruchi",110000,"�비루치카드","There is a monster only found in ^8B4513Geffen Dungeon^000000.";
 			case 2: callsub L_Quest,4193,"Mineral",138000,"미네랄","There is a monster only found in ^8B4513Einbech Dungeon^000000.";
 			case 3: callsub L_Quest,4194,"Kaho",118000,"카호카드","There is a monster found in ^8B4513Nogg Road Magma 1^000000.";
-			case 4: callsub L_Quest,4195,"Neraid",96000,"네레이드카드","There is a monster only found in ^8B4513Comodo Dungeon^000000.";
-			case 5: callsub L_Quest,4196,"Disguise",134000,"디스가이즈카드","There is a monster only found in ^8B4513Niflheim^000000.";
+			case 4: callsub L_Quest,4195,"Neraid",96000,"네레�드카드","There is a monster only found in ^8B4513Comodo Dungeon^000000.";
+			case 5: callsub L_Quest,4196,"Disguise",134000,"디스가�즈카드","There is a monster only found in ^8B4513Niflheim^000000.";
 		}
 	}
 	end;
@@ -167,18 +167,18 @@ L_Quest:
 	set .@playtime, checkquest(.@quest2,PLAYTIME);
 	if (.@playtime == 0 || .@playtime == 1) {
 mes "[91-99 Junta de Misiones]";
-mes "Debes esperar 3 horas antes de poder volver a realizar esta misión.";
+mes "Debes esperar 3 horas antes de poder volver a realizar esta misi�n.";
 		close;
 	}
 	set .@hunting, checkquest(.@quest1,HUNTING);
 	if (.@hunting == 0 || .@hunting == 1) {
 mes "[91-99 Junta de Misiones]";
-mes "¿Ya terminaste de cazar los 30 "+getarg(1)+getarg(5)+"?";
+mes "�Ya terminaste de cazar los 30 "+getarg(1)+getarg(5)+"?";
 		close;
 	} else if (.@hunting == 2) {
 mes "[91-99 Junta de Misiones]";
 mes "Has completado la caza.";
-mes "Por favor, acepte esta recompensa como una compensación.";
+mes "Por favor, acepte esta recompensa como una compensaci�n.";
 		erasequest .@quest1;
 		if (.@playtime > -1) erasequest .@quest2;
 		setquest .@quest2;
@@ -196,7 +196,7 @@ mes "Por favor, acepte esta recompensa como una compensación.";
 //		recall_completequest .@quest1
 		erasequest .@quest1;
 mes "[91-99 Junta de Misiones]";
-mes "Has vuelto a aceptar la misión +getarg(1)+ Caza.";
+mes "Has vuelto a aceptar la misi�n +getarg(1)+ Caza.";
 		close;
 	}*/ else {
 mes "[91-99 Junta de Misiones]";
@@ -204,12 +204,12 @@ mes "getarg(4)";
 		next;
 		if (.@cutin$ != "") cutin .@cutin$,3;
 mes "[91-99 Junta de Misiones]";
-mes "Caza 30 "+getarg(1)+" monstruos allí y publica tu éxito en este foro.";
+mes "Caza 30 "+getarg(1)+" monstruos all� y publica tu �xito en este foro.";
 		next;
 		if (.@cutin$ != "") cutin .@cutin$,255;
 		if(select("Voy a cazarlos.:No gracias.") == 1) {
 mes "[91-99 Junta de Misiones]";
-mes "Cuando hayas completado la misión, publícala en este tablero y recoge tu recompensa.";
+mes "Cuando hayas completado la misi�n, publ�cala en este tablero y recoge tu recompensa.";
 			if (.@playtime > -1) erasequest .@quest2;
 			setquest .@quest1;
 		}

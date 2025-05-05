@@ -19,9 +19,9 @@
 
 moc_para01,44,38,3	script	Mission [71 - 85]	857,{
 	if (!callfunc("F_HasEdenGroupMark")) {
-mes "ï»¿- Solo los miembros de la -";
+mes "- Solo los miembros de la -";
 mes "- Eden Group puede leer -";
-mes "- Este tablÃ³n de anuncios. -";
+mes "- Este tablón de anuncios. -";
 		close;
 	}
 
@@ -41,7 +41,7 @@ mes "- Se ha eliminado el formulario de solicitud. -";
 	if (BaseLevel < 71) {
 mes "- Solo los miembros de la -";
 mes "- El nivel derecho puede leer -";
-mes "- Este tablÃ³n de anuncios. -";
+mes "- Este tablón de anuncios. -";
 mes "- Intenta encontrar una tabla -";
 mes "- que se adapte a tu nivel. -";
 		close;
@@ -61,7 +61,7 @@ mes "- que se adapte a tu nivel. -";
 			set .@complete[getarraysize(.@complete)],5057;
 		if (getarraysize(.@complete)) {
 mes "Tienes misiones en progreso.";
-mes "Â¿Quieres entregarlos?";
+mes "¿Quieres entregarlos?";
 			next;
 			if(select("Claro.:No.") == 2)
 				close;
@@ -71,19 +71,19 @@ mes "Â¿Quieres entregarlos?";
 		}
 mes "- Solo los miembros de la -";
 mes "- El nivel derecho puede leer -";
-mes "- Este tablÃ³n de anuncios. -";
+mes "- Este tablón de anuncios. -";
 mes "- Intenta encontrar una tabla -";
 mes "- que se adapte a tu nivel. -";
 		close;
 	}
-mes "- Elige dÃ³nde -";
-mes "- Le gustarÃ­a cazar. -";
+mes "- Elige dónde -";
+mes "- Le gustaría cazar. -";
 	next;
 	switch(select("Sphinx Dungeon:Glast Heim:Juno Area:Clock Tower:Localized Islands")) {
 	case 1:
 mes "- Hay varias peticiones -";
 mes "- relacionado con la Mazmorra de la Esfinge -";
-mes "- en esta Junta de MisiÃ³n. -";
+mes "- en esta Junta de Misión. -";
 		next;
 		set .@str1$,"The villagers of Morocc are worried by the increasing number of monsters in the Sphinx Dungeon. ";
 		set .@str2$,"- Meidi from Morocc -";
@@ -95,7 +95,7 @@ mes "- en esta Junta de MisiÃ³n. -";
 	case 2:
 mes "- Hay varias peticiones -";
 mes "- relacionado con Glast Heim -";
-mes "- en esta Junta de MisiÃ³n. -";
+mes "- en esta Junta de Misión. -";
 		next;
 		set .@str1$,"I am very afraid that the monsters from Glast Heim will attack us. ";
 		set .@str2$,"- Ancellia from Geffen -";
@@ -121,7 +121,7 @@ mes "- alrededor de Juno. -";
 	case 4:
 mes "- Hay varias peticiones -";
 mes "- relacionado con la Torre del Reloj -";
-mes "- en esta Junta de MisiÃ³n. -";
+mes "- en esta Junta de Misión. -";
 		next;
 		set .@str1$,"I used to love listening to the sweet melody of the Al De Baran Clock Tower but I can't hear anything anymore because of all the noises the monsters are making. ";
 		set .@str2$,"- Rizingsetter, President of the Love Clock community -";
@@ -133,7 +133,7 @@ mes "- en esta Junta de MisiÃ³n. -";
 	case 5:
 mes "- Hay varias peticiones -";
 mes "- relacionado con las Islas Localizadas -";
-mes "- en esta Junta de MisiÃ³n. -";
+mes "- en esta Junta de Misión. -";
 		next;
 		set .@str1$,"I want to go on an adventure but there are so many things I have to deal with. If I can't, then others can't either! ";
 		set .@str2$,"- Funfy, who wants to go on an adventure -";
@@ -174,13 +174,13 @@ L_Quest:
 		case 5057: set .@name$,"Gather Festival Masks for the Festival"; set .@exp,30000; break;
 	}
 	if (getargcount() == 1) {
-mes "'"+.@name$+"' completado. Â¿Quieres entregarlo y recibir tu recompensa?";
+mes "'"+.@name$+"' completado. ¿Quieres entregarlo y recibir tu recompensa?";
 		next;
-		if(select("Entregar misiÃ³n.:Cancelar.") == 1) {
+		if(select("Entregar misión.:Cancelar.") == 1) {
 			if (.@quest == 5057) delitem 7187,30; //Festival_Mask
 			erasequest .@quest;
 			getexp .@exp,0;
-mes "Has recibido EXP por terminar la misiÃ³n.";
+mes "Has recibido EXP por terminar la misión.";
 			next;
 			return;
 		}
@@ -198,28 +198,28 @@ mes "Has recibido EXP por terminar la misiÃ³n.";
 mes getarg(1);
 mes getarg(2);
 			next;
-mes "Regresa aquÃ­ cuando hayas terminado la misiÃ³n.";
+mes "Regresa aquí cuando hayas terminado la misión.";
 		} else if (.@hunting == 2) {
-mes "Has completado la misiÃ³n.";
+mes "Has completado la misión.";
 			next;
-			if(select("Entregar misiÃ³n.:Cancelar.") == 1) {
+			if(select("Entregar misión.:Cancelar.") == 1) {
 				if (.@quest == 5057) delitem 7187,30; //Festival_Mask
 				erasequest .@quest;
 				getexp .@exp,0;
-mes "Has recibido EXP por terminar la misiÃ³n.";
+mes "Has recibido EXP por terminar la misión.";
 			}
 		}/* else if (.@hunting == 3) {
 //			recall_completequest .@quest
 			erasequest .@quest;
-mes "Has vuelto a aceptar la misiÃ³n '+.@name$+'.";
+mes "Has vuelto a aceptar la misión '+.@name$+'.";
 		}*/ else {
 mes getarg(1);
 mes getarg(2);
 			next;
-mes "Â¿Quieres aceptar la misiÃ³n?";
+mes "¿Quieres aceptar la misión?";
 			next;
-			if(select("SÃ­.:No.") == 1) {
-mes "Has recibido la misiÃ³n '"+.@name$+"'. Consulta la informaciÃ³n de tu misiÃ³n para obtener mÃ¡s detalles.";
+			if(select("Sí.:No.") == 1) {
+mes "Has recibido la misión '"+.@name$+"'. Consulta la información de tu misión para obtener más detalles.";
 				setquest .@quest;
 			}
 		}

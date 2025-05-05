@@ -19,8 +19,8 @@
 
 moc_para01,36,38,3	script	Mission [11 - 25]#Tuto	4_BOARD3,{
 	if (!callfunc("F_HasEdenGroupMark")) {
-mes "ï»¿- Necesitas tener una -";
-mes "- ^4d4dff'Marca de Grupo EdÃ©n'^000000 -";
+mes "- Necesitas tener una -";
+mes "- ^4d4dff'Marca de Grupo Edén'^000000 -";
 mes "- para recibir estas misiones. -";
 		close;
 	}
@@ -31,16 +31,16 @@ mes "- para recibir estas misiones. -";
 		if (.@j == 2) {
 mes "- Debes recoger tu -";
 mes "- Recompensa antes de empezar -";
-mes "- Una nueva misiÃ³n. -";
+mes "- Una nueva misión. -";
 mes "";
-mes "- MÃ¡nager : Spike -";
+mes "- Mánager : Spike -";
 			close;
 		}
 		else if (.@j >= 0) {
 mes "- Solo puedes solicitar -";
-mes "- Una misiÃ³n a la vez. -";
+mes "- Una misión a la vez. -";
 mes "";
-mes "- MÃ¡nager : Spike -";
+mes "- Mánager : Spike -";
 			close;
 		}
 	}
@@ -51,15 +51,15 @@ mes "- Abierto para ti ahora mismo. -";
 	}
 	if (BaseLevel > 25) {
 mes "- Estas misiones son demasiado -";
-mes "- FÃ¡cil para su calibre -";
-mes "- Buscar un nivel mÃ¡s -";
-mes "- MisiÃ³n apropiada. -";
+mes "- Fácil para su calibre -";
+mes "- Buscar un nivel más -";
+mes "- Misión apropiada. -";
 		close;
 	}
-mes "- TablÃ³n de anuncios de la misiÃ³n -";
+mes "- Tablón de anuncios de la misión -";
 mes "- Para principiantes. -";
 mes "";
-mes "- MÃ¡nager : Spike -";
+mes "- Mánager : Spike -";
 	next;
 	switch(select("Hornet Hunting:Condor Hunting:Grasshopper's Leg:Worm Tail Hunting:Spore Hunting:Pest Control:Muka Hunting:Familiar Hunting:Collect Feathers:Collect Poison Spores:Cancel")) {
 		case 1: callsub L_Quest,11114,"Hornet Hunting"," - Hunt 10 ^4d4dff'Hornets'^000000 - "," - northwest of Prontera. - ";
@@ -73,24 +73,24 @@ mes "- MÃ¡nager : Spike -";
 		case 9: callsub L_Quest,11122,"Collect Feathers"," - Hunt 30 ^4d4dff'Peco Pecos'^000000 - "," - south of Prontera. - ";
 		case 10: callsub L_Quest,11123,"Collect Poison Spores"," - Hunt 30 ^4d4dffPoison Spores^000000 - "," - inside the Geffen Tower and - "," - bring 5 ^4d4dffPoison Spores^000000. - ";
 		case 11:
-mes "- Deja de leer el tablÃ³n de anuncios. -";
+mes "- Deja de leer el tablón de anuncios. -";
 			close;
 	}
 
 L_Quest:
 	.@quest_status = checkquest(getarg(0)+10,PLAYTIME);
 	if (.@quest_status == 0 || .@quest_status == 1) {
-mes "- MisiÃ³n ^4d4dff"+ getarg(1) +"^000000 -";
-mes "- ya estÃ¡ terminado por hoy. -";
+mes "- Misión ^4d4dff"+ getarg(1) +"^000000 -";
+mes "- ya está terminado por hoy. -";
 mes "";
-mes "- MÃ¡nager : Spike -";
+mes "- Mánager : Spike -";
 		close;
 	}
-mes "- MisiÃ³n '"+ getarg(1) +"' -";
+mes "- Misión '"+ getarg(1) +"' -";
 	for ( .@i = 2; .@i < getargcount(); .@i++ )
 mes getarg(.@i);
 mes "";
-mes "- MÃ¡nager : Spike -";
+mes "- Mánager : Spike -";
 	next;
 	if (select("I will do this mission.:Look for other missions.") == 2) {
 mes "- Vamos a buscar -";
@@ -122,17 +122,17 @@ moc_para01,32,30,6	script	Spike	4_F_CHILD,{
 		}
 		else if (.@j >= 0) {
 mes "[Spike]";
-mes "AÃºn no has terminado tu misiÃ³n.";
-mes "ContinÃºen con el buen trabajo. Ya casi has terminado.";
+mes "Aún no has terminado tu misión.";
+mes "Continúen con el buen trabajo. Ya casi has terminado.";
 			close;
 		}
 	}
 mes "[Spike]";
-mes "Â¿EstÃ¡s buscando trabajo?";
+mes "¿Estás buscando trabajo?";
 mes "Siempre tenemos mucho trabajo por hacer.";
 	next;
 mes "[Spike]";
-mes "Â¿Por quÃ© no miras a tu alrededor y encuentras algunas tareas interesantes?";
+mes "¿Por qué no miras a tu alrededor y encuentras algunas tareas interesantes?";
 	close;
 
 L_Quest:
@@ -149,13 +149,13 @@ mes "Necesitas traer "+ .@req_amount + " " + getitemname(.@item_req) +".";
 			}
 		}
 mes "[Spike]";
-mes "Hmm... DÃ©jame ver~";
-mes "Has completado la misiÃ³n '"+ getarg(1) +"'.";
+mes "Hmm... Déjame ver~";
+mes "Has completado la misión '"+ getarg(1) +"'.";
 		next;
 mes "[Spike]";
-mes "Â¡Â¡Buen trabajo~!!";
-mes "Nuestro cliente estÃ¡ muy contento con su trabajo. Ã‰l apreciarÃ¡ lo que has hecho.";
-mes "Por favor, ayÃºdenos de nuevo. Â¡Gracias!";
+mes "¡¡Buen trabajo~!!";
+mes "Nuestro cliente está muy contento con su trabajo. Ã‰l apreciará lo que has hecho.";
+mes "Por favor, ayúdenos de nuevo. ¡Gracias!";
 		if (.@item_req)
 			delitem .@item_req,.@req_amount;
 		erasequest .@quest_id;

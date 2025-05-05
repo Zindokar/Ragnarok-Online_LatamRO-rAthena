@@ -18,22 +18,22 @@
 
 moc_para01,38,38,3	script	Mission [26 - 40]	857,{
 	if (!callfunc("F_HasEdenGroupMark")) {
-mes "ï»¿Usted no es un miembro cualificado. No se puede utilizar el tablÃ³n de anuncios.";
+mes "¿Usted no es un miembro cualificado. No se puede utilizar el tablón de anuncios.";
 		close;
 	}
 mes "[26 ~ 40 Lv. Panel de Misiones]";
 mes "- Muchas misiones son -";
-mes "- en el tablÃ³n de anuncios. -";
+mes "- en el tablón de anuncios. -";
 	next;
 	if ((BaseLevel < 26) || (BaseLevel > 40)) {
-mes "Su nivel no estÃ¡ calificado. No se puede utilizar el tablÃ³n de anuncios.";
+mes "Su nivel no está calificado. No se puede utilizar el tablón de anuncios.";
 		close;
 	}
 	switch(select("Hunting Mission:Delivery Mission:Gathering Mission:Escort Mission")) {
 	case 1:
 mes "[Panel de misiones de caza]";
-mes "- Detalles de la misiÃ³n de caza -";
-mes "- EstÃ¡n en el tablero. -";
+mes "- Detalles de la misión de caza -";
+mes "- Están en el tablero. -";
 		next;
 		switch(select("Hunting Poison Spore:Hunting Smokie:Hunting Elder Willow(Above Lv.30):Hunting Coco(Above Lv.35):Hunting Thara Frog(Above Lv.38)")) {
 			case 1: callsub L_Quest,8266,0,"Hunting Poison Spore","Sponiac","Geffen","Hunt 10 Poison Spores";
@@ -44,8 +44,8 @@ mes "- EstÃ¡n en el tablero. -";
 		}
 	case 2:
 mes "[Panel de Misiones de Entrega]";
-mes "- Detalles de la misiÃ³n de entrega -";
-mes "- EstÃ¡n en el tablero. -";
+mes "- Detalles de la misión de entrega -";
+mes "- Están en el tablero. -";
 		next;
 		switch(select("Entregar Insecticide:Entregar Honey:Entregar Blanket(Above Lv.35)")) {
 			case 1: callsub L_Quest,8271,0,"Deliver an Insecticide","Dieshin Man","Morocc Ruins","Get an 'Insecticide' from Dieshin Man and deliver it south east of Payon";
@@ -53,9 +53,9 @@ mes "- EstÃ¡n en el tablero. -";
 			case 3: callsub L_Quest,8273,35,"Deliver Blanket","Dieshin Man","Morocc Ruins","Get Blankets from Dieshin Man and deliver to the field south of Lutie";
 		}
 	case 3:
-mes "[Panel de Misiones de RecolecciÃ³n]";
-mes "- RecopilaciÃ³n de detalles de la misiÃ³n -";
-mes "- EstÃ¡n en el tablero. -";
+mes "[Panel de Misiones de Recolección]";
+mes "- Recopilación de detalles de la misión -";
+mes "- Están en el tablero. -";
 		next;
 		switch(select("Recolectar Bones:Recolectar Animal Skins:Recolectar Peelings(Above Lv.30):Recolectar Tails(Above Lv.32):Recolectar Cookies(Above Lv.35):Recolectar Mustaches(Above Lv.35)")) {
 			case 1: callsub L_Quest,8274,0,"Gather Bones","Dashia","Payon","Gather '10 Skel-Bones' and give them to Dashia";
@@ -67,7 +67,7 @@ mes "- EstÃ¡n en el tablero. -";
 		}
 	case 4:
 mes "[Panel de Misiones de escolta]";
-mes "Actualmente no hay misiones de escolta registradas en el tablÃ³n.";
+mes "Actualmente no hay misiones de escolta registradas en el tablón.";
 		close;
 	}
 	end;
@@ -75,60 +75,60 @@ L_Quest:
 	//QuestID,ReqLvl,Quest,Client,Loc,Desc
 	.@string$ = getarg(2);
 	if (BaseLevel < getarg(1,26)) {
-mes "Tu nivel no cumple con los requisitos. No puedes tomar la misiÃ³n '"+ .@string$ +"'.";
+mes "Tu nivel no cumple con los requisitos. No puedes tomar la misión '"+ .@string$ +"'.";
 		close;
 	}
 mes "["+ .@string$ + "!!]";
 mes "Cliente: "+ getarg(3);
-mes "UbicaciÃ³n del cliente : "+getarg(4);
-mes "MisiÃ³n solicitada : "+getarg(5);
+mes "Ubicación del cliente : "+getarg(4);
+mes "Misión solicitada : "+getarg(5);
 mes "";
-mes "Â¿AceptarÃ¡s esta misiÃ³n?";
+mes "¿Aceptarás esta misión?";
 	next;
-	if(select("No.:SÃ­ acepto.") == 1) {
-mes "Ha rechazado la misiÃ³n "+ .@string$ +".";
+	if(select("No.:Sí acepto.") == 1) {
+mes "Ha rechazado la misión "+ .@string$ +".";
 		close;
 	}
 	if (checkquest(getarg(0)) > -1)
-mes "Ya estÃ¡s realizando esta misiÃ³n.";
+mes "Ya estás realizando esta misión.";
 	else {
 		setquest getarg(0);
-mes "Has aceptado la misiÃ³n "+ .@string$ +".";
+mes "Has aceptado la misión "+ .@string$ +".";
 	}
-mes "Puedes obtener una recompensa del cliente despuÃ©s de terminar la misiÃ³n.";
+mes "Puedes obtener una recompensa del cliente después de terminar la misión.";
 	next;
-mes "Para obtener mÃ¡s detalles, presione 'Alt + U' para obtener mÃ¡s informaciÃ³n de la ventana de misiones.";
+mes "Para obtener más detalles, presione 'Alt + U' para obtener más información de la ventana de misiones.";
 	close;
 }
 
 geffen,103,42,5	script	Sponiac	99,{
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 3500) {
 mes "[Sponiac]";
-mes "Â¿Por quÃ© llevas tantos artÃ­culos?";
-mes "Â¿EstÃ¡s en un curso de formaciÃ³n o algo asÃ­?";
+mes "¿Por qué llevas tantos artículos?";
+mes "¿Estás en un curso de formación o algo así?";
 		close;
 	}
 mes "[Sponiac]";
 mes "Lu~lu~lu~lu~";
-mes "Lu~ Â¿Eh?";
+mes "Lu~ ¿Eh?";
 	next;
 mes "[Sponiac]";
-mes "Vaya, debes ser un principiante, Â¿verdad?";
-mes "Â¡QuÃ© cara tan inocente! Ja~ jajaja.";
+mes "Vaya, debes ser un principiante, ¿verdad?";
+mes "¡Qué cara tan inocente! Ja~ jajaja.";
 	emotion ET_KIK;
 	next;
 mes "[Sponiac]";
-mes "Â¿Por quÃ© no cazas al aire libre en lugar de caminar y perder el tiempo?";
+mes "¿Por qué no cazas al aire libre en lugar de caminar y perder el tiempo?";
 	next;
-	if(select("Estaba a punto de irme.:Tengo una misiÃ³n de caza.") == 1) {
+	if(select("Estaba a punto de irme.:Tengo una misión de caza.") == 1) {
 mes "[Sponiac]";
 mes "Bueno. Entonces...";
-mes "AdiÃ³s~ adiÃ³s.";
+mes "Adiós~ adiós.";
 		close;
 	}
 mes "[Sponiac]";
-mes "Oh, Â¿eres del Grupo EdÃ©n?";
-mes "Â¿QuÃ© misiÃ³n tienes?";
+mes "Oh, ¿eres del Grupo Edén?";
+mes "¿Qué misión tienes?";
 	next;
 	switch(select("Hunting Poison Spore:Hunting Smokie:Hunting Elder Willow:Hunting Coco:Hunting Thara Frog")) {
 		case 1: callsub L_Quest,8266,"Hunting Poison Spore",1000,0,100,"You can find Poison Spores on the Geffen Dungeon 1F or northeast of Prontera. There are other spots but I'll leave it up to you to find out.";
@@ -145,36 +145,36 @@ L_Quest:
 		if (checkquest(.@quest_id,HUNTING) == 2) {
 mes "[Sponiac]";
 mes getarg(1)+"!";
-mes "Vaya, no esperaba que hicieras esa misiÃ³n. Estaba a punto de rendirme. Pero hiciste un buen trabajo. Â¡Se lo agradezco!";
+mes "Vaya, no esperaba que hicieras esa misión. Estaba a punto de rendirme. Pero hiciste un buen trabajo. ¡Se lo agradezco!";
 			next;
 mes "[Sponiac]";
-mes "Bueno, solicitÃ© la misiÃ³n e hicieron un excelente trabajo.";
-mes "Te darÃ© una recompensa como prometÃ­.";
+mes "Bueno, solicité la misión e hicieron un excelente trabajo.";
+mes "Te daré una recompensa como prometí.";
 			next;
 mes "[Sponiac]";
-mes "AquÃ­ estÃ¡. Muchas gracias. Â¡Que dios te bendiga!";
+mes "Aquí está. Muchas gracias. ¡Que dios te bendiga!";
 			getitem 569,getarg(4); //Novice_Potion
 			getexp getarg(2),getarg(3);
 			erasequest .@quest_id;
 			close;
 		}
 mes "[Sponiac]";
-mes "Oh, tienes razÃ³n.";
+mes "Oh, tienes razón.";
 		next;
 mes "[Sponiac]";
-mes "Pero aÃºn no has cumplido la misiÃ³n. Â¿Por quÃ© viniste a mÃ­ ahora? Â¡No has completado la misiÃ³n!";
-mes "Te darÃ© una recompensa si completas la misiÃ³n. Â¿De acuerdo? Â¿Somos buenos?";
+mes "Pero aún no has cumplido la misión. ¿Por qué viniste a mí ahora? ¡No has completado la misión!";
+mes "Te daré una recompensa si completas la misión. ¿De acuerdo? ¿Somos buenos?";
 		next;
 mes "[Sponiac]";
 mes getarg(5);
 mes "Puede consultar el mapa del mundo presionando la tecla 'ctrl + ~'.";
 		next;
 mes "[Sponiac]";
-mes "De todos modos, estarÃ© aquÃ­ esperÃ¡ndote. Â¡Por favor, vuelve cuando termines la misiÃ³n!";
+mes "De todos modos, estaré aquí esperándote. ¡Por favor, vuelve cuando termines la misión!";
 		close;
 	}
 mes "[Sponiac]";
-mes "Â¿Eh? Â¿EstÃ¡s seguro? Algo va mal...";
+mes "¿Eh? ¿Estás seguro? Algo va mal...";
 	next;
 mes "[Sponiac]";
 mes "Es raro.";
@@ -185,29 +185,29 @@ mes "Por favor, comprueba tu ventana de misiones pulsando 'alt + u'.";
 moc_ruins,173,55,3	script	Dieshin Man	89,{
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 3500) {
 mes "[Hombre Dieshin]";
-mes "Â¿Por quÃ© llevas tantos artÃ­culos?";
-mes "Â¿EstÃ¡s en un curso de formaciÃ³n o algo asÃ­?";
+mes "¿Por qué llevas tantos artículos?";
+mes "¿Estás en un curso de formación o algo así?";
 		close;
 	}
 mes "[Hombre Dieshin]";
 mes "Hu hu ~~ somos repartidores ~";
-mes "Â¡Somos mÃ¡s rÃ¡pidos que cualquier vuelo ~!";
+mes "¡Somos más rápidos que cualquier vuelo ~!";
 	next;
 mes "[Hombre Dieshin]";
-mes "Â¡Bienvenido~ bienvenido!";
-mes "Somos la empresa de entrega mÃ¡s rÃ¡pida, Dieshin Corperation.";
+mes "¡Bienvenido~ bienvenido!";
+mes "Somos la empresa de entrega más rápida, Dieshin Corperation.";
 	next;
 mes "[Hombre Dieshin]";
-mes "Â¿CÃ³mo puedo ayudarle?";
+mes "¿Cómo puedo ayudarle?";
 	next;
-	if(select("No necesito ayuda.:Tengo una misiÃ³n de entrega.") == 1) {
+	if(select("No necesito ayuda.:Tengo una misión de entrega.") == 1) {
 mes "[Hombre Dieshin]";
-mes "Bueno. Entonces, imagÃ­nate. Â¡AdiÃ³s~!";
+mes "Bueno. Entonces, imagínate. ¡Adiós~!";
 		close;
 	}
 mes "[Hombre Dieshin]";
-mes "Oh, Â¿eres del Grupo EdÃ©n?";
-mes "Â¿QuÃ© misiÃ³n tienes?";
+mes "Oh, ¿eres del Grupo Edén?";
+mes "¿Qué misión tienes?";
 	next;
 	switch(select("Entregar un Insecticide.:Entregar Honey.:Entregar Blankets.")) {
 		case 1: callsub L_Quest,8271;
@@ -218,7 +218,7 @@ mes "Â¿QuÃ© misiÃ³n tienes?";
 L_Quest:
 	if (checkquest(getarg(0)) != 1) {
 mes "[Hombre Dieshin]";
-mes "Â¿Eh? Â¿EstÃ¡s seguro? Algo va mal...";
+mes "¿Eh? ¿Estás seguro? Algo va mal...";
 		next;
 mes "[Hombre Dieshin]";
 mes "Es raro.";
@@ -233,24 +233,24 @@ mes "[Hombre Dieshin]";
 mes "No podemos permitirle que entregue dos cajas a la vez. Por lo tanto, termine su entrega primero.";
 		next;
 mes "[Hombre Dieshin]";
-mes "Si olvidÃ³ dÃ³nde realizar la entrega, consulte la ventana de bÃºsqueda presionando 'alt + u'.";
+mes "Si olvidó dónde realizar la entrega, consulte la ventana de búsqueda presionando 'alt + u'.";
 		close;
 	}
 	switch(getarg(0)) {
 	case 8271:
 mes "[Hombre Dieshin]";
-mes "Â¡AjÃ¡! Â¡Entiendo!";
-mes "Â¿El insecticida? Debe ser el zoÃ³logo del sureste de Payon quien ordenÃ³ el insecticida.";
+mes "¡Ajá! ¡Entiendo!";
+mes "¿El insecticida? Debe ser el zoólogo del sureste de Payon quien ordenó el insecticida.";
 		break;
 	case 8272:
 mes "[Hombre Dieshin]";
-mes "Â¡AjÃ¡! Â¡Entiendo!";
-mes "Â¿Miel? Debe ser el entomÃ³logo al oeste de la AbadÃ­a de Santa Capitolina, que estÃ¡ al noreste de Prontera, quien ordenÃ³ la miel.";
+mes "¡Ajá! ¡Entiendo!";
+mes "¿Miel? Debe ser el entomólogo al oeste de la Abadía de Santa Capitolina, que está al noreste de Prontera, quien ordenó la miel.";
 		break;
 	case 8273:
 mes "[Hombre Dieshin]";
-mes "Â¡Oh, cierto!";
-mes "Â¡Las mantas! Debe ser el biÃ³logo del sur del campo de Lutie quien encargÃ³ las mantas.";
+mes "¡Oh, cierto!";
+mes "¡Las mantas! Debe ser el biólogo del sur del campo de Lutie quien encargó las mantas.";
 		next;
 mes "[Hombre Dieshin]";
 mes "Puedes ir a Lutie preguntando al Sr. Claus en la parte noreste de Al De Baran.";
@@ -258,236 +258,236 @@ mes "Puedes ir a Lutie preguntando al Sr. Claus en la parte noreste de Al De Bar
 	}
 	next;
 mes "[Hombre Dieshin]";
-mes "El motivo de cooperaciÃ³n de Diesin es dar la entrega mÃ¡s rÃ¡pida y acreditada. AsÃ­ que, por favor, entrÃ©guelo ahora sin demora.";
+mes "El motivo de cooperación de Diesin es dar la entrega más rápida y acreditada. Así que, por favor, entréguelo ahora sin demora.";
 	next;
 mes "[Hombre Dieshin]";
-mes "Si olvidÃ³ dÃ³nde hacer la entrega, verifique la ventana de bÃºsqueda presionando 'alt + u'.";
+mes "Si olvidó dónde hacer la entrega, verifique la ventana de búsqueda presionando 'alt + u'.";
 	getitem 6218,1; //Disin_Delivery_Box
 	close;
 }
 
-pay_fild07,83,89,7	script	ZoÃ³logo	89,{
+pay_fild07,83,89,7	script	Zoólogo	89,{
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 3500) {
-mes "[ZoÃ³logo]";
-mes "Â¿Por quÃ© llevas tantos artÃ­culos?";
-mes "Â¿EstÃ¡s en un curso de formaciÃ³n o algo asÃ­?";
+mes "[Zoólogo]";
+mes "¿Por qué llevas tantos artículos?";
+mes "¿Estás en un curso de formación o algo así?";
 		close;
 	}
-mes "[ZoÃ³logo]";
-mes "Â¿Has oÃ­do hablar de un monstruo llamado Bigfoot?";
+mes "[Zoólogo]";
+mes "¿Has oído hablar de un monstruo llamado Bigfoot?";
 mes "Parece un oso con pelaje rojo y tiene una cicatriz en forma de 'X' en el hombro.";
 	next;
-mes "[ZoÃ³logo]";
-mes "SegÃºn una investigaciÃ³n reciente, las moscas y los monstruos Bigfoot tienen una relaciÃ³n simbiÃ³tica.";
+mes "[Zoólogo]";
+mes "Según una investigación reciente, las moscas y los monstruos Bigfoot tienen una relación simbiótica.";
 	next;
-mes "[ZoÃ³logo]";
-mes "Actualmente estoy estudiando sobre ello y trato de probar la teorÃ­a. AsÃ­ que planeo matar las moscas alrededor de Bigfoot y observar su reacciÃ³n.";
+mes "[Zoólogo]";
+mes "Actualmente estoy estudiando sobre ello y trato de probar la teoría. Así que planeo matar las moscas alrededor de Bigfoot y observar su reacción.";
 	next;
-	if(select("...No estoy interesado.:AquÃ­ estÃ¡ el Insecticide.") == 1) {
-mes "[ZoÃ³logo]";
+	if(select("...No estoy interesado.:Aquí está el Insecticide.") == 1) {
+mes "[Zoólogo]";
 mes "Oh, necesito un insecticida para continuar con el estudio.";
 		close;
 	}
 	if (checkquest(8271) != 1) {
-mes "[ZoÃ³logo]";
-mes "Â¿Eh?";
-mes "Â¿No eres el repartidor de Dieshin?";
+mes "[Zoólogo]";
+mes "¿Eh?";
+mes "¿No eres el repartidor de Dieshin?";
 		next;
-mes "[ZoÃ³logo]";
+mes "[Zoólogo]";
 mes "Estoy esperando una entrega especial.";
 		close;
 	}
 	if (countitem(6218) > 0) {
-mes "[ZoÃ³logo]";
-mes "Â¡Oh ho! Â¡SÃ­! Â¡Ese!";
+mes "[Zoólogo]";
+mes "¡Oh ho! ¡Sí! ¡Ese!";
 		next;
-mes "[ZoÃ³logo]";
-mes "Â¡Ese es el insecticida que pedÃ­! Fuiste enviado por Dieshin, Â¿verdad?";
+mes "[Zoólogo]";
+mes "¡Ese es el insecticida que pedí! Fuiste enviado por Dieshin, ¿verdad?";
 		next;
-mes "[ZoÃ³logo]";
-mes "Â¡He estado esperando esto!";
-mes "Â¡DÃ¡melo!";
+mes "[Zoólogo]";
+mes "¡He estado esperando esto!";
+mes "¡Dámelo!";
 		next;
-mes "[ZoÃ³logo]";
-mes "LlegÃ³ mucho mÃ¡s rÃ¡pido de lo que pensaba. Â¡Quiero probarlo de inmediato!";
+mes "[Zoólogo]";
+mes "Llegó mucho más rápido de lo que pensaba. ¡Quiero probarlo de inmediato!";
 		next;
-mes "[ZoÃ³logo]";
-mes "Bien hecho. Â¡Buen trabajo! Â¡Muchas gracias! AquÃ­ tienes un pequeÃ±o regalo para ti.";
+mes "[Zoólogo]";
+mes "Bien hecho. ¡Buen trabajo! ¡Muchas gracias! Aquí tienes un pequeño regalo para ti.";
 		delitem 6218,1; //Disin_Delivery_Box
 		erasequest 8271;
 		getitem 569,100; //Novice_Potion
 		getexp 1000,0;
 		close;
 	}
-mes "[ZoÃ³logo]";
+mes "[Zoólogo]";
 mes "Agradezco su amabilidad.";
-mes "Pero, Â¿quÃ© trajiste?";
+mes "Pero, ¿qué trajiste?";
 	next;
-mes "[ZoÃ³logo]";
-mes "Hmm, pensÃ© que Dieshin era rÃ¡pido y preciso, pero me trajiste una caja vacÃ­a. QuÃ© decepciÃ³n.";
+mes "[Zoólogo]";
+mes "Hmm, pensé que Dieshin era rápido y preciso, pero me trajiste una caja vacía. Qué decepción.";
 	next;
-mes "[ZoÃ³logo]";
-mes "Por favor, traiga mi pedido. Dieshin te darÃ¡ mi producto.";
+mes "[Zoólogo]";
+mes "Por favor, traiga mi pedido. Dieshin te dará mi producto.";
 	close;
 }
 
-prt_fild03,30,254,3	script	EntomÃ³logo	83,{
+prt_fild03,30,254,3	script	Entomólogo	83,{
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 3500) {
-mes "[EntomÃ³logo]";
-mes "Â¿Por quÃ© llevas tantos artÃ­culos?";
-mes "Â¿EstÃ¡s en un curso de formaciÃ³n o algo asÃ­?";
+mes "[Entomólogo]";
+mes "¿Por qué llevas tantos artículos?";
+mes "¿Estás en un curso de formación o algo así?";
 		close;
 	}
-mes "[EntomÃ³logo]";
-mes "Â¿Has oÃ­do hablar del monstruo Horn?";
+mes "[Entomólogo]";
+mes "¿Has oído hablar del monstruo Horn?";
 mes "Tiene la forma de un insecto con piel negra y lisa, y tiene un cuerno gigante en la cabeza.";
 	next;
-mes "[EntomÃ³logo]";
+mes "[Entomólogo]";
 mes "Investigaciones recientes salieron a la luz y demostraron que este monstruo puede ser domesticado y entrenado por Honey.";
 	next;
-mes "[EntomÃ³logo]";
-mes "Actualmente estoy estudiando sobre ello y tratando de probar la teorÃ­a. AsÃ­ que planeo colocar una trampa de miel en los lugares por los que suele pasar y observar su reacciÃ³n.";
+mes "[Entomólogo]";
+mes "Actualmente estoy estudiando sobre ello y tratando de probar la teoría. Así que planeo colocar una trampa de miel en los lugares por los que suele pasar y observar su reacción.";
 	next;
-	if(select("...No estoy interesado.:AquÃ­ estÃ¡ la Honey.") == 1) {
-mes "[EntomÃ³logo]";
+	if(select("...No estoy interesado.:Aquí está la Honey.") == 1) {
+mes "[Entomólogo]";
 mes "Oh, necesito a Honey para continuar con el estudio.";
 		close;
 	}
 	if (checkquest(8272) != 1) {
-mes "[EntomÃ³logo]";
-mes "Â¿Eh?";
-mes "Â¿No eres el repartidor de Dieshin?";
+mes "[Entomólogo]";
+mes "¿Eh?";
+mes "¿No eres el repartidor de Dieshin?";
 		next;
-mes "[EntomÃ³logo]";
+mes "[Entomólogo]";
 mes "Estoy esperando una entrega especial.";
 		close;
 	}
 	if (countitem(6218) > 0) {
-mes "[EntomÃ³logo]";
-mes "Â¡Oh ho! Â¡SÃ­! Â¡Ese!";
+mes "[Entomólogo]";
+mes "¡Oh ho! ¡Sí! ¡Ese!";
 		next;
-mes "[EntomÃ³logo]";
-mes "Â¡Esa es la miel que pedÃ­! Fuiste enviado por Dieshin, Â¿verdad?";
+mes "[Entomólogo]";
+mes "¡Esa es la miel que pedí! Fuiste enviado por Dieshin, ¿verdad?";
 		next;
-mes "[EntomÃ³logo]";
-mes "Â¡He estado esperando esto!";
-mes "Â¡DÃ¡melo!";
+mes "[Entomólogo]";
+mes "¡He estado esperando esto!";
+mes "¡Dámelo!";
 		next;
-mes "[EntomÃ³logo]";
-mes "LlegÃ³ mucho mÃ¡s rÃ¡pido de lo que pensaba. Â¡Quiero probarlo de inmediato!";
+mes "[Entomólogo]";
+mes "Llegó mucho más rápido de lo que pensaba. ¡Quiero probarlo de inmediato!";
 		next;
-mes "[EntomÃ³logo]";
-mes "Bien hecho. Â¡Buen trabajo! Â¡Muchas gracias! AquÃ­ tienes un pequeÃ±o regalo para ti.";
+mes "[Entomólogo]";
+mes "Bien hecho. ¡Buen trabajo! ¡Muchas gracias! Aquí tienes un pequeño regalo para ti.";
 		delitem 6218,1; //Disin_Delivery_Box
 		erasequest 8272;
 		getitem 569,100; //Novice_Potion
 		getexp 1000,0;
 		close;
 	}
-mes "[EntomÃ³logo]";
+mes "[Entomólogo]";
 mes "Agradezco su amabilidad.";
-mes "Pero, Â¿quÃ© trajiste?";
+mes "Pero, ¿qué trajiste?";
 	next;
-mes "[EntomÃ³logo]";
-mes "Hmm, pensÃ© que Dieshin era rÃ¡pido y preciso, pero me trajiste una caja vacÃ­a. QuÃ© decepciÃ³n.";
+mes "[Entomólogo]";
+mes "Hmm, pensé que Dieshin era rápido y preciso, pero me trajiste una caja vacía. Qué decepción.";
 	next;
-mes "[EntomÃ³logo]";
-mes "Por favor, traiga mi pedido. Dieshin te darÃ¡ mi producto.";
+mes "[Entomólogo]";
+mes "Por favor, traiga mi pedido. Dieshin te dará mi producto.";
 	close;
 }
 
 xmas_fild01,92,57,3	script	Biologist	97,{
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 3500) {
-mes "[BiÃ³logo]";
-mes "Â¿Por quÃ© llevas tantos artÃ­culos?";
-mes "Â¿EstÃ¡s en un curso de formaciÃ³n o algo asÃ­?";
+mes "[Biólogo]";
+mes "¿Por qué llevas tantos artículos?";
+mes "¿Estás en un curso de formación o algo así?";
 		close;
 	}
-mes "[BiÃ³logo]";
-mes "Â¿Has oÃ­do hablar del monstruo de MarÃ­n?";
-mes "Se parece al poring habitual, pero tiene una caracterÃ­stica Ãºnica.";
+mes "[Biólogo]";
+mes "¿Has oído hablar del monstruo de Marín?";
+mes "Se parece al poring habitual, pero tiene una característica única.";
 	next;
-mes "[BiÃ³logo]";
-mes "Los porings roban objetos si los ven en el suelo. Sin embargo, a Marin no le interesan los objetos que se caen. AsÃ­ que me preguntaba, Â¿cÃ³mo es que Marin no presta atenciÃ³n a la recolecciÃ³n de objetos a pesar de que son el mismo tipo de monstruo que Porings?";
+mes "[Biólogo]";
+mes "Los porings roban objetos si los ven en el suelo. Sin embargo, a Marin no le interesan los objetos que se caen. Así que me preguntaba, ¿cómo es que Marin no presta atención a la recolección de objetos a pesar de que son el mismo tipo de monstruo que Porings?";
 	next;
-mes "[BiÃ³logo]";
-mes "Pero, este lugar es jodidamente frÃ­o.";
+mes "[Biólogo]";
+mes "Pero, este lugar es jodidamente frío.";
 	next;
-	if(select("...No estoy interesado.:AquÃ­ estÃ¡n las blankets.") == 1) {
-mes "[BiÃ³logo]";
-mes "Eh, lo que sea. Â¡Pero cuidado! Es muy resbaladizo aquÃ­.";
+	if(select("...No estoy interesado.:Aquí están las blankets.") == 1) {
+mes "[Biólogo]";
+mes "Eh, lo que sea. ¡Pero cuidado! Es muy resbaladizo aquí.";
 		close;
 	}
 	if (checkquest(8273) != 1) {
-mes "[BiÃ³logo]";
-mes "Â¿Eh?";
-mes "Â¿No eres el repartidor de Dieshin?";
+mes "[Biólogo]";
+mes "¿Eh?";
+mes "¿No eres el repartidor de Dieshin?";
 		next;
-mes "[BiÃ³logo]";
+mes "[Biólogo]";
 mes "Estoy esperando una entrega especial.";
 		close;
 	}
 	if (countitem(6218) > 0) {
-mes "[BiÃ³logo]";
-mes "Â¡Oh ho! Â¡SÃ­! Â¡Ese!";
+mes "[Biólogo]";
+mes "¡Oh ho! ¡Sí! ¡Ese!";
 		next;
-mes "[BiÃ³logo]";
-mes "Â¡Esas son las mantas que pedÃ­! Fuiste enviado por Dieshin, Â¿verdad?";
+mes "[Biólogo]";
+mes "¡Esas son las mantas que pedí! Fuiste enviado por Dieshin, ¿verdad?";
 		next;
-mes "[BiÃ³logo]";
-mes "Â¡He estado esperando esto!";
-mes "Â¡DÃ¡melo!";
+mes "[Biólogo]";
+mes "¡He estado esperando esto!";
+mes "¡Dámelo!";
 		next;
-mes "[BiÃ³logo]";
-mes "LlegÃ³ mucho mÃ¡s rÃ¡pido de lo que pensaba. Â¡Quiero probarlos de inmediato!";
+mes "[Biólogo]";
+mes "Llegó mucho más rápido de lo que pensaba. ¡Quiero probarlos de inmediato!";
 		next;
-mes "[BiÃ³logo]";
-mes "Bien hecho. Â¡Buen trabajo! Â¡Muchas gracias! AquÃ­ tienes un pequeÃ±o regalo para ti.";
+mes "[Biólogo]";
+mes "Bien hecho. ¡Buen trabajo! ¡Muchas gracias! Aquí tienes un pequeño regalo para ti.";
 		delitem 6218,1; //Disin_Delivery_Box
 		erasequest 8273;
 		getitem 569,100; //Novice_Potion
 		getexp 1000,0;
 		close;
 	}
-mes "[BiÃ³logo]";
+mes "[Biólogo]";
 mes "Agradezco su amabilidad.";
-mes "Pero, Â¿quÃ© trajiste?";
+mes "Pero, ¿qué trajiste?";
 	next;
-mes "[BiÃ³logo]";
-mes "Hmm, pensÃ© que Dieshin era rÃ¡pido y preciso, pero me trajiste una caja vacÃ­a. QuÃ© decepciÃ³n.";
+mes "[Biólogo]";
+mes "Hmm, pensé que Dieshin era rápido y preciso, pero me trajiste una caja vacía. Qué decepción.";
 	next;
-mes "[BiÃ³logo]";
-mes "Por favor, traiga mi pedido. Dieshin te darÃ¡ mi producto.";
+mes "[Biólogo]";
+mes "Por favor, traiga mi pedido. Dieshin te dará mi producto.";
 	close;
 }
 
 payon,179,66,3	script	Dashia	931,{
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 3500) {
 mes "[Dashia]";
-mes "Â¿Por quÃ© llevas tantos artÃ­culos?";
-mes "Â¿EstÃ¡s en un curso de formaciÃ³n o algo asÃ­?";
+mes "¿Por qué llevas tantos artículos?";
+mes "¿Estás en un curso de formación o algo así?";
 		close;
 	}
 mes "[Dashia]";
-mes "Â¡AquÃ­ hay un poco de cabello ~ un reloj roto ~!";
+mes "¡Aquí hay un poco de cabello ~ un reloj roto ~!";
 	next;
 mes "[Dashia]";
-mes "Â¿Reloj roto..? Hu hu..";
+mes "¿Reloj roto..? Hu hu..";
 	next;
 mes "[Dashia]";
-mes "Â¡Eh~! Â¡TÃ­o! Pareces un aventurero muy rico.";
+mes "¡Eh~! ¡Tío! Pareces un aventurero muy rico.";
 	next;
-	if(select("Soy un aventurero pobre.:Tengo una misiÃ³n re recolecciÃ³n.") == 1) {
+	if(select("Soy un aventurero pobre.:Tengo una misión re recolección.") == 1) {
 mes "[Dashia]";
-mes "Â¿Realmente? Hmm, oh, claro. No pareces sofisticado.";
+mes "¿Realmente? Hmm, oh, claro. No pareces sofisticado.";
 		next;
 mes "[Dashia]";
-mes "Â¡Eres un pobre aventurero~! Â¡Buena suerte!";
+mes "¡Eres un pobre aventurero~! ¡Buena suerte!";
 		close;
 	}
 mes "[Dashia]";
-mes "Oh, Â¿eres del Grupo EdÃ©n?";
-mes "Â¿QuÃ© misiÃ³n tienes?";
+mes "Oh, ¿eres del Grupo Edén?";
+mes "¿Qué misión tienes?";
 	next;
 	switch(select("Gather Bones:Gather Animal Skin:Gather Peelings:Gather Tails:Gather Cookies:Gather Mustaches")) {
 	case 1:
@@ -501,11 +501,11 @@ mes "Â¿QuÃ© misiÃ³n tienes?";
 			close;
 		}
 mes "[Dashia]";
-mes "Puedo ver que tienes una misiÃ³n de recolecciÃ³n.";
-mes "Pero, Â¿dÃ³nde estÃ¡n los Skel-Bones?";
+mes "Puedo ver que tienes una misión de recolección.";
+mes "Pero, ¿dónde están los Skel-Bones?";
 		next;
 mes "[Dashia]";
-mes "TodavÃ­a no has cumplido la misiÃ³n. Â¿Por quÃ© volviste aquÃ­?";
+mes "Todavía no has cumplido la misión. ¿Por qué volviste aquí?";
 		next;
 mes "[Dashia]";
 mes "No tienes suficientes 'Skel-Bones'... Puedes encontrarlo cuando cazas esqueletos.";
@@ -525,14 +525,14 @@ mes "Para encontrar esqueletos, es mejor que consultes Payon Dungeon 1F, que se 
 			close;
 		}
 mes "[Dashia]";
-mes "Puedo ver que tienes una misiÃ³n de recolecciÃ³n.";
-mes "Pero, Â¿dÃ³nde estÃ¡ la piel de las patas del oso y las pieles de los animales?";
+mes "Puedo ver que tienes una misión de recolección.";
+mes "Pero, ¿dónde está la piel de las patas del oso y las pieles de los animales?";
 		next;
 mes "[Dashia]";
-mes "TodavÃ­a no has cumplido la misiÃ³n. Â¿Por quÃ© volviste aquÃ­?";
+mes "Todavía no has cumplido la misión. ¿Por qué volviste aquí?";
 		next;
 mes "[Dashia]";
-mes "Â¡Tienes que traer 10 pieles de oso y 5 pieles de animales!";
+mes "¡Tienes que traer 10 pieles de oso y 5 pieles de animales!";
 mes "Puedes encontrar Piel de Pie de Oso de Bigfoot y Piel de Animal de Animals.";
 		next;
 mes "[Dashia]";
@@ -550,20 +550,20 @@ mes "Bigfoot se encuentra alrededor del norte del campo Geffen o el sureste del 
 			close;
 		}
 mes "[Dashia]";
-mes "Puedo ver que tienes una misiÃ³n de recolecciÃ³n.";
-mes "Pero, Â¿dÃ³nde estÃ¡n las cÃ¡scaras y gÃ¡rgaras de gusano?";
+mes "Puedo ver que tienes una misión de recolección.";
+mes "Pero, ¿dónde están las cáscaras y gárgaras de gusano?";
 		next;
 mes "[Dashia]";
-mes "Tienes que traer '20 cÃ¡scaras de gusano' y '20 garlets' para completar la misiÃ³n.";
+mes "Tienes que traer '20 cáscaras de gusano' y '20 garlets' para completar la misión.";
 		next;
 mes "[Dashia]";
-mes "Puedes conseguir esos artÃ­culos de 'Piere', 'Andre', 'Deniro', 'Vitata', 'Thief Bug', 'Female Thief Bug' y 'Male Thief Bug'.";
+mes "Puedes conseguir esos artículos de 'Piere', 'Andre', 'Deniro', 'Vitata', 'Thief Bug', 'Female Thief Bug' y 'Male Thief Bug'.";
 		next;
 mes "[Dashia]";
-mes "'Piere', 'AndrÃ©', 'Deniro' y 'Vitata' se encuentran en Ant Hell, que se encuentra cerca de la fortaleza de Saint Darmain, al suroeste de Marruecos.";
+mes "'Piere', 'André', 'Deniro' y 'Vitata' se encuentran en Ant Hell, que se encuentra cerca de la fortaleza de Saint Darmain, al suroeste de Marruecos.";
 		next;
 mes "[Dashia]";
-mes "'Bicho ladrÃ³n', 'Bicho ladrÃ³n hembra' y 'Bicho ladrÃ³n macho' estÃ¡n en la alcantarilla Prontere. Para llegar allÃ­, debes ser voluntario de la fuerza punitiva de la alcantarilla Prontera.";
+mes "'Bicho ladrón', 'Bicho ladrón hembra' y 'Bicho ladrón macho' están en la alcantarilla Prontere. Para llegar allí, debes ser voluntario de la fuerza punitiva de la alcantarilla Prontera.";
 		break;
 	case 4:
 		callsub L_Quest,8277;
@@ -578,18 +578,18 @@ mes "'Bicho ladrÃ³n', 'Bicho ladrÃ³n hembra' y 'Bicho ladrÃ³n macho' estÃ¡n en l
 			close;
 		}
 mes "[Dashia]";
-mes "Puedo ver que tienes una misiÃ³n de recolecciÃ³n.";
-mes "Pero, Â¿dÃ³nde estÃ¡n las colas de yoyo, las bellotas y las hojas de mapache?";
+mes "Puedo ver que tienes una misión de recolección.";
+mes "Pero, ¿dónde están las colas de yoyo, las bellotas y las hojas de mapache?";
 		next;
 mes "[Dashia]";
-mes "TodavÃ­a no has cumplido la misiÃ³n. Â¿Por quÃ© volviste aquÃ­?";
-mes "Tienes que traer '10 Colas de Yoyo', '10 Bellotas' y '10 Hojas de Mapache' para completar la misiÃ³n.";
+mes "Todavía no has cumplido la misión. ¿Por qué volviste aquí?";
+mes "Tienes que traer '10 Colas de Yoyo', '10 Bellotas' y '10 Hojas de Mapache' para completar la misión.";
 		next;
 mes "[Dashia]";
 mes "Puedes conseguir Yoyo Tails de 'Yoyo's', Acorn de 'Coco's' y Raccoon Leaf de 'Smokies'.";
 		next;
 mes "[Dashia]";
-mes "Puedes encontrarlos fÃ¡cilmente alrededor de los campos, pero el campo al este de Ayothaya es el mejor lugar para cazar a los 3 monstruos.";
+mes "Puedes encontrarlos fácilmente alrededor de los campos, pero el campo al este de Ayothaya es el mejor lugar para cazar a los 3 monstruos.";
 		next;
 mes "[Dashia]";
 mes "Para llegar a Ayothaya, es mejor que vayas a 'Aibakthing' en Alberta y pagues su tarifa.";
@@ -606,19 +606,19 @@ mes "Para llegar a Ayothaya, es mejor que vayas a 'Aibakthing' en Alberta y pagu
 			close;
 		}
 mes "[Dashia]";
-mes "Puedo ver que tienes una misiÃ³n de recolecciÃ³n.";
-mes "Pero, Â¿dÃ³nde estÃ¡n las galletas bien horneadas y el trozo de pastel?";
+mes "Puedo ver que tienes una misión de recolección.";
+mes "Pero, ¿dónde están las galletas bien horneadas y el trozo de pastel?";
 		next;
 mes "[Dashia]";
-mes "TodavÃ­a no has cumplido la misiÃ³n. Â¿Por quÃ© volviste aquÃ­?";
-mes "Tienes que traer '5 galletas bien horneadas' y '1 trozo de pastel' para completar la misiÃ³n.";
+mes "Todavía no has cumplido la misión. ¿Por qué volviste aquí?";
+mes "Tienes que traer '5 galletas bien horneadas' y '1 trozo de pastel' para completar la misión.";
 		next;
 mes "[Dashia]";
 mes "Puedes conseguir una galleta bien horneada de 'Cookies' que viste camisas rojas o verdes.";
 mes "Para obtener Piece of Cake, debes buscar 'Mystcases'.";
 		next;
 mes "[Dashia]";
-mes "Ambos monstruos se pueden encontrar en el AlmacÃ©n de la FÃ¡brica de Juguetes o en la Sala de Monitoreo de Juguetes. Para llegar allÃ­, pregÃºntele al Sr. Claus en la parte noreste de Al De Baran.";
+mes "Ambos monstruos se pueden encontrar en el Almacén de la Fábrica de Juguetes o en la Sala de Monitoreo de Juguetes. Para llegar allí, pregúntele al Sr. Claus en la parte noreste de Al De Baran.";
 		break;
 	case 6:
 		callsub L_Quest,8279;
@@ -632,29 +632,29 @@ mes "Ambos monstruos se pueden encontrar en el AlmacÃ©n de la FÃ¡brica de Juguet
 			close;
 		}
 mes "[Dashia]";
-mes "Puedo ver que tienes una misiÃ³n de recolecciÃ³n.";
-mes "Pero, Â¿dÃ³nde estÃ¡n los bigotes topo y las garras topo?";
+mes "Puedo ver que tienes una misión de recolección.";
+mes "Pero, ¿dónde están los bigotes topo y las garras topo?";
 		next;
 mes "[Dashia]";
-mes "TodavÃ­a no has cumplido la misiÃ³n. Â¿Por quÃ© volviste aquÃ­?";
-mes "Tienes que traer '5 Bigotes Topo' y '3 Garras Topo' para completar la misiÃ³n.";
+mes "Todavía no has cumplido la misión. ¿Por qué volviste aquí?";
+mes "Tienes que traer '5 Bigotes Topo' y '3 Garras Topo' para completar la misión.";
 		next;
 mes "[Dashia]";
-mes "Puedes conseguir esos artÃ­culos de 'Martins'.";
-mes "Los martines se pueden encontrar en el Pozo Muerto de Mjolnir, pero el segundo piso es peligroso, Â¡asÃ­ que ten cuidado!";
+mes "Puedes conseguir esos artículos de 'Martins'.";
+mes "Los martines se pueden encontrar en el Pozo Muerto de Mjolnir, pero el segundo piso es peligroso, ¡así que ten cuidado!";
 		next;
 mes "[Dashia]";
-mes "Para llegar allÃ­, pregÃºntale a un empleado de Kafra en Geffen, ellos pueden teletransportarte allÃ­.";
+mes "Para llegar allí, pregúntale a un empleado de Kafra en Geffen, ellos pueden teletransportarte allí.";
 		break;
 	}
 	next;
 mes "[Dashia]";
-mes "De todos modos, estarÃ© aquÃ­ esperÃ¡ndote. Â¡Por favor, vuelve cuando termines la misiÃ³n!";
+mes "De todos modos, estaré aquí esperándote. ¡Por favor, vuelve cuando termines la misión!";
 	close;
 L_Quest:
 	if (checkquest(getarg(0)) != 1) {
 mes "[Dashia]";
-mes "Â¿Eh? Â¿EstÃ¡s seguro? Algo va mal...";
+mes "¿Eh? ¿Estás seguro? Algo va mal...";
 		next;
 mes "[Dashia]";
 mes "Es raro.";
@@ -664,14 +664,14 @@ mes "Por favor, comprueba tu ventana de misiones pulsando 'alt + u'.";
 	return;
 L_Reward:
 mes "[Dashia]";
-mes "Â¡Wow ~ hiciste un excelente trabajo!";
+mes "¡Wow ~ hiciste un excelente trabajo!";
 	next;
 mes "[Dashia]";
-mes "Muchas gracias. Â¡Que dios te bendiga!";
+mes "Muchas gracias. ¡Que dios te bendiga!";
 	emotion ET_SMILE;
 	next;
 mes "[Dashia]";
-mes "Â¡Ja~! Â¡Ja~!";
-mes "Te darÃ© una recompensa como prometÃ­.";
+mes "¡Ja~! ¡Ja~!";
+mes "Te daré una recompensa como prometí.";
 	return;
 }
