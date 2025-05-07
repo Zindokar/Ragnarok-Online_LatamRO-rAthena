@@ -7,7 +7,7 @@
 //===== Compatible With: ===================================== 
 //= rAthena Project
 //===== Description: ========================================= 
-//= Script para los NPCs dinÃ¡micos de las campanas
+//= Script para los NPCs dinámicos de las campanas
 //= Campana de Edward Zonda: 22908
 //= Campana de Elise Zonda: 22907
 //= Campana de Kafra: 23648
@@ -38,8 +38,8 @@ prontera,2,1,3	script	Elise Zonda#bell	10209,{
 function	script	zondaScript	{
 	.@nombreNPC$ = getarg(0);
 	.@ahora = gettimetick(2);
-	.@dia_actual = (.@ahora - 14400) / 86400; // DÃ­a lÃ³gico que empieza a las 4:00
-	// Reset si es la primera vez o ha pasado a un nuevo dÃ­a lÃ³gico
+	.@dia_actual = (.@ahora - 14400) / 86400; // Día lógico que empieza a las 4:00
+	// Reset si es la primera vez o ha pasado a un nuevo día lógico
 	if (userBasicBuffUsageTick == 0 || .@dia_actual > userBasicBuffUsageTick) {
 		userBasicBuffUsage = 0;
 		userBasicBuffUsageTick = .@dia_actual;
@@ -48,7 +48,7 @@ function	script	zondaScript	{
 	.@basicBuffUsageLimitString$ = userBasicBuffUsage + "/" + .@basicBuffUsageLimit;
 	mes .@nombreNPC$;
 	mes "Te puedo ofrecer los siguientes servicios.";
-	mes "Si tienes efectos similares se reemplazarÃ¡n.";
+	mes "Si tienes efectos similares se reemplazarán.";
 	next;
 	switch(select("Volver a punto de guardado.","30% EXP y DROP 30 minutos. Usos " + .@basicBuffUsageLimitString$,"30% EXP y DROP 24 horas.","Vender items.","Resetear habilidades.","Resetear atributos.","Nada.")) {
 		case 1:
@@ -60,11 +60,11 @@ function	script	zondaScript	{
 			
 		case 2:
 			mes .@nombreNPC$;
-			// LÃ­mite de uso alcanzado
+			// Límite de uso alcanzado
 			if (userBasicBuffUsage >= .@basicBuffUsageLimit) {
 				mes "Ya has agotado todos los usos por hoy.";
-				mes "Vuelve a partir de las 4:00 AM de maÃ±ana.";
-				// Calcular tiempo restante hasta el prÃ³ximo reset a las 4:00 AM
+				mes "Vuelve a partir de las 4:00 AM de mañana.";
+				// Calcular tiempo restante hasta el próximo reset a las 4:00 AM
 				set .@proximoReset, ((.@dia_actual + 1) * 86400) + 14400;
 				set .@secondsLeft, .@proximoReset - .@ahora;
 				set .@hours, .@secondsLeft / 3600;
@@ -77,7 +77,7 @@ function	script	zondaScript	{
 			next;
 			if (countitem(6909) >= 5) {
 				mes .@nombreNPC$;
-				mes "AquÃ­ tienes, gracias por usar el servicio.";
+				mes "Aquí tienes, gracias por usar el servicio.";
 				close2;
 				sc_start SC_EXPBOOST, 1800000, 30;
 				sc_start SC_ITEMBOOST, 1800000, 30;
@@ -86,7 +86,7 @@ function	script	zondaScript	{
 				end;
 			} else {
 				mes .@nombreNPC$;
-				mes "QuÃ© pena, no tienes los frutos necesarios.";
+				mes "Qué pena, no tienes los frutos necesarios.";
 				close;
 			}
 			
@@ -96,7 +96,7 @@ function	script	zondaScript	{
 			next;
 			if (countitem(6909) >= 20) {
 				mes .@nombreNPC$;
-				mes "AquÃ­ tienes, gracias por usar el servicio.";
+				mes "Aquí tienes, gracias por usar el servicio.";
 				close2;
 				sc_start SC_EXPBOOST, 86400000, 30;
 				sc_start SC_ITEMBOOST, 86400000, 30;
@@ -177,20 +177,20 @@ function	script	zondaScript	{
 prontera,3,1,3	script	Kafra#bell	581,{
 	mes "[^FF0000Empleada Kafra^000000]";
 	mes "Servicios de asistenta Kafra.";
-	mes "Â¿CÃ³mo puedo ayudarte?";
+	mes "¿Cómo puedo ayudarte?";
 	next;
-	switch(select("Abrir almacÃ©n","Nada")) {
+	switch(select("Abrir almacén","Nada")) {
 		case 1:
 			if (!callfunc("F_CanOpenStorage")) {
 				mes "[^FF0000Empleada Kafra^000000]";
-				mes "Lo siento pero todavÃ­a no tienes la habilidad de manejar el almacÃ©n.";
-				mes "Vuelve cuando hayas aprendido las habilidades bÃ¡sicas necesarias.";
+				mes "Lo siento pero todavía no tienes la habilidad de manejar el almacén.";
+				mes "Vuelve cuando hayas aprendido las habilidades básicas necesarias.";
 				close;
 			}
 			mes "[^FF0000Kafra Employee^000000]";
-			mes "Â¿QuÃ© tipo de almacÃ©n?";
+			mes "¿Qué tipo de almacén?";
 			next;
-			switch(select("AlmacÃ©n","AlmacÃ©n VIP")) {
+			switch(select("Almacén","Almacén VIP")) {
 				case 1:
 					callfunc("F_CheckKafCode");
 					close2;
@@ -200,7 +200,7 @@ prontera,3,1,3	script	Kafra#bell	581,{
 				case 2:
 					if (vip_status(VIP_STATUS_ACTIVE)) {
 						mes "[^FF0000Kafra Employee^000000]";
-						mes "TÃ³mese su tiempo organizando su espacio.";
+						mes "Tómese su tiempo organizando su espacio.";
 						callfunc("F_CheckKafCode");
 						close2;
 						openstorage2 1, STOR_MODE_ALL;
@@ -230,9 +230,9 @@ prontera,3,1,3	script	Kafra#bell	581,{
 //=======================================================
 prontera,4,1,3	script	Mercader Ambulante#bell	900,{
 	mes "[^FF0000Mercader Ambulante^000000]";
-	mes "Hola, Â¿quieres negociar?";
+	mes "Hola, ¿quieres negociar?";
 	next;
-	switch(select("Comprar herramientas","Comprar municiÃ³n","Vender","Salir")) {
+	switch(select("Comprar herramientas","Comprar munición","Vender","Salir")) {
 		case 1:
 			mes "[^FF0000Mercader Ambulante^000000]";
 			mes "Muy bien, hagamos negocios.";
@@ -242,7 +242,7 @@ prontera,4,1,3	script	Mercader Ambulante#bell	900,{
 			
 		case 2:
 			mes "[^FF0000Mercader Ambulante^000000]";
-			mes "No cargo muchos tipos de municiÃ³n encima.";
+			mes "No cargo muchos tipos de munición encima.";
 			close2;
 			callshop "Municion Bell#bell", 1;
 			end;
@@ -256,7 +256,7 @@ prontera,4,1,3	script	Mercader Ambulante#bell	900,{
 			
 		case 4:
 			mes "[^FF0000Mercader Ambulante^000000]";
-			mes "No estarÃ© aquÃ­ todo el dÃ­a, tendrÃ¡s que decidirte en algÃºn momento.";
+			mes "No estaré aquí todo el día, tendrás que decidirte en algún momento.";
 			close;
 	}
 	end;
@@ -280,10 +280,10 @@ prontera,5,1,3	script	Guerrero Lunar#bell	10298,{
 	set .@hours, (.@secondsLeft % 86400) / 3600;
 	set .@minutes, (.@secondsLeft % 3600) / 60;
 	set .@seconds, .@secondsLeft % 60;
-	mes "Tiempo de VIP restante: " + .@days + " dÃ­as " + .@hours + " horas " + .@minutes + " minutos " + .@seconds + " segundos.";
-	mes "Te puedeo ofrecer una serie de servicios durante ese tiempo, si ya tienes estos efectos proveniente de otras fuentes se reemplazarÃ¡n.";
+	mes "Tiempo de VIP restante: " + .@days + " días " + .@hours + " horas " + .@minutes + " minutos " + .@seconds + " segundos.";
+	mes "Te puedeo ofrecer una serie de servicios durante ese tiempo, si ya tienes estos efectos proveniente de otras fuentes se reemplazarán.";
 	next;
-	switch(select("+30% EXP (4 miau fruta)","+30% DROP (2 miau fruta)","0% PenalizaciÃ³n al morir (8 miau fruta)","Todas las bonificaciones (10 miau fruta)", "Nada")) {
+	switch(select("+30% EXP (4 miau fruta)","+30% DROP (2 miau fruta)","0% Penalización al morir (8 miau fruta)","Todas las bonificaciones (10 miau fruta)", "Nada")) {
 		case 1:
 			mes "[^0000FFGuerrero Lunar^000000]";
 			if (countitem(6909) >= 4) {
@@ -392,13 +392,13 @@ izlude,125,157,4	script	Gerente de Articulos#0::gerentelujo	556,{
 			PRIMARY KEY (`id`)
 		) ENGINE=MyISAM AUTO_INCREMENT=1;
 	*/
-	.@nombre$ = "[^FF0000Gerente de artÃ­culos de lujo^000000]";
+	.@nombre$ = "[^FF0000Gerente de artículos de lujo^000000]";
 	mes .@nombre$;
-	mes "Parece que estoy vendiendo pan, Â¿verdad?";
-	mes "Ni mucho menos, ofrezco una cantidad de artÃ­culos limitados y por tiempo limitado.";
+	mes "Parece que estoy vendiendo pan, ¿verdad?";
+	mes "Ni mucho menos, ofrezco una cantidad de artículos limitados y por tiempo limitado.";
 	next;
 	mes .@nombre$;
-	mes "AquÃ­ te muestro el listado de items y su disponibilidad:";
+	mes "Aquí te muestro el listado de items y su disponibilidad:";
 	.@sql$ = "SELECT s.item_id, s.price, s.quantity, IFNULL(p.total_purchased, 0) AS purchased FROM account_limited_shop s LEFT JOIN (SELECT item_id, SUM(count) AS total_purchased FROM account_limited_shop_purchase WHERE account_id = '" + getcharid(3) + "' GROUP BY item_id) p ON s.item_id = p.item_id WHERE NOW() BETWEEN s.start_date AND s.finish_date;";
 	.@queryResult = query_sql(.@sql$, .@item_id, .@price, .@quantity, .@total_purchased);
 	for (.@i = 0; .@i < .@queryResult; .@i += 1) {
@@ -416,7 +416,7 @@ izlude,125,157,4	script	Gerente de Articulos#0::gerentelujo	556,{
 	}
 	next;
 	mes .@nombre$;
-	mes "Â¿CuÃ¡l quieres comprar?";
+	mes "¿Cuál quieres comprar?";
 	.@sql$ = "SELECT s.item_id, s.quantity, s.price, IFNULL(p.total_purchased, 0) AS purchased FROM account_limited_shop s LEFT JOIN (SELECT item_id, SUM(count) AS total_purchased FROM account_limited_shop_purchase WHERE account_id = '" + getcharid(3) + "' GROUP BY item_id) p ON s.item_id = p.item_id WHERE NOW() BETWEEN s.start_date AND s.finish_date AND IFNULL(p.total_purchased, 0) < s.quantity;";
 	.@queryResult = query_sql(.@sql$, .@item_id, .@quantity, .@price, .@total_purchased);
 	// Rellenamos la lista de nombre de items para mostar en el select
@@ -427,12 +427,12 @@ izlude,125,157,4	script	Gerente de Articulos#0::gerentelujo	556,{
 	next;
 	.@selected = select(implode(.@itemNameList$, ":")) - 1; // Convertimos a indice de array
 	mes .@nombre$;
-	mes "Â¿Seguro que quieres comprar?";
+	mes "¿Seguro que quieres comprar?";
 	mes "Item: " +  mesitemlink(.@item_id[.@selected]);
 	mes "Precio: ^0000FF" + .@price[.@selected] + "C^000000";
 	mes "Disponible: ^0000FF" + (.@quantity[.@selected] - .@total_purchased[.@selected]) + "^000000";
 	next;
-	if (select("SÃ­","No") == 2) close;
+	if (select("Sí","No") == 2) close;
 	mes .@nombre$;
 	if (#CASHPOINTS >= .@price[.@selected]) {
 		mes "Muchas gracias, que disfrute de su compra.";
@@ -461,26 +461,26 @@ izlude_d,125,157,4	duplicate(gerentelujo)	Gerente de Articulos#4	556
 izlude,136,155,3	script	Gerente de Recompensas#0::gerenteevento	758,{
 	.@nombre$ = "[^FF0000Gerente de Recompensas^000000]";
 	mes .@nombre$;
-	mes "Me alegra que hayas jugado la OBT de ROLA, y participado en los eventos, aquÃ­ puedes reclamar tus recompensas.";
+	mes "Me alegra que hayas jugado la OBT de ROLA, y participado en los eventos, aquí puedes reclamar tus recompensas.";
 	next;
 	mes .@nombre$;
-	mes "Â¿CuÃ¡l quieres reclamar?";
+	mes "¿Cuál quieres reclamar?";
 	next;
 	setarray(.@opciones$[0],
 		obtEventRewards & 1 ? "[^FF0000Evento Pre-registro 1^000000] Resultados de las redes sociales":"[^0000FFEvento Pre-registro 1^000000] Resultados de las redes sociales", 
-		obtEventRewards & 2 ? "[^FF0000Evento Pre-registro 2^000000] Inicia sesiÃ³n y gana":"[^0000FFEvento Pre-registro 2^000000] Inicia sesiÃ³n y gana", 
+		obtEventRewards & 2 ? "[^FF0000Evento Pre-registro 2^000000] Inicia sesión y gana":"[^0000FFEvento Pre-registro 2^000000] Inicia sesión y gana", 
 		obtEventRewards & 4 ? "[^FF0000Evento Pre-registro 3^000000] Invitar a amigos":"[^0000FFEvento Pre-registro 3^000000] Invitar a amigos", 
-		obtEventRewards & 8 ? "[^FF0000Evento Pre-registro 4^000000] Â¡Registrarse!":"[^0000FFEvento Pre-registro 4^000000] Â¡Registrarse!", 
+		obtEventRewards & 8 ? "[^FF0000Evento Pre-registro 4^000000] ¡Registrarse!":"[^0000FFEvento Pre-registro 4^000000] ¡Registrarse!", 
 		obtEventRewards & 16 ? "[^FF0000Evento OBT 1^000000] Registrar presencia en la web":"[^0000FFEvento OBT 1^000000] Registrar presencia en la web", 
-		obtEventRewards & 32 ? "[^FF0000Evento OBT 2^000000] Evento de progresiÃ³n":"[^0000FFEvento OBT 3^000000] Evento de progresiÃ³n", 
-		obtEventRewards & 64 ? "[^FF0000Evento OBT 3^000000] Encuesta de satisfacciÃ³n":"[^0000FFEvento OBT 4^000000] Encuesta de satisfacciÃ³n"
+		obtEventRewards & 32 ? "[^FF0000Evento OBT 2^000000] Evento de progresión":"[^0000FFEvento OBT 3^000000] Evento de progresión", 
+		obtEventRewards & 64 ? "[^FF0000Evento OBT 3^000000] Encuesta de satisfacción":"[^0000FFEvento OBT 4^000000] Encuesta de satisfacción"
 	);
 	switch(select(implode(.@opciones$, ":"))) {
 		case 1:
 			mes .@nombre$;
 			if (obtEventRewards & 1) {
 				mes "Ya has recibido esta recompensa.";
-				mes "Â¡Prueba con otras!";
+				mes "¡Prueba con otras!";
 			} else {
 				mes "Evento asociado a los seguidores de las redes sociales de Latam RO.";
 				mes "[^FF0000Tier 1^000000]: 30k seguidores ^0000FFdesbloqueado^000000.";
@@ -514,29 +514,29 @@ izlude,136,155,3	script	Gerente de Recompensas#0::gerenteevento	758,{
 			mes .@nombre$;
 			if (obtEventRewards & 2) {
 				mes "Ya has recibido esta recompensa.";
-				mes "Â¡Prueba con otras!";
+				mes "¡Prueba con otras!";
 				close;
 			} else {
-				mes "Durante el periodo de pre-registro, habÃ­a que hacer chek-in en la web durante todo un mes, y cada 5 dÃ­as que registrases la sesiÃ³n se desbloqueaba una recompensa. ^FF0000En este evento las recompensas no son acumulativas^000000.";
+				mes "Durante el periodo de pre-registro, había que hacer chek-in en la web durante todo un mes, y cada 5 días que registrases la sesión se desbloqueaba una recompensa. ^FF0000En este evento las recompensas no son acumulativas^000000.";
 				next;
 				mes .@nombre$;
-				mes "^FF00005 dÃ­as^000000 de inicio de sesiÃ³n:";
+				mes "^FF00005 días^000000 de inicio de sesión:";
 				mes mesitemlink(104125);
-				mes "^FF000010 dÃ­as^000000 de inicio de sesiÃ³n:";
+				mes "^FF000010 días^000000 de inicio de sesión:";
 				mes mesitemlink(104126);
-				mes "^FF000015 dÃ­as^000000 de inicio de sesiÃ³n:";
+				mes "^FF000015 días^000000 de inicio de sesión:";
 				mes mesitemlink(104127);
-				mes "^FF000020 dÃ­as^000000 de inicio de sesiÃ³n:";
+				mes "^FF000020 días^000000 de inicio de sesión:";
 				mes mesitemlink(104128);
-				mes "^FF000025 dÃ­as^000000 de inicio de sesiÃ³n:";
+				mes "^FF000025 días^000000 de inicio de sesión:";
 				mes mesitemlink(104129);
-				mes "^FF000029 dÃ­as^000000 de inicio de sesiÃ³n:";
+				mes "^FF000029 días^000000 de inicio de sesión:";
 				mes mesitemlink(104130);
 				next;
 				mes .@nombre$;
-				mes "Â¿CuÃ¡l fue tu record? SÃ© honesto.";
+				mes "¿Cuál fue tu record? Sé honesto.";
 				next;
-				switch (select("5 dÃ­as","10 dÃ­as","15 dÃ­as","20 dÃ­as","25 dÃ­as", "29 dÃ­as", "Ninguna")) {
+				switch (select("5 días","10 días","15 días","20 días","25 días", "29 días", "Ninguna")) {
 					case 1:
 						getitem 104125,1;
 						break;
@@ -576,7 +576,7 @@ izlude,136,155,3	script	Gerente de Recompensas#0::gerenteevento	758,{
 			mes .@nombre$;
 			if (obtEventRewards & 4) {
 				mes "Ya has recibido esta recompensa.";
-				mes "Â¡Prueba con otras!";
+				mes "¡Prueba con otras!";
 				close;
 			} else {
 				mes "Evento asociado a la cantidad de amigos que has invitado a registrarse en el periodo de pre-registro.";
@@ -588,13 +588,13 @@ izlude,136,155,3	script	Gerente de Recompensas#0::gerenteevento	758,{
 				mes mesitemlink(104122);
 				mes "[^0000FFFuiste invitado^000000]:";
 				mes mesitemlink(104123);
-				mes "[^0000FFEl que mÃ¡s invitÃ³^000000]:";
+				mes "[^0000FFEl que más invitó^000000]:";
 				mes mesitemlink(104124);
 				next;
 				mes .@nombre$;
-				mes "Â¿CuÃ¡ntos amigos invitaste? SÃ© honesto.";
+				mes "¿Cuántos amigos invitaste? Sé honesto.";
 				next;
-				switch(select("InvitÃ© a 1 amigo","InvitÃ© a 5 amigos","InvitÃ© a 10 amigos","El que mÃ¡s invitÃ³","Fui invitado", "Ninguna")) {
+				switch(select("Invité a 1 amigo","Invité a 5 amigos","Invité a 10 amigos","El que más invitó","Fui invitado", "Ninguna")) {
 					case 1:
 						getitem 104120,1;
 						break;
@@ -636,13 +636,13 @@ izlude,136,155,3	script	Gerente de Recompensas#0::gerenteevento	758,{
 			mes .@nombre$;
 			if (obtEventRewards & 8) {
 				mes "Ya has recibido esta recompensa.";
-				mes "Â¡Prueba con otras!";
+				mes "¡Prueba con otras!";
 			} else {
 				mes "Recibe esta recompensa por solo haberte registrado.";
 				mes mesitemlink(104103);
-				mes "Â¿Te preinscribiste?";
+				mes "¿Te preinscribiste?";
 				next;
-				if (select("SÃ­","No") == 2) close;
+				if (select("Sí","No") == 2) close;
 				mes .@nombre$;
 				mes "Disfruta las recompensas.";
 				getitem 104103, 1;
@@ -654,12 +654,12 @@ izlude,136,155,3	script	Gerente de Recompensas#0::gerenteevento	758,{
 			mes .@nombre$;
 			if (obtEventRewards & 16) {
 				mes "Ya has recibido esta recompensa.";
-				mes "Â¡Prueba con otras!";
+				mes "¡Prueba con otras!";
 			} else {
-				mes "Evento asociado al registro de presencia diario durante la OBT, si registraste mÃ¡s de 4 dÃ­as te pertenece esta recompensa.";
+				mes "Evento asociado al registro de presencia diario durante la OBT, si registraste más de 4 días te pertenece esta recompensa.";
 				mes mesitemlink(20443);
 				next;
-				if (select("RegistrÃ© presencia 4 dÃ­as o mÃ¡s.","No...") == 2) close;
+				if (select("Registré presencia 4 días o más.","No...") == 2) close;
 				mes .@nombre$;
 				mes "Disfruta de la recompensa";
 				getitem 20443, 1;
@@ -671,9 +671,9 @@ izlude,136,155,3	script	Gerente de Recompensas#0::gerenteevento	758,{
 			mes .@nombre$;
 			if (obtEventRewards & 32) {
 				mes "Ya has recibido esta recompensa.";
-				mes "Â¡Prueba con otras!";
+				mes "¡Prueba con otras!";
 			} else {
-				mes "Evento asociado a la progresiÃ³n de niveles, segÃºn tu nivel mÃ¡ximo de personaje puedes conseguir:";
+				mes "Evento asociado a la progresión de niveles, según tu nivel máximo de personaje puedes conseguir:";
 				mes "Alcanzar niveles ^FF000071~99 sin renacer^000000.";
 				mes mesitemlink(104165);
 				mes "Alcanzar niveles ^FF00001~70^000000 renacido.";
@@ -684,13 +684,13 @@ izlude,136,155,3	script	Gerente de Recompensas#0::gerenteevento	758,{
 				mes mesitemlink(104168);
 				mes "Alcanzar niveles ^FF0000111~120^000000 renacido.";
 				mes mesitemlink(104169);
-				mes "Alcanzar nivel ^FF0000121 o mÃ¡s^000000 renacido.";
+				mes "Alcanzar nivel ^FF0000121 o más^000000 renacido.";
 				mes mesitemlink(104171);
 				next;
 				mes .@nombre$;
 				mes "Selecciona tu rango de niveles alcanzado durante la OBT.";
 				next;
-				switch(select("71~99 sin renacer.","1~70 renacido.","71~99 renacido.","100~110 renacido.","111~120 renacido.","121 o mÃ¡s renacido.","Ninguno.")) {
+				switch(select("71~99 sin renacer.","1~70 renacido.","71~99 renacido.","100~110 renacido.","111~120 renacido.","121 o más renacido.","Ninguno.")) {
 					case 1:
 						getitem 104165, 1;
 						break;
@@ -717,7 +717,7 @@ izlude,136,155,3	script	Gerente de Recompensas#0::gerenteevento	758,{
 
 					case 7:
 						mes .@nombre$;
-						mes "Bueno, no pasa nada, hay mÃ¡s recompensas.";
+						mes "Bueno, no pasa nada, hay más recompensas.";
 						close;
 				}
 				mes .@nombre$;
@@ -730,13 +730,13 @@ izlude,136,155,3	script	Gerente de Recompensas#0::gerenteevento	758,{
 			mes .@nombre$;
 			if (obtEventRewards & 64) {
 				mes "Ya has recibido esta recompensa.";
-				mes "Â¡Prueba con otras!";
+				mes "¡Prueba con otras!";
 			} else {
-				mes "Recibe esta recompensa por haber participado en la encuesta de satisfacciÃ³n de la OBT.";
+				mes "Recibe esta recompensa por haber participado en la encuesta de satisfacción de la OBT.";
 				mes mesitemlink(104434);
-				mes "Â¿Te preinscribiste?";
+				mes "¿Te preinscribiste?";
 				next;
-				if (select("SÃ­","No") == 2) close;
+				if (select("Sí","No") == 2) close;
 				mes .@nombre$;
 				mes "Disfruta las recompensas.";
 				getitem 104434, 1;

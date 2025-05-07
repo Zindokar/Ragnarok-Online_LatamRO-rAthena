@@ -31242,7 +31242,11 @@ tbl = {
 		{ id = 12264, prob = 1, name = "^i[12264] [NotForSale] Bubble Gum 5x", group = 0 },
 		{ id = 14533, prob = 1, name = "^i[14533] [NotForSale] Advanced Battle Manual 5x", group = 0 },
 		{ id = 104501, prob = 1, name = "^i[104501] Costume Enchant Stone Box 39 10x", group = 0 }
-	},[104132] = {
+	}
+}
+
+tbl2 = {
+	[104132] = {
 		{ 
 			id = 1000274, 
 			prob = 10, 
@@ -32489,6 +32493,14 @@ tbl = {
 
 function main()
   for packageID, package in pairs(tbl) do
+    for serialnumber, box in pairs(package) do
+      result, msg = InsertPackage(packageID, box.group, box.id, box.name, box.prob)
+      if not result then
+        return false, msg
+      end
+    end
+  end
+  for packageID, package in pairs(tbl2) do
     for serialnumber, box in pairs(package) do
       result, msg = InsertPackage(packageID, box.group, box.id, box.name, box.prob)
       if not result then
