@@ -1,0 +1,421 @@
+//===== rAthena Script =======================================
+//= Tablón de misiones SQL
+//===== By: ==================================================
+//= Rokimoki/Zindokar
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= rAthena
+//===== Description: =========================================
+//= Añade misiones repetibles, fijas, con cooldown, o temporales.
+//===== Additional Comments: =================================
+// 1.0.0 Release
+//===== SQL Scripts: =================================
+/*
+CREATE TABLE `Mision` (
+    `id`           INT NOT NULL AUTO_INCREMENT,
+    `nombre`       VARCHAR(100) NOT NULL,
+    `descripcion`  TEXT NOT NULL,
+    `tipo`         ENUM('caza','recoleccion','mixta') NOT NULL, // Hunting, Collecting items, Mixed
+    `exp_base`     INT NOT NULL,
+    `exp_job`      INT NOT NULL,
+    `zeny`         INT NOT NULL,
+    `es_temporal`  BOOLEAN NOT NULL DEFAULT FALSE,
+    `fecha_inicio` DATETIME NULL,
+    `fecha_fin`    DATETIME NULL,
+    `es_repetible` BOOLEAN NOT NULL DEFAULT FALSE,
+    `cooldown`     INT NOT NULL DEFAULT 0,
+    `job`          INT NOT NULL DEFAULT 0,         -- 0 = misión general para cualquier job 
+    `nivel_minimo` INT NOT NULL DEFAULT 0,
+    `nivel_maximo` INT NOT NULL DEFAULT 0,
+    PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `ObjetivosMision` (
+  `id`                INT NOT NULL AUTO_INCREMENT,
+  `id_mision`         INT NOT NULL,
+  `tipo`              ENUM('caza','recoleccion') NOT NULL,
+  `objetivo_id`       INT NOT NULL,
+  `objetivo_cantidad` INT NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `ManejadorMision` (
+  `id`            INT NOT NULL AUTO_INCREMENT,
+  `id_mision`     INT NOT NULL,
+  `id_personaje`  INT NOT NULL,
+  `fecha_aceptada`   DATETIME NOT NULL,
+  `fecha_entregada`  DATETIME NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `RecompensaMision` (
+  `id`          INT NOT NULL AUTO_INCREMENT,
+  `id_mision`   INT NOT NULL,
+  `id_objeto`     INT NOT NULL,
+  `cantidad`    INT NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- Misiones diarias con sus recompensas de LatamRO
+-- En progreso, cuando termine de depurar las consultas SQL
+
+-- Misiones de ejemplos de testing
+INSERT INTO `Mision` 
+	(`nombre`, `descripcion`, `tipo`, `exp_base`, `exp_job`, `zeny`, `es_temporal`, `fecha_inicio`, `fecha_fin`, `es_repetible`, `cooldown`, `job`, `nivel_minimo`, `nivel_maximo`)
+VALUES 
+	('Caza de Porings', 'Hay alguien que no quiere dar la cara, dice que no le gustan los Porings.', 'caza', 750, 300, 100, FALSE, NULL, NULL, TRUE, 3600, 0, 1, 10),
+	('Caza de Willow', 'Hay alguien que no quiere dar la cara, dice que no le gustan los Willows.', 'caza', 800, 350, 100, FALSE, NULL, NULL, TRUE, 0, 0, 11, 20),
+	('Caza de Lunatic', 'Hay alguien que no quiere dar la cara, dice que no le gustan los Lunatic.', 'caza', 750, 300, 100, FALSE, NULL, NULL, TRUE, 0, 1, 21, 30),
+	('Caza de Drops 1', 'Hay alguien que no quiere dar la cara, dice que no le gustan los Drops 1.', 'caza', 750, 300, 100, TRUE, '2025-05-01 00:00:00', '2025-06-01 00:00:00', FALSE, 0, 0, 31, 40),
+    ('Caza de Drops 2', 'Hay alguien que no quiere dar la cara, dice que no le gustan los Drops 2.', 'caza', 750, 300, 100, TRUE, '2025-03-01 00:00:00', '2025-04-01 00:00:00', FALSE, 0, 0, 31, 40),
+    ('Caza de Drops 3', 'Hay alguien que no quiere dar la cara, dice que no le gustan los Drops 3.', 'caza', 750, 300, 100, TRUE, '2025-05-01 00:00:00', '2025-05-11 00:00:00', TRUE, 3600, 2, 31, 40),
+	('Caza de Drops 4', 'Hay alguien que no quiere dar la cara, dice que no le gustan los Drops 4.', 'caza', 750, 300, 100, TRUE, '2025-05-01 00:00:00', '2025-05-11 00:00:00', TRUE, 0, 0, 31, 40),
+	('Recolección de Tréboles', 'Un aldeano necesita tréboles para su hija.', 'recoleccion', 0, 0, 1000, FALSE, NULL, NULL, FALSE, 0, 0, 31, 50),
+    ('Recolección de Crisálidas', 'Un aldeano necesita crisálidas para reparaciones.', 'recoleccion', 750, 300, 100, FALSE, NULL, NULL, TRUE, 0, 0, 31, 50),
+    ('Recolección de Cáscaras', 'Un aldeano necesita cáscaras de chonchon para reforzar escudos.', 'recoleccion', 750, 300, 100, FALSE, NULL, NULL, TRUE, 3600, 0, 31, 50),
+	('Epidemia de Huevos', 'Están surgiendo muchos huevos de Peco-Peco, hay que controlar la población.', 'mixta', 800, 800, 1000, TRUE, '2025-05-01 00:00:00', '2025-05-10 00:00:00', TRUE, 3600, 0, 31, 50),
+	('Mision 99', 'Simplemente por ser 91-99.', 'caza', 800, 800, 1000, FALSE, NULL, NULL, FALSE, 0, 0, 91, 99);
+
+INSERT INTO `ObjetivosMision` 
+	(`id_mision`, `tipo`, `objetivo_id`, `objetivo_cantidad`)
+VALUES 
+	(1, 'caza', 2925, 20),
+	(2, 'caza', 2925, 20),
+	(3, 'caza', 1063, 20),
+	(4, 'caza', 1113, 10), 
+	(5, 'caza', 1113, 20), 
+	(6, 'caza', 1113, 25), 
+	(7, 'caza', 1113, 30), 
+	(8, 'recoleccion', 705, 10),
+	(9, 'recoleccion', 915, 5), 
+	(10, 'recoleccion', 935, 10),
+	(11, 'recoleccion', 916, 5),
+	(11, 'recoleccion', 949, 5),
+	(11, 'caza', 1047, 20);
+
+INSERT INTO `RecompensaMision`
+	(`id_mision`, `id_objeto`, `cantidad`)
+VALUES
+	(8, 501, 5),
+	(9, 502, 5),
+	(12, 6909, 10),
+    (12, 12883, 10);
+
+-- Misiones completadas y en progreso, para testing ; Char_id 150000 swordman lv35
+INSERT INTO `ManejadorMision` 
+	(`id_mision`, `id_personaje`, `fecha_aceptada`, `fecha_entregada`)
+VALUES 
+	(3, 150000, NOW() - INTERVAL 1 MONTH - INTERVAL 1 HOUR, NOW() - INTERVAL 1 MONTH),
+	(9, 150000, NOW(), NULL),
+    (3, 150000, NOW() - ITERVAL 2 HOUR, NOW() - INTERVAL 1 HOUR);
+*/
+
+moc_para01,33,35,3	script	Tablón de Misiones#0::tablonquest	857,{
+	.@npcName$ = "[^FF7700Tablón de Misiones^000000]";
+    if (!callfunc("F_HasEdenGroupMark")) {
+		mes .@npcName$;
+		mes "Aquí encontrarás muchas peticiones de ciudadanos preocupados.";
+		mes "Debes pertenecer al Grupo Edén y portar la ^FF0000Marca del Grupo Edén^000000.";
+		mes "Solo los aventureros verificados pueden utilizar el tablón.";
+		close;
+	}
+	mes .@npcName$;
+	mes "¡Aventureros!, ¡trotamundos!, ¡apúntense para mejorar Rune-Midgard!";
+	mes "Aquí encontrarás muchas peticiones de ciudadanos preocupados.";
+	mes "Ayúdalos con sus tareas y recibirás recompensas de todo tipo.";
+	next;
+	switch(select("Buscar misiones disponibles.","Entregar misiones.","Consejos.","Salir.")) {
+		case 1:
+			mes .@npcName$;
+			mes "Aquí tienes las misiones de caza disponibles.";
+			next;
+			// recibe: char_id, job_id, char_level, tipo_mision (caza, recoleccion, mixta)
+			.@query$ = callfunc("getMisionesDisponibles", getcharid(0), Class, BaseLevel, "caza");
+			// devuelve: id, nombre, descripcion, exp_base, exp_job, zeny, es_temporal, fecha_inicio, fecha_fin, es_repetible, cooldown, nivel_minimo, nivel_maximo
+			.@nb = query_sql(.@query$, .@id, .@nombre$, .@desc$, .@exp_base, .@exp_job, .@zeny, .@temporal, .@fecha_inicio, .@fecha_fin, .@repetible, .@cooldown, .@nivel_minimo, .@nivel_maximo);
+			if (.@nb) {
+				setarray .@questList$[0], "";
+				for (.@i = 0; .@i < .@nb; .@i += 1) {
+					.@questList$[.@i] = .@nombre$[.@i] + " Lv. [" + .@nivel_minimo[.@i] + "~" + .@nivel_maximo[.@i] + "]";
+					debugmes .@questList$[.@i];
+				}	
+				.@selected = select(implode(.@questList$, ":")) - 1;
+				mes .@npcName$;
+				mes "Misión: ^FF0000" + .@nombre$[.@selected] + "^000000.";
+				mes .@desc$[.@selected];
+				mes "Temporal: " + .@temporal[.@selected];
+				mes "Repetible: " + .@repetible[.@selected];
+				mes "EXP Base: " + .@exp_base[.@selected];
+				mes "EXP Job: " + .@exp_job[.@selected];
+			} else {
+				mes .@npcName$;
+				mes "No hay misiones disponibles de momento.";
+			}
+			close;
+			
+		case 2:
+			mes .@npcName$;
+			mes "Entregar misiones";
+			close;
+			
+		case 3:
+			mes .@npcName$;
+			mes "Puedes utilizar el sistema de navegación para buscar dónde están ubicados los monstruos a cazar.";
+			mes "Recolecta " + mesitemicon(6909) + " " + mesitemlink(6909, true, "Miau Fruto") + " para poder utilizar el sistema de teletransporte del menú de navegación.";
+			next;
+			mes .@npcName$;
+			mes "- Las misiones repetibles tienen 1 día de cooldown.";
+			mes "- Puedes aceptar tantas misiones como tengas disponible.";
+			mes "- Puedes entregarlas aunque salgas del rango de nivel.";
+			close;
+			
+		case 4:
+			mes .@npcName$;
+			mes "Vuelve cuando quieras, trotamundos";
+			close;
+	}
+	
+    OnInit:
+        //function getMisionesDisponibles; // devuelve: id, nombre, descripcion, tipo, exp_base, exp_job, zeny, es_temporal, fecha_inicio, fecha_fin, es_repetible, cooldown, job, nivel_minimo, nivel_maximo
+        //function getMisionesDisponiblesEnCd; // devuelve: id, nombre, descripcion, tipo, cooldown_segundos, ultima_entrega, disponible_a, tiempo_restante
+        //function getMisionesPendientes; // devuelve: mision_id, nombre, descripcion, tipo, manejador_id, fecha_aceptada
+        //function getMisionesCompletadas; // devuelve: id, nombre, descripcion, tipo, fecha_aceptada, fecha_entregada
+        //function getObjetivosMision; // devuelve: tipo, objetivo_id (mob id o item id), objetivo_cantidad
+        //function entregarMision; // actualiza el registro de misiones y completa actualizando fecha de entrega
+        //function getRecompensasMision; // devuelve: exp_base, exp_job, zeny
+        //function getRecompensasExtras; // devuelve: id_objeto, cantidad
+
+    end;
+}
+
+/**
+* Get obtainable quest list by char_id, job_id, char_level
+*/
+function	script	getMisionesDisponibles	{
+	.@char_id = getarg(0);
+	.@job_id = getarg(1);
+	.@char_level = getarg(2);
+	.@quest_type$ = getarg(3);
+
+	.@sql$ = "" +
+		"SELECT " +
+		"  M.id, " +
+		"  M.nombre, " +
+		"  M.descripcion, " +
+		"  M.exp_base, " +
+		"  M.exp_job, " +
+		"  M.zeny, " +
+		"  M.es_temporal, " +
+		"  M.fecha_inicio, " +
+		"  M.fecha_fin, " +
+		"  M.es_repetible, " +
+		"  M.cooldown, " +
+		"  M.nivel_minimo, " +
+		"  M.nivel_maximo " +
+		"FROM " +
+		"	  Mision AS M " +
+		"WHERE " +
+		"	  M.tipo = '" + .@quest_type$ + "' " +
+		"AND " + 
+		"	 (M.job = 0 OR M.job = " + .@job_id + ") " +
+		"AND " +
+		"    (" + .@char_level + " BETWEEN M.nivel_minimo AND M.nivel_maximo) " +
+		"AND " +
+		"    NOT EXISTS ( " +
+		"        SELECT 1 " +
+		"        FROM ManejadorMision mm " +
+		"        WHERE mm.id_mision = M.id " +
+		"        AND mm.id_personaje = " + .@char_id + " " +
+		"        AND mm.fecha_entregada IS NULL " +
+		"    ) " +
+		"AND " +
+		"    NOT ( " +
+		"        M.es_repetible = FALSE " +
+		"        AND EXISTS ( " +
+		"            SELECT 1 " +
+		"            FROM ManejadorMision mm2 " +
+		"            WHERE mm2.id_mision = M.id " +
+		"            AND mm2.id_personaje = " + .@char_id + " " +
+		"            AND mm2.fecha_entregada IS NOT NULL " +
+		"        ) " +
+		"    ) " +
+		"AND " +
+		"    NOT ( " +
+		"        M.cooldown > 0 " +
+		"        AND EXISTS ( " +
+		"            SELECT 1 " +
+		"            FROM ManejadorMision mm3 " +
+		"            WHERE mm3.id_mision = M.id " +
+		"            AND mm3.id_personaje = " + .@char_id + " " +
+		"            AND mm3.fecha_entregada IS NOT NULL " +
+		"            AND mm3.fecha_entregada > DATE_SUB(NOW(), INTERVAL M.cooldown SECOND) " +
+		"        ) " +
+		"    ) " +
+		"AND " +
+		"    (M.es_temporal = FALSE " +
+		"        OR (NOW() BETWEEN M.fecha_inicio AND M.fecha_fin) " +
+		"    );";
+
+	return .@sql$;
+}
+
+/**
+* Get obtainable quest list on cooldown by char_id
+*/
+function	script	getMisionesDisponiblesEnCd	{
+	.@char_id = getarg(0);
+
+	.@sql$ = ""+
+	"    SELECT " +
+	"        M.id, " +
+	"        M.nombre, " +
+	"        M.descripcion, " +
+	"        M.cooldown AS cooldown_segundos, " +
+	"        h.last_entrega AS ultima_entrega, " +
+	"    DATE_ADD(h.last_entrega, INTERVAL M.cooldown SECOND) AS disponible_a, " +
+	"    TIMEDIFF( " +
+	"            DATE_ADD(h.last_entrega, INTERVAL M.cooldown SECOND), NOW() " +
+	"    ) AS tiempo_restante " +
+	"    FROM " +
+	"        Mision M " +
+	"    JOIN ( " +
+	"        SELECT " +
+	"            id_mision, " +
+	"        MAX(fecha_entregada) AS last_entrega " +
+	"        FROM " +
+	"            ManejadorMision " +
+	"        WHERE " +
+	"            id_personaje = " + .@char_id + " " +
+	"        AND fecha_entregada IS NOT NULL " +
+	"        GROUP BY id_mision " +
+	"    ) AS h ON M.id = h.id_mision " +
+	"    WHERE " +
+	"        M.cooldown  > 0 " +
+	"    AND DATE_ADD(h.last_entrega, INTERVAL M.cooldown SECOND) > NOW();";
+
+	return .@sql$;
+}
+
+/**
+* Get on progress quest list by char_id
+*/
+function	script	getMisionesPendientes	{
+	.@char_id = getarg(0);
+	
+	.@sql$ = "" + 
+		"   SELECT " +
+		"       M.id as mision_id, " +
+		"       M.nombre, " +
+		"       M.descripcion, " +
+		"       M.tipo, " +
+		"       mm.id as manejador_id, " +
+		"       mm.fecha_aceptada " +
+		"   FROM " +
+		"       Mision M " +
+		"   JOIN " +
+		"       ManejadorMision mm ON mm.id_mision = M.id " +
+		"   WHERE " +
+		"       mm.id_personaje = " + .@char_id + " " +
+		"   AND " +
+		"       mm.fecha_entregada IS NULL;";
+
+	return .@sql$;
+}
+
+/**
+* Get completed quest list by char_id
+*/
+function	script	getMisionesCompletadas	{
+	.@char_id = getarg(0);
+
+	.@sql$ = "" + 
+		"   SELECT " +
+		"       M.id, " +
+		"       M.nombre, " +
+		"       M.tipo, " +
+		"       mm.fecha_aceptada, " +
+		"       mm.fecha_entregada " +
+		"   FROM " +
+		"       ManejadorMision AS mm " +
+		"   JOIN Mision AS M " +
+		"       ON M.id = mm.id_mision " +
+		"   WHERE " +
+		"       mm.id_personaje = " + .@char_id + " " +
+		"       AND mm.fecha_entregada IS NOT NULL;";
+
+	return .@sql$;
+}
+
+/**
+* Get objectives list from quest quest_id
+*/
+function	script	getObjetivosMision	{
+	.@quest_id = getarg(0);
+
+	.@sql$ = "" +
+	"   SELECT " +
+	"       tipo, " +
+	"       objetivo_id, " +
+	"       objetivo_cantidad " +
+	"   FROM " +
+	"       ObjetivosMision " +
+	"   WHERE " +
+	"       id_mision = " + .@quest_id + ";";
+
+	return .@sql$;
+}
+
+/**
+* Turn in an ongoing quest by quest and char id
+*/
+function	script	entregarMision	{
+	.@quest_id = getarg(0);
+	.@char_id = getarg(1);
+
+	.@sql$ = "" + 
+		"   UPDATE ManejadorMision " +
+		"   SET fecha_entregada = NOW() " +
+		"   WHERE id_mision     = " + .@quest_id + " " +
+		"   AND id_personaje    = " + .@char_id + " " +
+		"   AND fecha_entregada IS NULL;";
+
+	return .@sql$;
+}
+
+/**
+* Receive quest rewards by quest_id (base exp, job exp and zeny)
+*/
+function	script	getRecompensasMision	{
+	.@quest_id = getarg(0);
+
+	.@sql$ = ""+
+		"   SELECT " + 
+		"       exp_base, " + 
+		"       exp_job, " + 
+		"       zeny " + 
+		"   FROM " + 
+		"       Mision " + 
+		"   WHERE " + 
+		"       id = " + .@quest_id + ";";
+
+	return .@sql$;
+}
+
+/**
+* Receive extra quest rewards by quest_id (if any in MisionRecompensas table)
+*/
+function	script	getRecompensasExtras	{
+	.@quest_id = getarg(0);
+
+	.@sql$ = "" +
+		"   SELECT " + 
+		"       id_objeto, " + 
+		"       cantidad " + 
+		"   FROM " + 
+		"       RecompensaMision " + 
+		"   WHERE " + 
+		"       id_mision = " + .@quest_id  + ";";
+
+	return .@sql$;
+}
