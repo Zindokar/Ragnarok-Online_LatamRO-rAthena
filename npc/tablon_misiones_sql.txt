@@ -56,59 +56,6 @@ CREATE TABLE `RecompensaMision` (
   `cantidad`    INT NOT NULL,
   PRIMARY KEY (`id`)
 );
-
--- Misiones diarias con sus recompensas de LatamRO
--- En progreso, cuando termine de depurar las consultas SQL
-
--- Misiones de ejemplos de testing
-INSERT INTO `Mision` 
-	(`nombre`, `descripcion`, `tipo`, `exp_base`, `exp_job`, `zeny`, `es_temporal`, `fecha_inicio`, `fecha_fin`, `es_repetible`, `cooldown`, `job`, `nivel_minimo`, `nivel_maximo`)
-VALUES 
-	('Caza de Porings', 'Hay alguien que no quiere dar la cara, dice que no le gustan los Porings.', 'caza', 750, 300, 100, FALSE, NULL, NULL, TRUE, 3600, 0, 1, 10),
-	('Caza de Willow', 'Hay alguien que no quiere dar la cara, dice que no le gustan los Willows.', 'caza', 800, 350, 100, FALSE, NULL, NULL, TRUE, 0, 0, 11, 20),
-	('Caza de Lunatic', 'Hay alguien que no quiere dar la cara, dice que no le gustan los Lunatic.', 'caza', 750, 300, 100, FALSE, NULL, NULL, TRUE, 0, 1, 21, 30),
-	('Caza de Drops 1', 'Hay alguien que no quiere dar la cara, dice que no le gustan los Drops 1.', 'caza', 750, 300, 100, TRUE, '2025-05-01 00:00:00', '2025-06-01 00:00:00', FALSE, 0, 0, 31, 40),
-    ('Caza de Drops 2', 'Hay alguien que no quiere dar la cara, dice que no le gustan los Drops 2.', 'caza', 750, 300, 100, TRUE, '2025-03-01 00:00:00', '2025-04-01 00:00:00', FALSE, 0, 0, 31, 40),
-    ('Caza de Drops 3', 'Hay alguien que no quiere dar la cara, dice que no le gustan los Drops 3.', 'caza', 750, 300, 100, TRUE, '2025-05-01 00:00:00', '2025-05-11 00:00:00', TRUE, 3600, 2, 31, 40),
-	('Caza de Drops 4', 'Hay alguien que no quiere dar la cara, dice que no le gustan los Drops 4.', 'caza', 750, 300, 100, TRUE, '2025-05-01 00:00:00', '2025-05-11 00:00:00', TRUE, 0, 0, 31, 40),
-	('Recolección de Tréboles', 'Un aldeano necesita tréboles para su hija.', 'recoleccion', 0, 0, 1000, FALSE, NULL, NULL, FALSE, 0, 0, 31, 50),
-    ('Recolección de Crisálidas', 'Un aldeano necesita crisálidas para reparaciones.', 'recoleccion', 750, 300, 100, FALSE, NULL, NULL, TRUE, 0, 0, 31, 50),
-    ('Recolección de Cáscaras', 'Un aldeano necesita cáscaras de chonchon para reforzar escudos.', 'recoleccion', 750, 300, 100, FALSE, NULL, NULL, TRUE, 3600, 0, 31, 50),
-	('Epidemia de Huevos', 'Están surgiendo muchos huevos de Peco-Peco, hay que controlar la población.', 'mixta', 800, 800, 1000, TRUE, '2025-05-01 00:00:00', '2025-05-10 00:00:00', TRUE, 3600, 0, 31, 50),
-	('Mision 99', 'Simplemente por ser 91-99.', 'caza', 800, 800, 1000, FALSE, NULL, NULL, FALSE, 0, 0, 91, 99);
-
-INSERT INTO `ObjetivosMision` 
-	(`id_mision`, `tipo`, `objetivo_id`, `objetivo_cantidad`)
-VALUES 
-	(1, 'caza', 2925, 20),
-	(2, 'caza', 2925, 20),
-	(3, 'caza', 1063, 20),
-	(4, 'caza', 1113, 10), 
-	(5, 'caza', 1113, 20), 
-	(6, 'caza', 1113, 25), 
-	(7, 'caza', 1113, 30), 
-	(8, 'recoleccion', 705, 10),
-	(9, 'recoleccion', 915, 5), 
-	(10, 'recoleccion', 935, 10),
-	(11, 'recoleccion', 916, 5),
-	(11, 'recoleccion', 949, 5),
-	(11, 'caza', 1047, 20);
-
-INSERT INTO `RecompensaMision`
-	(`id_mision`, `id_objeto`, `cantidad`)
-VALUES
-	(8, 501, 5),
-	(9, 502, 5),
-	(12, 6909, 10),
-    (12, 12883, 10);
-
--- Misiones completadas y en progreso, para testing ; Char_id 150000 swordman lv35
-INSERT INTO `ManejadorMision` 
-	(`id_mision`, `id_personaje`, `fecha_aceptada`, `fecha_entregada`)
-VALUES 
-	(3, 150000, NOW() - INTERVAL 1 MONTH - INTERVAL 1 HOUR, NOW() - INTERVAL 1 MONTH),
-	(9, 150000, NOW(), NULL),
-    (3, 150000, NOW() - ITERVAL 2 HOUR, NOW() - INTERVAL 1 HOUR);
 */
 
 moc_para01,33,35,3	script	Tablón de Misiones#0::tablonquest	857,{
@@ -127,27 +74,100 @@ moc_para01,33,35,3	script	Tablón de Misiones#0::tablonquest	857,{
 	next;
 	switch(select("Buscar misiones disponibles.","Entregar misiones.","Consejos.","Salir.")) {
 		case 1:
-			mes .@npcName$;
-			mes "Aquí tienes las misiones de caza disponibles.";
-			next;
 			// recibe: char_id, job_id, char_level, tipo_mision (caza, recoleccion, mixta)
-			.@query$ = callfunc("getMisionesDisponibles", getcharid(0), Class, BaseLevel, "caza");
+			.@query$ = callfunc("getMisionesDisponibles", getcharid(0), Class, BaseLevel);
 			// devuelve: id, nombre, descripcion, exp_base, exp_job, zeny, es_temporal, fecha_inicio, fecha_fin, es_repetible, cooldown, nivel_minimo, nivel_maximo
-			.@nb = query_sql(.@query$, .@id, .@nombre$, .@desc$, .@exp_base, .@exp_job, .@zeny, .@temporal, .@fecha_inicio, .@fecha_fin, .@repetible, .@cooldown, .@nivel_minimo, .@nivel_maximo);
+			.@nb = query_sql(.@query$, .@id, .@nombre$, .@desc$, .@tipo_mision$, .@exp_base, .@exp_job, .@zeny, .@temporal, .@fecha_inicio, .@fecha_fin, .@repetible, .@cooldown, .@nivel_minimo, .@nivel_maximo);
 			if (.@nb) {
 				setarray .@questList$[0], "";
 				for (.@i = 0; .@i < .@nb; .@i += 1) {
 					.@questList$[.@i] = .@nombre$[.@i] + " Lv. [" + .@nivel_minimo[.@i] + "~" + .@nivel_maximo[.@i] + "]";
-					debugmes .@questList$[.@i];
 				}	
 				.@selected = select(implode(.@questList$, ":")) - 1;
 				mes .@npcName$;
 				mes "Misión: ^FF0000" + .@nombre$[.@selected] + "^000000.";
 				mes .@desc$[.@selected];
-				mes "Temporal: " + .@temporal[.@selected];
-				mes "Repetible: " + .@repetible[.@selected];
-				mes "EXP Base: " + .@exp_base[.@selected];
-				mes "EXP Job: " + .@exp_job[.@selected];
+				if (.@repetible[.@selected]) {
+					if (.@cooldown[.@selected]) {
+							set .@horas, .@cooldown[.@selected] / 3600;
+							set .@minutos, (.@cooldown[.@selected] % 3600) / 60;
+							set .@segundos, .@cooldown[.@selected] % 60;
+							mes "^0000FFEsta misión es repetible^000000 y ^FF0000tiene un cooldown^000000 de " + .@horas + " horas " + .@minutos + " minutos y " + .@segundos + " segundos.";
+					} else {
+						mes "^0000FFEsta misión es repetible sin cooldown.^000000";
+					}
+				} else {
+					mes "^FF0000Esta misión sólo se puede hacer una vez.^000000";
+				}
+				next;
+				mes .@npcName$;
+				// recibe: quest_id
+				.@sql$ = callfunc ("getObjetivosMision", .@id[.@selected]);
+				// devuelve: tipo, objetivo_id (mob id o item id), objetivo_cantidad
+				.@nb = query_sql(.@sql$, .@objetivoTipo$, .@objetivoId, .@objetivoCantidad);
+				if (!.@nb) {
+					mes "^FF0000Error, no hay objetivos. Contacta con el administador, quest id^000000: ^0000FF" + .@id[.@selected] + "^000000.";
+					close;
+				}
+				if (strcmp(.@tipo_mision$,"caza") == 0) {
+					mes "Caza los siguientes monstruos:";
+				} else if ((strcmp(.@tipo_mision$,"recoleccion") == 0)) {
+					mes "Recolecta los siguientes items:";
+				} else {
+					mes "Recolecta y Caza lo siguiente:";
+				}
+				mes "^FF0000-----^000000 ^0000FFObjetivos^000000 ^FF0000----^000000-";
+				for (.@i = 0; .@i < .@nb; .@i++) {
+					if (strcmp(.@objetivoTipo$[.@i],"caza") == 0) {
+						mes "- " + getmonsterinfo(.@objetivoId[.@i], MOB_NAME) + " x" + .@objetivoCantidad[.@i];
+					} else {
+						mes mesitemicon(.@objetivoId[.@i]) + " | " + mesitemlink(.@objetivoId[.@i]) + "  x" + .@objetivoCantidad[.@i];
+					}
+				}
+				next;
+				mes .@npcName$;
+				mes "^FF0000-----^000000 ^0000FFRecompensas^000000 ^FF0000----^000000-";
+				if (.@exp_base[.@selected]) {
+					mes "EXP Base: " + .@exp_base[.@selected];
+				}
+				if (.@exp_job[.@selected]) {
+					mes "EXP Job: " + .@exp_job[.@selected];
+				}
+				if (.@zeny[.@selected]) {
+					mes "Zeny: " + .@zeny[.@selected];
+				}
+				.@query$ = callfunc("getRecompensasExtras", .@id[.@selected]);
+				// recibe: quest_id
+				.@nb = query_sql(.@query$, .@item_id, .@cantidad);
+				// devuelve: id_objeto, cantidad
+				if (.@nb) {
+					for (.@i = 0; .@i < .@nb; .@i += 1) {
+						mes mesitemicon(.@item_id[.@i]) + " | " + mesitemlink(.@item_id[.@i]) + "  x" + .@cantidad[.@i];
+					}
+				}
+				next;
+				mes .@npcName$;
+				mes "¿Aceptas la misión?";
+				next;
+				if (select("Sí", "No") == 2) {
+					mes .@npcName$;
+					mes "Vuelve cuando quieras.";
+					close;
+				}
+				.@sql$ = callfunc("asignarMision", .@id[.@selected], getcharid(0));
+				query_sql(.@sql$);
+				if (strcmp(.@tipo_mision$,"caza") == 0 || (strcmp(.@tipo_mision$,"mixta") == 0)) {
+					.@newQuestPosition = getarraysize(questIdList);
+					questIdList[.@newQuestPosition] = .@id[.@selected];
+					for (.@i = 0; .@i < getarraysize(.@objetivoId); .@i += 1) {
+						if (strcmp(.@objetivoTipo$[.@i],"caza") == 0) {
+							setd("questMonsterId_" + .@id[.@selected] + "[" + .@i + "]", .@objetivoId[.@i]);
+							setd("questMonsterAmount_" + .@id[.@selected] + "[" + .@i + "]", .@objetivoCantidad[.@i]);
+							setd("questMonsterKillCount_" + .@id[.@selected] + "[" + .@i + "]", 0);
+							dispbottom "Asignando misión de caza: " + getmonsterinfo(.@objetivoId[.@i], MOB_NAME) + " x" + .@objetivoCantidad[.@i];
+						}
+					}
+				}
 			} else {
 				mes .@npcName$;
 				mes "No hay misiones disponibles de momento.";
@@ -156,7 +176,96 @@ moc_para01,33,35,3	script	Tablón de Misiones#0::tablonquest	857,{
 			
 		case 2:
 			mes .@npcName$;
-			mes "Entregar misiones";
+			mes "Vamos a ver qué misiones tienes pendientes...";
+			next;
+			.@sql$ = callfunc("getMisionesPendientes", getcharid(0));
+			.@nb = query_sql(.@sql$, .@id, .@nombre$, .@tipo$);
+			if (!.@nb) {
+				mes .@npcName$;
+				mes "No tienes misiones pendientes.";
+				close;
+			}
+			setarray .@questList$[0], "";
+			for (.@i = 0; .@i < .@nb; .@i++) {
+				.@questList$[.@i] = "[" + strtoupper(.@tipo$[.@i]) + "] " + .@nombre$[.@i];
+			}
+			.@selected = select(implode(.@questList$, ":")) - 1;
+			.@idMision = .@id[.@selected];
+			.@tipoMision$ = .@tipo$[.@selected];
+			mes .@npcName$;
+			mes "Entregando: " + .@nombre$[.@selected];
+			mes "Vamos a comprobar que cumplas los requisitos de la misión.";
+			next;
+			.@sql$ = callfunc("getObjetivosMision", .@idMision);
+			.@nb = query_sql(.@sql$, .@objetivoTipo$, .@objetivoId, .@objetivoCantidad);
+			.@cumpleRequisitos = 1;
+			if (.@tipoMision$ == "recoleccion" || .@tipoMision$ == "mixta") {
+				mes "^0000FFRecuento de objetos:^000000";
+				for (.@i = 0; .@i < .@nb; .@i++) {
+					if (.@objetivoTipo$[.@i] == "recoleccion") {
+						.@cuenta = countitem(.@objetivoId[.@i]);
+						mes "- Llevas: " + getitemname(.@objetivoId[.@i]) + ": ^FF7700" + .@cuenta + "/" + .@objetivoCantidad[.@i] + "^000000";
+						if (.@cuenta < .@objetivoCantidad[.@i]) .@cumpleRequisitos = 0;
+					}
+				}
+			}
+			if (.@tipoMision$ == "caza" || .@tipoMision$ == "mixta") {
+				mes "^0000FFRecuento de monstruos cazados:^000000";
+				for (.@i = 0; .@i < .@nb; .@i++) {
+					if (.@objetivoTipo$[.@i] == "caza") {
+						.@size = getarraysize(getd("questMonsterId_" + .@idMision));
+						.@found = 0;
+						for (.@j = 0; .@j < .@size; .@j++) {
+							if (getd("questMonsterId_" + .@idMision + "[" + .@j + "]") == .@objetivoId[.@i]) {
+								.@found = 1;
+								.@killCount = getd("questMonsterKillCount_" + .@idMision + "[" + .@j + "]");
+								mes "- " + getmonsterinfo(.@objetivoId[.@i], MOB_NAME) + ": ^FF7700" + .@killCount + "/" + .@objetivoCantidad[.@i] + "^000000";
+								if (.@killCount < .@objetivoCantidad[.@i]) .@cumpleRequisitos = 0;
+							}
+						}
+						if (!.@found) {
+							.@cumpleRequisitos = 0;
+						}
+					}
+				}
+			}
+			if (!.@cumpleRequisitos) {
+				mes "^FF0000No cumples aún con todos los requisitos.^000000";
+				close;
+			}
+			mes "^00AA00¡Has cumplido todos los objetivos!^000000";
+			mes "^FF0000---^000000 ^0000FFRecomensas obtenidas^000000 ^FF0000---^000000-";
+			.@sql$ = callfunc("getRecompensasMision", .@idMision);
+			query_sql(.@sql$, .@exp_base, .@exp_job, .@zeny);
+			if (.@exp_base) { 
+				getexp .@exp_base, 0; 
+				mes "EXP Base: ^FF7700" + .@exp_base + "^000000"; 
+			}
+			if (.@exp_job) { 
+				getexp 0, .@exp_job; 
+				mes "EXP Job: ^FF7700" + .@exp_job + "^000000"; 
+			}
+			if (.@zeny) { 
+				Zeny += .@zeny; 
+				mes "Zeny: ^FF7700"+.@zeny+"^000000"; 
+			}
+			.@sql$ = callfunc("getRecompensasExtras", .@idMision);
+			.@nb_rewards = query_sql(.@sql$, .@item_id, .@cantidad);
+			for (.@i = 0; .@i < .@nb_rewards; .@i++) {
+				getitem .@item_id[.@i], .@cantidad[.@i];
+				mes "Objeto: " + getitemname(.@item_id[.@i]) + " x^FF7700" + .@cantidad[.@i] + "^000000";
+			}
+			.@sql$ = callfunc("entregarMision", .@idMision, getcharid(0));
+			query_sql(.@sql$);
+			deletearray(getd("questMonsterId_" + .@idMision));
+			deletearray(getd("questMonsterAmount_" + .@idMision));
+			deletearray(getd("questMonsterKillCount_" + .@idMision));
+			for (.@k = 0; .@k < getarraysize(questIdList); .@k++) {
+				if (questIdList[.@k] == .@idMision) {
+					deletearray questIdList[.@k], 1;
+					break;
+				}
+			}
 			close;
 			
 		case 3:
@@ -178,15 +287,35 @@ moc_para01,33,35,3	script	Tablón de Misiones#0::tablonquest	857,{
 	
     OnInit:
         //function getMisionesDisponibles; // devuelve: id, nombre, descripcion, tipo, exp_base, exp_job, zeny, es_temporal, fecha_inicio, fecha_fin, es_repetible, cooldown, job, nivel_minimo, nivel_maximo
-        //function getMisionesDisponiblesEnCd; // devuelve: id, nombre, descripcion, tipo, cooldown_segundos, ultima_entrega, disponible_a, tiempo_restante
-        //function getMisionesPendientes; // devuelve: mision_id, nombre, descripcion, tipo, manejador_id, fecha_aceptada
-        //function getMisionesCompletadas; // devuelve: id, nombre, descripcion, tipo, fecha_aceptada, fecha_entregada
+        //function getMisionesDisponiblesEnCd; // devuelve: id, nombre,, tipo, cooldown_segundos, ultima_entrega, disponible_a, tiempo_restante
+        //function getMisionesPendientes; // devuelve: mision_id, nombre, tipo, manejador_id
+        //function getMisionesCompletadas; // devuelve: id, nombre, tipo, fecha_entrega, fecha_completada
         //function getObjetivosMision; // devuelve: tipo, objetivo_id (mob id o item id), objetivo_cantidad
         //function entregarMision; // actualiza el registro de misiones y completa actualizando fecha de entrega
         //function getRecompensasMision; // devuelve: exp_base, exp_job, zeny
         //function getRecompensasExtras; // devuelve: id_objeto, cantidad
 
     end;
+
+	OnNPCKillEvent:
+		for (.@m = 0; .@m < getarraysize(questIdList); .@m++) {
+			.@idMisionActual = questIdList[.@m];
+			.@size = getarraysize(getd("questMonsterId_" + .@idMisionActual));
+			for (.@i = 0; .@i < .@size; .@i++) {
+				if (killedrid == getd("questMonsterId_" + .@idMisionActual + "[" + .@i + "]")) {
+					.@varKillCount$ = "questMonsterKillCount_" + .@idMisionActual + "[" + .@i + "]";
+					.@varAmountNeeded$ = "questMonsterAmount_" + .@idMisionActual + "[" + .@i + "]";
+					if (getd(.@varKillCount$) < getd(.@varAmountNeeded$)) {
+						setd(.@varKillCount$, getd(.@varKillCount$) + 1);
+						dispbottom "[Cazando] " + getmonsterinfo(killedrid, MOB_NAME) + " (" + getd(.@varKillCount$) + "/" + getd(.@varAmountNeeded$) + ")", 0xFFFFFF;
+					}
+					if (getd(.@varKillCount$) == getd(.@varAmountNeeded$)) {
+						dispbottom "^00CC00¡Has completado un objetivo de misión!:^000000 " + getmonsterinfo(killedrid, MOB_NAME), 0xFFFFFF;
+					}
+				}
+			}
+		}
+	end;
 }
 
 /**
@@ -196,13 +325,13 @@ function	script	getMisionesDisponibles	{
 	.@char_id = getarg(0);
 	.@job_id = getarg(1);
 	.@char_level = getarg(2);
-	.@quest_type$ = getarg(3);
 
 	.@sql$ = "" +
 		"SELECT " +
 		"  M.id, " +
 		"  M.nombre, " +
 		"  M.descripcion, " +
+		"  M.tipo, " + 
 		"  M.exp_base, " +
 		"  M.exp_job, " +
 		"  M.zeny, " +
@@ -216,8 +345,6 @@ function	script	getMisionesDisponibles	{
 		"FROM " +
 		"	  Mision AS M " +
 		"WHERE " +
-		"	  M.tipo = '" + .@quest_type$ + "' " +
-		"AND " + 
 		"	 (M.job = 0 OR M.job = " + .@job_id + ") " +
 		"AND " +
 		"    (" + .@char_level + " BETWEEN M.nivel_minimo AND M.nivel_maximo) " +
@@ -270,7 +397,6 @@ function	script	getMisionesDisponiblesEnCd	{
 	"    SELECT " +
 	"        M.id, " +
 	"        M.nombre, " +
-	"        M.descripcion, " +
 	"        M.cooldown AS cooldown_segundos, " +
 	"        h.last_entrega AS ultima_entrega, " +
 	"    DATE_ADD(h.last_entrega, INTERVAL M.cooldown SECOND) AS disponible_a, " +
@@ -307,10 +433,8 @@ function	script	getMisionesPendientes	{
 		"   SELECT " +
 		"       M.id as mision_id, " +
 		"       M.nombre, " +
-		"       M.descripcion, " +
 		"       M.tipo, " +
-		"       mm.id as manejador_id, " +
-		"       mm.fecha_aceptada " +
+		"       mm.id as manejador_id " +
 		"   FROM " +
 		"       Mision M " +
 		"   JOIN " +
@@ -362,6 +486,22 @@ function	script	getObjetivosMision	{
 	"       ObjetivosMision " +
 	"   WHERE " +
 	"       id_mision = " + .@quest_id + ";";
+
+	return .@sql$;
+}
+
+/**
+* Assign quest to a character
+*/
+function	script	asignarMision	{
+	.@quest_id = getarg(0);
+	.@char_id = getarg(1);
+
+	.@sql$ = "" +
+	"	INSERT INTO `ManejadorMision` " +
+	"	(`id_mision`, `id_personaje`, `fecha_aceptada`) " +
+	"	VALUES  " +
+	"		(" + .@quest_id + ", " + .@char_id + ", NOW());";
 
 	return .@sql$;
 }
