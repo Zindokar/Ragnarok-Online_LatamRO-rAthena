@@ -1,0 +1,751 @@
+//===== rAthena Script ======================================= 
+//= Conjunto de Scripts utilizados para el pack
+//===== By: ==================================================
+//= Zindokar (Rokimoki)
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Dynamic NPCs for LatamRO Scripts and OBT rewards
+//= Edward's Zonda Bell: 22908
+//= Elise's Zonda Bell: 22907
+//= Kafra's Bell: 23648
+//= Merchant's Bell: 23647
+//= Premium Service Staff: 23165
+//= CashShop NPC with limited and seasonal items.
+//= Event rewards from LatamRO (ROLA) OBT.
+//============================================================ 
+
+//=======================================================
+// Edward's Zonda Bell
+//=======================================================
+prontera,1,1,3	script	Edward Zonda#bell	10243,{
+	.@npc$ = "[^FF0000Edward Zonda^000000]";
+	callfunc("zondaScript", .@npc$);
+	close;
+}
+
+//=======================================================
+// Elise's Zonda Bell
+//=======================================================
+prontera,2,1,3	script	Elise Zonda#bell	10209,{
+	.@npc$ = "[^0000FFElise Zonda^000000]";
+	callfunc("zondaScript", .@npc$);
+	close;
+}
+
+function	script	zondaScript	{
+	.@nombreNPC$ = getarg(0);
+	.@ahora = gettimetick(2);
+	.@dia_actual = (.@ahora - 14400) / 86400;
+	if (userBasicBuffUsageTick == 0 || .@dia_actual > userBasicBuffUsageTick) {
+		userBasicBuffUsage = 0;
+		userBasicBuffUsageTick = .@dia_actual;
+	}
+	.@basicBuffUsageLimit = 2;
+	.@basicBuffUsageLimitString$ = userBasicBuffUsage + "/" + .@basicBuffUsageLimit;
+	mes .@nombreNPC$;
+	mes "I can offer you some Premium services.";
+	mes "Watch out, experience and drop bonuses can replace some manual buffs you may already have.";
+	next;
+	switch(select("Return to Save Point.","30% EXP and DROP for 30 muntes. Uses " + .@basicBuffUsageLimitString$,"30% EXP and DROP 24 hours.","Sell items.","Reset Skills.","Reset Stats.","Nothing.")) {
+		case 1:
+			mes .@nombreNPC$;
+			mes "Okay, let's go!";
+			close2;
+			warp "SavePoint", 0, 0;
+			end;
+			
+		case 2:
+			mes .@nombreNPC$;
+			if (userBasicBuffUsage >= .@basicBuffUsageLimit) {
+				mes "You reached daily limit usage.";
+				mes "Try again after 4:00 am server time.";
+				set .@proximoReset, ((.@dia_actual + 1) * 86400) + 14400;
+				set .@secondsLeft, .@proximoReset - .@ahora;
+				set .@hours, .@secondsLeft / 3600;
+				set .@minutes, (.@secondsLeft % 3600) / 60;
+				set .@seconds, .@secondsLeft % 60;
+				mes "Time left: " + .@hours + " horas, " + .@minutes + " minutos, " + .@seconds + " segundos.";
+				close;
+			}
+			mes "I need 5 Nyangvine.";
+			next;
+			if (countitem(6909) >= 5) {
+				mes .@nombreNPC$;
+				mes "Enjoy this service, see you.";
+				close2;
+				sc_start SC_EXPBOOST, 1800000, 30;
+				sc_start SC_ITEMBOOST, 1800000, 30;
+				delitem 6909, 5;
+				userBasicBuffUsage += 1;
+				end;
+			} else {
+				mes .@nombreNPC$;
+				mes "You don't have enough Nyangvine.";
+				close;
+			}
+			
+		case 3:
+			mes .@nombreNPC$;
+			mes "I need 20 Nyangvine.";
+			next;
+			if (countitem(6909) >= 20) {
+				mes .@nombreNPC$;
+				mes "Enjoy this service, see you.";
+				close2;
+				sc_start SC_EXPBOOST, 86400000, 30;
+				sc_start SC_ITEMBOOST, 86400000, 30;
+				end;
+			} else {
+				mes .@nombreNPC$;
+				mes "You don't have enough Nyangvine.";
+				close;
+			}
+			
+		case 4:
+			mes .@nombreNPC$;
+			mes "Opening selling shop...";
+			close2;
+			callshop "Vendedor Bell#bell", 2;
+			end;
+			
+		case 5:
+			mes .@nombreNPC$;
+			mes "In order to reset skills I need 100x Nyangvine.";
+			next;
+			switch(select("Reset skills","Not yet.")) {
+				case 1:
+					mes .@nombreNPC$;
+					if (countitem(6909) >= 100) {
+						mes "Remember to assign the points smarter.";
+						close2;
+						specialeffect2 EF_JOBLVUP;
+						delitem 6909, 100;
+						resetskill();
+						end;
+					} else {
+						mes "You don't have enough Nyangvine.";
+						close;
+					}
+					
+				case 2:
+					mes .@nombreNPC$;
+					mes "Come back any time.";
+					close;
+			}
+			
+		case 6:
+			mes .@nombreNPC$;
+			mes "In order to reset skills I need 100x Nyangvine.";
+			next;
+			switch(select("Reset stats","Not yet.")) {
+				case 1:
+					mes .@nombreNPC$;
+					if (countitem(6909) >= 100) {
+						mes "Remember to redistribute your stats smarter.";
+						close2;
+						specialeffect2 EF_NAPALMBEAT; // EF_LVUP gives client error
+						delitem 6909, 100;
+						resetstatus();
+						end;
+					} else {
+						mes "You don't have enough Nyangvine.";
+						close;
+					}
+					
+				case 2:
+					mes .@nombreNPC$;
+					mes "Come back any time.";
+					close;
+			}
+			
+		case 7:
+			mes .@nombreNPC$;
+			mes "As you wish.";
+			close;
+	}
+}
+
+//=======================================================
+// Kafra's Bell
+//=======================================================
+prontera,3,1,3	script	Kafra#bell	581,{
+	mes "[^FF0000Kafra Employee^000000]";
+	mes "Kafra at your service.";
+	mes "How can I help you?";
+	next;
+	switch(select("I want to open my Storage.","Nothing.")) {
+		case 1:
+			if (!callfunc("F_CanOpenStorage")) {
+	      mes "[^FF0000Kafra Employee^000000]";
+				mes "I'm sorry but you can't open the Storage.";
+				mes "Come back when you have learned the required skills to use it.";
+				close;
+			}
+			mes "[^FF0000Kafra Employee^000000]";
+			mes "Which Storage?";
+			next;
+			switch(select("Normal Storage.","Premium Storage.")) {
+				case 1:
+					callfunc("F_CheckKafCode");
+					close2;
+					openstorage;
+					end;
+					
+				case 2:
+					if (vip_status(VIP_STATUS_ACTIVE)) {
+						mes "[^FF0000Kafra Employee^000000]";
+						mes "Take your time organizing your items.";
+						callfunc("F_CheckKafCode");
+						close2;
+						openstorage2 1, STOR_MODE_ALL;
+						end;
+					} else {
+						mes "[^FF0000Kafra Employee^000000]";
+						mes "You are not VIP, I can let you withdraw items.";
+						callfunc("F_CheckKafCode");
+						close2;
+						openstorage2 1, STOR_MODE_GET;
+						end;
+					}
+			}
+			end;
+			
+		case 2:
+			mes "[^FF0000Kafra Employee^000000]";
+			mes "See you soon.";
+			close;
+			
+	}
+	end;
+}
+
+//=======================================================
+// Merchant's Bell
+//=======================================================
+prontera,4,1,3	script	Street Vendor#bell	900,{
+	mes "[^FF0000Street Vendor^000000]";
+	mes "Hello, let's do business.";
+	next;
+	switch(select("Tool dealer.","Buy ammunition.","Sell items.","Exit")) {
+		case 1:
+			mes "[^FF0000Street Vendor^000000]";
+			mes "Buy a lot of things.";
+			close2;
+			callshop "Vendedor Bell#bell", 1;
+			end;
+			
+		case 2:
+			mes "[^FF0000Street Vendor^000000]";
+			mes I have basic ammunition for sale.";
+			close2;
+			callshop "Municion Bell#bell", 1;
+			end;
+			
+		case 3:
+			mes "[^FF0000Street Vendor^000000]";
+			mes "I am interested on your items found in your adventures.";
+			close2;
+			callshop "Vendedor Bell#bell", 2;
+			end;
+			
+		case 4:
+			mes "[^FF0000Street Vendor^000000]";
+			mes "I will not be here much more time.";
+			close;
+	}
+	end;
+}
+-	shop	Vendedor Bell#bell	-1,611:-1,602:-1,601:-1,23280:-1,23288:-1,645:-1,656:-1,657:-1,501:-1,502:-1,503:-1,504:-1,506:-1,610:-1,713:-1,717:-1,1771:-1
+-	shop	Municion Bell#bell	-1,1750:-1,1770:-1,1752:-1,1751:-1,13200:-1,13221:-1,13222:-1
+
+//=======================================================
+// Premium Service Staff
+//=======================================================
+prontera,5,1,3	script	Lunar Warrior#bell	10298,{
+	if (!vip_status(VIP_STATUS_ACTIVE)) {
+		mes "[^0000FFLunar Warrior^000000]";
+		mes "You are not VIP, simple adventurer.";
+		mes "I can only talk yo VIP.";
+		close;
+	}
+	mes "[^0000FFLunar Warrior^000000]";
+	set .@secondsLeft, vip_status(VIP_STATUS_REMAINING);
+	set .@days, .@secondsLeft / 86400;
+	set .@hours, (.@secondsLeft % 86400) / 3600;
+	set .@minutes, (.@secondsLeft % 3600) / 60;
+	set .@seconds, .@secondsLeft % 60;
+	mes "VIP time left: " + .@days + " days " + .@hours + " hours " + .@minutes + " minutes " + .@seconds + " seconds.";
+  mes "I can offer you a variety of premium services during this time, some effects may be replaced if you already have those buff applied.";
+	next;
+	switch(select("+30% EXP (4 nyangvine)","+30% DROP (2 nyangvine)","0% Death penalty (8 nyangvine)","All buffs (10 nyangvine)", "Nothing")) {
+		case 1:
+			mes "[^0000FFLunar Warrior^000000]";
+			if (countitem(6909) >= 4) {
+				mes "Take advantage of the buffs and go leveling.";
+				close2;
+				sc_start SC_EXPBOOST, 1800000, 30;
+				sc_start SC_JEXPBOOST, 1800000, 30;
+				delitem 6909, 4;
+				end;
+			} else {
+				mes "You don't have enough Nyangvine.";
+				close;
+			}
+		case 2:
+			mes "[^0000FFLunar Warrior^000000]";
+			if (countitem(6909) >= 2) {
+				mes "Take advantage of the buffs and go farming.";
+				close2;
+				sc_start SC_ITEMBOOST, 1800000, 30;
+				delitem 6909, 2;
+				end;
+			} else {
+				mes "You don't have enough Nyangvine.";
+				close;
+			}
+		case 3:
+			mes "[^0000FFLunar Warrior^000000]";
+			if (countitem(6909) >= 8) {
+				mes "You can now go to dangerous zone so you can.";
+				close2;
+				sc_start SC_LIFEINSURANCE, 1800000, 0;
+				delitem 6909, 8;
+				end;
+			} else {
+				mes "You don't have enough Nyangvine.";
+				close;
+			}
+		case 4:
+			mes "[^0000FFLunar Warrior^000000]";
+			if (countitem(6909) >= 10) {
+				mes "Applying complete VIP package.";
+				close2;
+				sc_start SC_EXPBOOST, 1800000, 30;
+				sc_start SC_JEXPBOOST, 1800000, 30;
+				sc_start SC_ITEMBOOST, 1800000, 30;
+				sc_start SC_LIFEINSURANCE, 1800000, 0;
+				delitem 6909, 6;
+				end;
+			} else {
+				mes "You don't have enough Nyangvine.";
+				close;
+			}
+		case 5:
+			mes "[^0000FFLunar Warrior^000000]";
+			mes "As you wish.";
+			close;
+	}
+	end;
+}
+
+//=======================================================
+// Cash Shop NPC
+//=======================================================
+izlude,125,157,4	script	Cash Items Manager#0::gerentelujo	556,{
+//=======================================================
+// Required mysql tables
+//=======================================================
+	/*
+		CREATE TABLE `account_limited_shop` (
+			`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+			`item_id` int(11) UNSIGNED NOT NULL,
+			`start_date` DATETIME NOT NULL,
+			`finish_date` DATETIME NOT NULL,
+			`price` int(11) UNSIGNED NOT NULL,
+			`quantity` int(11) UNSIGNED NOT NULL,
+			PRIMARY KEY(`id`)
+		) ENGINE=MyISAM AUTO_INCREMENT=1;
+
+		INSERT INTO 
+			`account_limited_shop` (`item_id`, `start_date`, `finish_date`, `price`, `quantity`)
+		VALUES
+			(200618, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 2000, 1),
+			(200619, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 29000, 1),
+			(200620, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 35000, 1),
+			(200031, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 35000, 1),
+			(200074, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 35000, 1),
+			(200518, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 3500, 5),
+			(200517, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 35000, 5),
+			(200519, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 35000, 5),
+			(200520, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 35000, 5),
+			(200521, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 35000, 5),
+			(200545, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 35000, 5),
+			(200546, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 35000, 5),
+			(200547, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 35000, 5),
+			(200492, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 70000, 5),
+			(200493, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 70000, 5),
+			(200110, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 70000, 5),
+			(200111, '2025-05-01 00:00:00', '2025-09-02 00:00:00', 70000, 5);
+
+		CREATE TABLE `account_limited_shop_purchase` (
+			`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+			`item_id` int(11) UNSIGNED NOT NULL,
+			`account_id` int(11) UNSIGNED NOT NULL,
+			`count` int(11) DEFAULT 0,
+			`purchase_date` DATETIME NOT NULL,
+			PRIMARY KEY (`id`)
+		) ENGINE=MyISAM AUTO_INCREMENT=1;
+	*/
+	.@nombre$ = "[^FF0000Cash Items Manager^000000]";
+	mes .@nombre$;
+	mes "Looks like I am selling breads, right?";
+  mes "Not really, I can offer you a wide variety of good limited items for Cash";
+	next;
+	mes .@nombre$;
+	mes "Here is my current stock for you:";
+	.@sql$ = "SELECT s.item_id, s.price, s.quantity, IFNULL(p.total_purchased, 0) AS purchased FROM account_limited_shop s LEFT JOIN (SELECT item_id, SUM(count) AS total_purchased FROM account_limited_shop_purchase WHERE account_id = '" + getcharid(3) + "' GROUP BY item_id) p ON s.item_id = p.item_id WHERE NOW() BETWEEN s.start_date AND s.finish_date;";
+	.@queryResult = query_sql(.@sql$, .@item_id, .@price, .@quantity, .@total_purchased);
+	for (.@i = 0; .@i < .@queryResult; .@i += 1) {
+		if (.@quantity[.@i] > .@total_purchased[.@i]) {
+			mes mesitemlink(.@item_id[.@i]);
+			if (.@quantity[.@i] > 1) {
+				mes "Price: ^0000FF " + .@price[.@i] + "C^000000, bought ^0000FF" + .@total_purchased[.@i] + "^000000 of ^0000FF" + .@quantity[.@i] + "^000000 units.^000000";
+			} else {
+				mes "Price: ^0000FF " + .@price[.@i] + "C^000000 ^FF0000limited 1 purchase^000000.";
+			}
+		} else {
+			mes mesitemlink(.@item_id[.@i]) + " ^FF0000OUT OF STOCK^000000";
+		}
+		mes "--------------------------------";
+	}
+	next;
+	mes .@nombre$;
+	mes "Which one do you want to buy?";
+	.@sql$ = "SELECT s.item_id, s.quantity, s.price, IFNULL(p.total_purchased, 0) AS purchased FROM account_limited_shop s LEFT JOIN (SELECT item_id, SUM(count) AS total_purchased FROM account_limited_shop_purchase WHERE account_id = '" + getcharid(3) + "' GROUP BY item_id) p ON s.item_id = p.item_id WHERE NOW() BETWEEN s.start_date AND s.finish_date AND IFNULL(p.total_purchased, 0) < s.quantity;";
+	.@queryResult = query_sql(.@sql$, .@item_id, .@quantity, .@price, .@total_purchased);
+	setarray .@itemNameList$[0], "";
+	for (.@i = 0; .@i < .@queryResult; .@i += 1) { 
+		.@itemNameList$[.@i] = getitemname(.@item_id[.@i]);
+	}
+	next;
+	.@selected = select(implode(.@itemNameList$, ":")) - 1; // Convertimos a indice de array
+	mes .@nombre$;
+	mes "Are you sure do you wan to buy this?";
+	mes "Item: " +  mesitemlink(.@item_id[.@selected]);
+	mes "Price: ^0000FF" + .@price[.@selected] + "C^000000";
+	mes "Available: ^0000FF" + (.@quantity[.@selected] - .@total_purchased[.@selected]) + "^000000";
+	next;
+	if (select("Yes","No") == 2) close;
+	mes .@nombre$;
+	if (#CASHPOINTS >= .@price[.@selected]) {
+		mes "Thank you very much, enjoy.";
+		query_sql("INSERT INTO account_limited_shop_purchase (account_id, item_id, count, purchase_date) VALUES (" + getcharid(3) + ", " + .@item_id[.@selected] + ", 1, NOW()) ON DUPLICATE KEY UPDATE count = count + 1, purchase_date = NOW();");
+		getitem .@item_id[.@selected], 1;
+		#CASHPOINTS -= .@price[.@selected];
+		close;
+	} else {
+		mes "Oh sorry... you don't have enough Cash.";
+	}
+	close;
+
+	OnInit:
+		waitingroom "Luxury Items", 0;
+	end;	
+}
+
+izlude_a,125,157,4	duplicate(gerentelujo)	Cash Items Manager#1	556
+izlude_b,125,157,4	duplicate(gerentelujo)	Cash Items Manager#2	556
+izlude_c,125,157,4	duplicate(gerentelujo)	Cash Items Manager#3	556
+izlude_d,125,157,4	duplicate(gerentelujo)	Cash Items Manager#4	556
+
+//=======================================================
+// Event rewards from Latam RO (ROLA) OBT
+//=======================================================
+izlude,136,155,3	script	Rewards Manager#0::gerenteevento	758,{
+	.@nombre$ = "[^FF0000Rewards Manager^000000]";
+	mes .@nombre$;
+	mes "I am glad you played ROLA OBT. Here you are your well-earned rewards for participating in the beta.";
+	next;
+	mes .@nombre$;
+	mes "Which reward do you want to claim? Once per option.";
+	next;
+	setarray(.@opciones$[0],
+		obtEventRewards & 1 ? "[^FF0000Pre-Register Event 1^000000] Social Media followers event.":"[^0000FFPre-Register Event 1^000000] Social Media followers event.", 
+		obtEventRewards & 2 ? "[^FF0000Pre-Register Event 2^000000] Log In and earn event.":"[^0000FFPre-Register Event 2^000000] Log In and earn event.", 
+		obtEventRewards & 4 ? "[^FF0000Pre-Register Event 3^000000] Invite a friend event.":"[^0000FFPre-Register Event 3^000000] Invite a friend event.", 
+		obtEventRewards & 8 ? "[^FF0000Pre-Register Event 4^000000] Pre-Register event.":"[^0000FFPre-Register Event 4^000000] Pre-register event.", 
+		obtEventRewards & 16 ? "[^FF0000OBT Event 1^000000] Daily Web Presence Event.":"[^0000FFOBT Event 1^000000] Daily Web Presence Event.", 
+		obtEventRewards & 32 ? "[^FF0000OBT Event 2^000000] Player Progression Event":"[^0000FFOBT Event 2^000000] Player Progression Event.", 
+		obtEventRewards & 64 ? "[^FF0000OBT Event 3^000000] Satisfying Poll Event.":"[^0000FFOBT Event 3^000000] Satisfying Poll Event."
+	);
+	switch(select(implode(.@opciones$, ":"))) {
+		case 1:
+			mes .@nombre$;
+			if (obtEventRewards & 1) {
+				mes "You have already earned this reward.";
+				mes "Try another!";
+			} else {
+				mes "Event associated with Latam RO social media followers.";
+				mes "[^FF0000Tier 1^000000]: 30k followers ^0000FFunlocked^000000.";
+				mes "[^FF0000Tier 2^000000]: 50k followers ^0000FFunlocked^000000.";
+				mes "[^FF0000Tier 3^000000]: 75k followers ^0000FFunlocked^000000.";
+				mes "[^FF0000Tier 4^000000]: 100k followers ^0000FFunlocked^000000.";
+				next;
+				mes .@nombre$;
+				mes "Rewards are following: ";
+				mes "[^FF0000Tier 1^000000]:";
+				mes mesitemlink(104112);
+				mes "[^FF0000Tier 2^000000]:";
+				mes mesitemlink(104117);
+				mes "[^FF0000Tier 3^000000]:";
+				mes mesitemlink(104118);
+				mes "[^FF0000Tier 4^000000]:";
+				mes mesitemlink(104119);
+				next;
+				if (select("Receive.","I don't need them") == 2) close;
+				mes .@nombre$;
+				mes "This is a one time reward, enjoy.";
+				getitem 104112,1;
+				getitem 104117,1;
+				getitem 104118,1;
+				getitem 104119,1;
+				obtEventRewards = obtEventRewards | 1;
+			}
+			close;
+
+		case 2:
+			mes .@nombre$;
+			if (obtEventRewards & 2) {
+				mes "You have already earned this reward.";
+				mes "Try another!";
+				close;
+			} else {
+        mes "During the pre-registration period, you had to check-in on the website for an entire month, and every 5 days that you registered the session a reward was unlocked. ^FF0000This event rewards are not cumulative^000000."				next;
+				mes .@nombre$;
+				mes "^FF00005 days check-in:";
+				mes mesitemlink(104125);
+				mes "^FF000010 days check-in:";
+				mes mesitemlink(104126);
+				mes "^FF000015 days check-in:";
+				mes mesitemlink(104127);
+				mes "^FF000020 days check-in:";
+				mes mesitemlink(104128);
+				mes "^FF000025 days check-in:";
+				mes mesitemlink(104129);
+				mes "^FF000029 days check-in:";
+				mes mesitemlink(104130);
+				next;
+				mes .@nombre$;
+				mes "Which one was your record? Be honest.";
+				next;
+				switch (select("5 days","10 days","15 days","20 days","25 days", "29 days", "None")) {
+					case 1:
+						getitem 104125,1;
+						break;
+
+					case 2:
+						getitem 104126,1;
+						break;
+
+					case 3:
+						getitem 104127,1;
+						break;
+
+					case 4:
+						getitem 104128,1;
+						break;
+
+					case 5:
+						getitem 104129,1;
+						break;
+
+					case 6:
+						getitem 104130,1;
+						break;
+
+					default:
+						mes .@nombre$;
+						mes "Come back to check other rewards.";
+						close;
+				}
+				mes .@nombre$;
+				mes "Enjoy your rewards!";
+				obtEventRewards = obtEventRewards | 2;
+			}
+			close;
+
+		case 3:
+			mes .@nombre$;
+			if (obtEventRewards & 4) {
+				mes "You have already earned this reward.";
+				mes "Try another!";
+				close;
+			} else {
+        mes "Event associated with the number of friends you have invited to register in the pre-registration period.";
+        mes "[^0000FF1 friend^000000]:";
+				mes mesitemlink(104120);
+				mes "[^0000FF5 friends^000000]:";
+				mes mesitemlink(104121);
+				mes "[^0000FF10 friends^000000]:";
+				mes mesitemlink(104122);
+				mes "[^0000FFYou were invited^000000]:";
+				mes mesitemlink(104123);
+				mes "[^0000FFMost inviter^000000]:";
+				mes mesitemlink(104124);
+				next;
+				mes .@nombre$;
+				mes "How many friends did you invite? Be honest.";
+				next;
+				switch(select("Invited 1 friend.","Invited 5 friends.","Invited 10 friends.","Most inviter.","I was invited.", "None.")) {
+					case 1:
+						getitem 104120,1;
+						break;
+
+					case 2:
+						getitem 104120,1;
+						getitem 104121,1;
+						break;
+					case 3:
+						getitem 104120,1;
+						getitem 104121,1;
+						getitem 104122,1;
+						break;
+
+					case 4:
+						getitem 104120,1;
+						getitem 104121,1;
+						getitem 104122,1;
+						getitem 104124,1;
+						break;
+
+					case 5:
+						getitem 104123,1;
+						break;
+
+					default:
+						mes .@nombre$;
+						mes "Come back to check other rewards.";
+						close;
+				}
+				mes .@nombre$;
+				mes "Enjoy your rewards!";
+				obtEventRewards = obtEventRewards | 4;
+				close;
+			}
+			close;
+
+		case 4:
+			mes .@nombre$;
+			if (obtEventRewards & 8) {
+				mes "You have already earned this reward.";
+				mes "Try another!";
+			} else {
+				mes "Just a reward for being registered before release launch date.";
+				mes mesitemlink(104103);
+				mes "Did you pre-register?";
+				next;
+				if (select("Yes","No") == 2) close;
+				mes .@nombre$;
+				mes "Enjoy your rewards!";
+				getitem 104103, 1;
+				obtEventRewards = obtEventRewards | 8;
+			}
+			close;
+
+		case 5:
+			mes .@nombre$;
+			if (obtEventRewards & 16) {
+				mes "You have already earned this reward.";
+				mes "Try another!";
+			} else {
+        mes "Event associated with the daily presence registration during the OBT, if you registered more than 4 days this reward belongs to you.";
+        mes mesitemlink(20443);
+				next;
+				if (select("I did!","Nope...") == 2) close;
+				mes .@nombre$;
+				mes "Enjoy your rewards!";
+				getitem 20443, 1;
+				obtEventRewards = obtEventRewards | 16;
+			}
+			close;
+
+		case 6:
+			mes .@nombre$;
+			if (obtEventRewards & 32) {
+				mes "You have already earned this reward.";
+				mes "Try another!";
+			} else {
+				mes "Evento asociado a la progresi�n de niveles, seg�n tu nivel m�ximo de personaje puedes conseguir:";
+				mes "Reach level range ^FF000071~99 without being transcended^000000.";
+				mes mesitemlink(104165);
+				mes "Reach level range ^FF00001~70^000000 transcended.";
+				mes mesitemlink(104166);
+				mes "Reach level range ^FF000071~99^000000 transcended.";
+				mes mesitemlink(104167);
+				mes "Reach level range ^FF0000100~110^000000 transcended.";
+				mes mesitemlink(104168);
+				mes "Reach level range ^FF0000111~120^000000 transcended.";
+				mes mesitemlink(104169);
+				mes "Reach level range ^FF0000121 o m�s^000000 transcended.";
+				mes mesitemlink(104171);
+				next;
+				mes .@nombre$;
+				mes "Select your range levels reached.";
+				next;
+				switch(select("71~99 not transcended.","1~70 transcended.","71~99 transcended.","100~110 transcended.","111~120 transcended.","+121 transcended.","None.")) {
+					case 1:
+						getitem 104165, 1;
+						break;
+
+					case 2:
+						getitem 104166, 1;
+						break;
+
+					case 3:
+						getitem 104167, 1;
+						break;
+
+					case 4:
+						getitem 104168, 1;
+						break;
+
+					case 5:
+						getitem 104169, 1;
+						break;
+
+					case 6:
+						getitem 104171, 1;
+						break;
+
+					case 7:
+						mes .@nombre$;
+						mes "Well, don't worry, check other rewards.";
+						close;
+				}
+				mes .@nombre$;
+				mes "Enjoy your rewards!";
+				obtEventRewards = obtEventRewards | 32;
+			}
+			close;
+
+		case 7:
+			mes .@nombre$;
+			if (obtEventRewards & 64) {
+				mes "You have already earned this reward.";
+				mes "Try another!";
+			} else {
+				mes "Receive this rewards after filling the OBT satisfaction poll.";
+				mes mesitemlink(104434);
+				mes "Did you fill?";
+				next;
+				if (select("Yes","No") == 2) close;
+				mes .@nombre$;
+				mes "Enjoy your rewards!";
+				getitem 104434, 1;
+				obtEventRewards = obtEventRewards | 64;
+			}
+			close;
+	}
+
+	OnInit:
+		waitingroom "Recompensas ROLA OBT", 0;
+	end;
+}
+
+izlude_a,136,155,5	duplicate(gerenteevento)	Rewards Manager#1	762
+izlude_b,136,155,5	duplicate(gerenteevento)	Rewards Manager#2	758
+izlude_c,136,155,5	duplicate(gerenteevento)	Rewards Manager#3	762
+izlude_d,136,155,5	duplicate(gerenteevento)	Rewards Manager#4	758
